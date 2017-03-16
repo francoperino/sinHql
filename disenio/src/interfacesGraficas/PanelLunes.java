@@ -31,6 +31,7 @@ public class PanelLunes extends JPanel {
 	private static JButton btnJueves;
 	private static JButton btnViernes;
 	private static JButton btnSabado;
+	private JButton btnCancelar;
 	
 	/**
 	 * Create the panel.
@@ -136,6 +137,11 @@ public class PanelLunes extends JPanel {
 		txtNombreBedel.setBorder(null);
 		
 		btnLunes = new JButton("");
+		btnLunes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		btnLunes.setBounds(47, 140, 79, 33);
 		panel.add(btnLunes);
 		btnLunes.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_lunes (1)2.png")));
@@ -151,6 +157,14 @@ public class PanelLunes extends JPanel {
 		btnMartes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RegResPeriodica.cambiarDeDia(1);
+				int i = table.getSelectedRow();
+				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"l");
+				try {
+					RegResPeriodica.avanzar();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		btnMartes.setEnabled(false);
@@ -169,6 +183,14 @@ public class PanelLunes extends JPanel {
 		btnMiercoles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegResPeriodica.cambiarDeDia(2);
+				int i = table.getSelectedRow();
+				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"l");
+				try {
+					RegResPeriodica.avanzar();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnMiercoles.setEnabled(false);
@@ -187,6 +209,14 @@ public class PanelLunes extends JPanel {
 		btnJueves.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegResPeriodica.cambiarDeDia(3);
+				int i = table.getSelectedRow();
+				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"l");
+				try {
+					RegResPeriodica.avanzar();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnJueves.setEnabled(false);
@@ -205,6 +235,14 @@ public class PanelLunes extends JPanel {
 		btnViernes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegResPeriodica.cambiarDeDia(4);
+				int i = table.getSelectedRow();
+				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"l");
+				try {
+					RegResPeriodica.avanzar();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnViernes.setEnabled(false);
@@ -223,6 +261,14 @@ public class PanelLunes extends JPanel {
 		btnSabado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegResPeriodica.cambiarDeDia(5);
+				int i = table.getSelectedRow();
+				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"l");
+				try {
+					RegResPeriodica.avanzar();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnSabado.setEnabled(false);
@@ -271,7 +317,14 @@ public class PanelLunes extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				//btnAtras.setEnabled(true);
 				//panel.repaint();
-				RegResPeriodica.avanzar();
+				int i = table.getSelectedRow();
+				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"l");
+				try {
+					RegResPeriodica.avanzar();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		btnSiguiente.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_siguiente (1)2.png")));
@@ -283,7 +336,7 @@ public class PanelLunes extends JPanel {
 		btnSiguiente.setContentAreaFilled(false);
 		btnSiguiente.setBorderPainted(false);
 		btnSiguiente.setBorder(null);
-		btnSiguiente.setBounds(205, 333, 132, 40);
+		btnSiguiente.setBounds(285, 340, 132, 40);
 		panel.add(btnSiguiente);
 		
 		btnAtras = new JButton("");
@@ -297,13 +350,25 @@ public class PanelLunes extends JPanel {
 		btnAtras.setContentAreaFilled(false);
 		btnAtras.setBorderPainted(false);
 		btnAtras.setBorder(null);
-		btnAtras.setBounds(365, 333, 82, 36);
+		btnAtras.setBounds(195, 340, 82, 36);
 		panel.add(btnAtras);
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RegResPeriodica.atras();
 			}
 		});
+		
+		btnCancelar = new JButton("");
+		btnCancelar.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_cancelar2.png")));
+		btnCancelar.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_cancelar.png")));
+		btnCancelar.setOpaque(false);
+		btnCancelar.setFocusable(false);
+		btnCancelar.setFocusPainted(false);
+		btnCancelar.setContentAreaFilled(false);
+		btnCancelar.setBorderPainted(false);
+		btnCancelar.setBorder(null);
+		btnCancelar.setBounds(422, 340, 112, 40);
+		panel.add(btnCancelar);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setBounds(0, 0, 602, 401);

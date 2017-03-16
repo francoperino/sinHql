@@ -7,12 +7,15 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import Logica.GestorReserva;
  
 public class PanelResEsporadica extends JPanel {
     private JTextField txtNombreBedel;
@@ -25,13 +28,25 @@ public class PanelResEsporadica extends JPanel {
     private static DefaultTableModel model ;
     private JButton btnSiguiente;
     private JButton btnAtras;
-   
+    private static ArrayList<String> listaAulas=new ArrayList<>();
+    private static int pos;
+    private static int lar;
+    private static int cantAlumnos;
+    private static String tipoAula;
+    private static String nomCurs;
+    private static ArrayList<String> fechas;
+    private static ArrayList<String> horaini;
+    private static ArrayList<String> dur;
+    private static String idoc;
+    private static String ibel;
+    
+
     /**
      * Create the panel.
      */
     public PanelResEsporadica() {
         setLayout(null);
-       
+        
         ContentPanResEsporadica = new JPanel();
         ContentPanResEsporadica.setBounds(0, 0, 600, 400);
         add(ContentPanResEsporadica);
@@ -62,7 +77,10 @@ public class PanelResEsporadica extends JPanel {
         ContentPanResEsporadica.add(btnAtras);
         btnAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            
                 RegResEsporadica.atras();
+                listaAulas.add(pos,(String) table.getValueAt(table.getSelectedRow(),0));
+                pos--;
             }      
         });
        
@@ -146,10 +164,24 @@ public class PanelResEsporadica extends JPanel {
         btnSiguiente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 RegResEsporadica.avanzar();
+                listaAulas.add(pos,(String) table.getValueAt(table.getSelectedRow(),0));
+                pos++;
+                
             }      
         });
        
         JButton btnAceptar = new JButton("");
+        btnAceptar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		GestorReserva rr =new GestorReserva();
+        		try {
+					rr.registrarReserva(cantAlumnos,tipoAula,nomCurs,fechas,listaAulas,horaini,dur,idoc,ibel);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+        	}
+        });
         btnAceptar.setEnabled(false);
         btnAceptar.setRolloverIcon(new ImageIcon(PanelResEsporadica.class.getResource("/imagenes/PanelResEsporadica/button_registrar2.png")));
         btnAceptar.setIcon(new ImageIcon(PanelResEsporadica.class.getResource("/imagenes/PanelResEsporadica/button_registrar.png")));
@@ -239,4 +271,20 @@ public class PanelResEsporadica extends JPanel {
             model.removeRow(u);
             }
     }
+	public static void posicion(int i,int largo,int cantAlum,int filas,String idSolo,String nick , ArrayList<String> fecha, ArrayList<String> horas,
+			ArrayList<String> duracion,String tipo,String nom) {
+		lar=largo;
+		for(int j=0;i<lar;j++) {
+			listaAulas.add("");
+		}
+		pos=i-1;
+		nomCurs = nom;
+    	cantAlumnos=cantAlum;
+    	tipoAula=tipo;
+    	fechas=fecha;
+		horaini=horas;
+		dur=duracion;
+		idoc=idSolo;
+		ibel=nom;
+	}
 }

@@ -88,9 +88,6 @@ public class GestorReserva {
     	
     		
     	}
-    	 for(int K=0;K<total.size();K++) {
-   		  System.out.println(total.get(K)); 
-   		   }
     	return total;
     }
     public ArrayList<ArrayList<ConsultaGenerica>> consultarDiaReserva(String tipoAula,ArrayList fecha, Integer cantAlumnos,ArrayList horaInicio,ArrayList duracion) throws Exception  {

@@ -64,6 +64,7 @@ public class GestorDiaReserva {
     public ArrayList<Diareserva> obtenerArr(ArrayList<String> fechas,ArrayList<String> aulas,ArrayList<String> horaIni, ArrayList<String> duracion) throws Exception{
     	ArrayList<Diareserva> arr = new ArrayList<>();
     	GestorAulas ga = new GestorAulas();
+    	
 	    for(int i=0;i<fechas.size();i++) {
 	    	Diareserva dr = new Diareserva();
 	    	dr.setAula(ga.obtenerAula(aulas.get(i)));

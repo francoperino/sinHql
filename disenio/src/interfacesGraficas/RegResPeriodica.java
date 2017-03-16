@@ -13,10 +13,20 @@ import javax.swing.JCheckBox;
 import java.awt.List;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import com.sun.org.apache.bcel.internal.generic.ArrayInstruction;
+
+import Entidades.Ciclolectivo;
+import Entidades.ConsultaGenerica;
+import Logica.GestorCicloLectivo;
+import Logica.GestorReserva;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class RegResPeriodica extends JPanel {
@@ -32,10 +42,10 @@ public class RegResPeriodica extends JPanel {
 	private JTextField HoraFinViernes;
 	private JTextField HoraIniSabado;
 	private JTextField HoraFinSabado;
-	private JTextField txtCantAlumnos;
-	private JTextField txtAnual;
-	private JTextField txtIdSolicitante;
-	private JTextField txtNombreBedel;
+	private static JTextField txtCantAlumnos;
+	private static JTextField txtAnual;
+	private static JTextField txtIdSolicitante;
+	private static JTextField txtNombreBedel;
 	private JTextField txtApellido;
 	private JTextField txtNombre;
 	private JTextField txtCorreo;
@@ -52,19 +62,38 @@ public class RegResPeriodica extends JPanel {
 	private static JPanel lunes,martes,miercoles,jueves,viernes,sabado;
 	private static Boolean bandera = false,band=false;
 	private static Integer contadordias=0,contdiasatras=1000;
-	private static boolean btnsig=false,btnat=false,cambiardia=false;
+	private static boolean btnsig=false,btnat=false,cambiardia=false,bandera7=false;
 	private static Integer contadorGlobalDias=0;
+	private	static ArrayList<ArrayList<String>> selected= new ArrayList<>();
+	private static ArrayList<String> l = new ArrayList<>();
+	private static ArrayList<String> m = new ArrayList<>();
+	private static ArrayList<String> mi= new ArrayList<>();
+	private static ArrayList<String> j = new ArrayList<>();
+	private static ArrayList<String> v = new ArrayList<>();
+	private static ArrayList<String> s = new ArrayList<>();
+	private static ArrayList<String> aulas = new ArrayList<>();
+	private static ArrayList<String> fech = new ArrayList<>();
+	private static ArrayList<String> hi = new ArrayList<>();
+	private static ArrayList<String> dur = new ArrayList<>();
+	private static JComboBox ComBoxTipoAula, ComBoxNombreCurso;
+	
 	/**
 	 * Create the panel.
 	 */
 	public RegResPeriodica() {
+		
 		seleccionados[0]=0;
 		seleccionados[1]=0;
 		seleccionados[2]=0;
 		seleccionados[3]=0;
 		seleccionados[4]=0;
 		seleccionados[5]=0;
-		
+		selected.add(0,l);
+		selected.add(1,m);
+		selected.add(2,mi);
+		selected.add(3,j);
+		selected.add(4,v);
+		selected.add(5,s);
 		
 		setLayout(null);
 		cl=new CardLayout();
@@ -244,6 +273,7 @@ public class RegResPeriodica extends JPanel {
 		HoraFinSabado.setColumns(10);
 		HoraFinSabado.setBounds(419, 180, 30, 20);
 		panelSeleccion.add(HoraFinSabado);
+	
 		
 		JComboBox ComBoxDuracionLunes = new JComboBox();
 		ComBoxDuracionLunes.setModel(new DefaultComboBoxModel(new String[] {"00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00"}));
@@ -300,7 +330,7 @@ public class RegResPeriodica extends JPanel {
 		lblTipoDeAula.setBounds(205, 209, 95, 20);
 		panelSeleccion.add(lblTipoDeAula);
 		
-		JComboBox ComBoxTipoAula = new JComboBox();
+	    ComBoxTipoAula = new JComboBox();
 		ComBoxTipoAula.setModel(new DefaultComboBoxModel(new String[] {"Seleccione", "Multimedios", "Informatica", "Sin recursos adicionales"}));
 		ComBoxTipoAula.setMaximumRowCount(4);
 		ComBoxTipoAula.setForeground(Color.BLACK);
@@ -313,7 +343,7 @@ public class RegResPeriodica extends JPanel {
 		lblCantidadDeAlumnos.setIconTextGap(10);
 		lblCantidadDeAlumnos.setForeground(Color.WHITE);
 		lblCantidadDeAlumnos.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblCantidadDeAlumnos.setBounds(205, 276, 160, 20);
+		lblCantidadDeAlumnos.setBounds(205, 307, 160, 20);
 		panelSeleccion.add(lblCantidadDeAlumnos);
 		
 		txtCantAlumnos = new JTextField();
@@ -321,11 +351,11 @@ public class RegResPeriodica extends JPanel {
 		txtCantAlumnos.setHorizontalAlignment(SwingConstants.CENTER);
 		txtCantAlumnos.setFont(new Font("Tahoma", Font.BOLD, 14));
 		txtCantAlumnos.setColumns(10);
-		txtCantAlumnos.setBounds(375, 276, 30, 20);
+		txtCantAlumnos.setBounds(375, 307, 30, 20);
 		panelSeleccion.add(txtCantAlumnos);
 		
 		txtAnual = new JTextField();
-		txtAnual.setText("2\u00B0 cuatrimestre");
+		txtAnual.setText("Anual");
 		txtAnual.setOpaque(false);
 		txtAnual.setHorizontalAlignment(SwingConstants.CENTER);
 		txtAnual.setForeground(Color.WHITE);
@@ -333,23 +363,23 @@ public class RegResPeriodica extends JPanel {
 		txtAnual.setEditable(false);
 		txtAnual.setColumns(10);
 		txtAnual.setBorder(null);
-		txtAnual.setBounds(419, 275, 155, 20);
+		txtAnual.setBounds(10, 251, 155, 20);
 		panelSeleccion.add(txtAnual);
 		
 		JLabel lblSolicitante = new JLabel("ID solicitante:");
 		lblSolicitante.setIconTextGap(10);
 		lblSolicitante.setForeground(Color.WHITE);
 		lblSolicitante.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblSolicitante.setBounds(205, 307, 112, 20);
+		lblSolicitante.setBounds(205, 276, 112, 20);
 		panelSeleccion.add(lblSolicitante);
 		
 		txtIdSolicitante = new JTextField();
 		txtIdSolicitante.setColumns(10);
-		txtIdSolicitante.setBounds(321, 307, 70, 20);
+		txtIdSolicitante.setBounds(317, 278, 53, 20);
 		panelSeleccion.add(txtIdSolicitante);
 		
 		txtNombreBedel = new JTextField();
-		txtNombreBedel.setText("Bedel");
+		txtNombreBedel.setText("Sebastian47");
 		txtNombreBedel.setOpaque(false);
 		txtNombreBedel.setHorizontalAlignment(SwingConstants.CENTER);
 		txtNombreBedel.setForeground(Color.WHITE);
@@ -365,7 +395,7 @@ public class RegResPeriodica extends JPanel {
 		txtApellido.setOpaque(false);
 		txtApellido.setHorizontalAlignment(SwingConstants.CENTER);
 		txtApellido.setForeground(Color.WHITE);
-		txtApellido.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txtApellido.setFont(new Font("Tahoma", Font.BOLD, 16));
 		txtApellido.setEditable(false);
 		txtApellido.setColumns(10);
 		txtApellido.setBorder(null);
@@ -379,7 +409,7 @@ public class RegResPeriodica extends JPanel {
 		lblCurso.setBounds(205, 240, 112, 20);
 		panelSeleccion.add(lblCurso);
 		
-		JComboBox ComBoxNombreCurso = new JComboBox();
+		ComBoxNombreCurso = new JComboBox();
 		ComBoxNombreCurso.setMaximumRowCount(4);
 		ComBoxNombreCurso.setForeground(Color.BLACK);
 		ComBoxNombreCurso.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -392,7 +422,7 @@ public class RegResPeriodica extends JPanel {
 		txtNombre.setOpaque(false);
 		txtNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		txtNombre.setForeground(Color.WHITE);
-		txtNombre.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txtNombre.setFont(new Font("Tahoma", Font.BOLD, 16));
 		txtNombre.setEditable(false);
 		txtNombre.setColumns(10);
 		txtNombre.setBorder(null);
@@ -404,11 +434,11 @@ public class RegResPeriodica extends JPanel {
 		txtCorreo.setOpaque(false);
 		txtCorreo.setHorizontalAlignment(SwingConstants.CENTER);
 		txtCorreo.setForeground(Color.WHITE);
-		txtCorreo.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txtCorreo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		txtCorreo.setEditable(false);
 		txtCorreo.setColumns(10);
 		txtCorreo.setBorder(null);
-		txtCorreo.setBounds(401, 306, 173, 20);
+		txtCorreo.setBounds(413, 306, 173, 20);
 		panelSeleccion.add(txtCorreo);
 		
 		JButton btnSiguiente = new JButton("");
@@ -417,26 +447,66 @@ public class RegResPeriodica extends JPanel {
 				RegistrarBedel rg = new RegistrarBedel();
 				boolean verif=false;
 				if(ChekBoxLunes.getState()) {
+					String hor0 = ""+HoraIniLunes.getText()+":"+HoraFinLunes.getText()+":00";
+					String dur0 = ""+(String)ComBoxDuracionLunes.getSelectedItem()+":00";
+					l.add("-1");
+					l.add(hor0);
+					//selected.add(0,l);
+					l.add(dur0);
+					
 					seleccionados[0]=1;
 					verif=true;
 				}
 				if(ChekBoxMartes.getState()) {
+					String hor1 = ""+HoraIniMartes.getText()+":"+HoraFinMartes.getText()+":00";
+					String dur1 = ""+(String)ComBoxDuracionMartes.getSelectedItem()+":00";
+					m.add("-1");
+					m.add(hor1);
+					m.add(dur1);
+					//selected.add(1,m);
 					seleccionados[1]=1;
 					verif=true;
 				}
 				if(ChekBoxMiercoles.getState()) {
+					String hor2 = ""+HoraIniMiercoles.getText()+":"+HoraFinMiercoles.getText()+":00"; 
+					String dur2 = ""+(String)ComBoxDuracionMiercoles.getSelectedItem()+":00";
+					mi.add("-1");
+					mi.add(hor2);
+					mi.add(dur2);
+					//selected.add(2,mi);
+					
 					seleccionados[2]=1;
 					verif=true;
 				}
 				if(ChekBoxJueves.getState()) {
+					String hor3 = ""+HoraIniJueves.getText()+":"+HoraFinJueves.getText()+":00"; 
+					String dur3 = ""+(String)ComBoxDuracionJueves.getSelectedItem()+":00";
+					j.add("-1");
+					j.add(hor3);
+					j.add(dur3);
+					//selected.add(3,j);
+					
 					seleccionados[3]=1;
 					verif=true;
 				}
 				if(ChekBoxViernes.getState()) {
+					String hor4 = ""+HoraIniViernes.getText()+":"+HoraFinViernes.getText()+":00";
+					String dur4 = ""+(String)ComBoxDuracionViernes.getSelectedItem()+":00";
+					v.add("-1");
+					v.add(hor4);
+					v.add(dur4);
+					//selected.add(4,v);
+					
 					seleccionados[4]=1;
 					verif=true;
 				}
 				if(CheckBoxSabado.getState()) {
+					String hor5 = ""+HoraIniSabado.getText()+":"+HoraFinSabado.getText()+":00";
+					String dur5 = ""+(String)ComBoxDuracionSabado.getSelectedItem()+":00";
+					s.add("-1");
+					s.add(hor5);
+					s.add(dur5);
+					//selected.add(5,s);
 					seleccionados[5]=1;
 					verif=true;
 				}
@@ -524,6 +594,18 @@ public class RegResPeriodica extends JPanel {
 				ContentPanelsRegRes.repaint();
 			}
 		});
+		
+		JButton btnCargar = new JButton("");
+		btnCargar.setRolloverIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/button_cargar(4).png")));
+		btnCargar.setIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/button_cargar.png")));
+		btnCargar.setOpaque(false);
+		btnCargar.setFocusable(false);
+		btnCargar.setFocusPainted(false);
+		btnCargar.setContentAreaFilled(false);
+		btnCargar.setBorderPainted(false);
+		btnCargar.setBorder(null);
+		btnCargar.setBounds(375, 276, 68, 26);
+		panelSeleccion.add(btnCargar);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setBounds(0, 0, 600, 400);
@@ -695,6 +777,7 @@ public class RegResPeriodica extends JPanel {
 			
 		}
 		if(bandera==false) {
+			bandera7=true;
 			//System.out.println(posicion);
 			switch(contadordias) {
 			case 0:
@@ -808,9 +891,110 @@ public class RegResPeriodica extends JPanel {
 	public JPanel getContentPanelsRegRes() {
 		return ContentPanelsRegRes;
 	}
-	public static void avanzar() {
-		cambiardia=false;
-		siguienteDia();
+	public static void avanzar() throws Exception {
+		if(bandera7) {
+			GestorReserva gr = new GestorReserva();
+			Ciclolectivo cic = new Ciclolectivo();
+			GestorCicloLectivo gcl = new GestorCicloLectivo();
+			cic = gcl.obtenerCicloLectivo();
+			ArrayList<String> la1 ;
+			ArrayList<String> la2 ;
+			ArrayList<String> la3 ;
+			ArrayList<String> la4 ;
+			ArrayList<String> la5 ;
+			ArrayList<String> la6 ;
+			
+			for(int j=0;j<seleccionados.length;j++) {
+				if(seleccionados[j]==1) {
+			switch (j) {
+			 case  0:
+				 la1 = gr.obtenerArrayFechas("Lunes",txtAnual.getText(),cic);
+				 for(int a = 0;a<la1.size();a++) {
+					 if(selected.get(0).size()!=0) {
+				      	 fech.add(la1.get(a));
+				      	 aulas.add(selected.get(0).get(0));
+				      	 hi.add(selected.get(0).get(1));
+				      	 dur.add(selected.get(0).get(2));
+				 }
+				 }
+				 
+				 break;
+			 case  1:
+				 la2 = gr.obtenerArrayFechas("Martes",txtAnual.getText(),cic);
+				 for(int a = 0;a<la2.size();a++) {
+					 if(selected.get(1).size()!=0) {
+			      	 fech.add(la2.get(a));
+			      	 aulas.add(selected.get(1).get(0));
+			      	 hi.add(selected.get(1).get(1));
+			      	 dur.add(selected.get(1).get(2));
+					 }
+			 }
+				 break;
+			 case  2:
+				 la3 = gr.obtenerArrayFechas("Miercoles",txtAnual.getText(),cic);
+				 for(int a = 0;a<la3.size();a++) {
+					 if(selected.get(2).size()!=0) {
+			      	 fech.add(la3.get(a));
+			      	 aulas.add(selected.get(2).get(0));
+			      	 hi.add(selected.get(2).get(1));
+			      	 dur.add(selected.get(2).get(2));
+					 }
+			 }
+				 break;
+			 case  3:
+				 la4 = gr.obtenerArrayFechas("Jueves",txtAnual.getText(),cic);
+				 for(int a = 0;a<la4.size();a++) {
+					 if(selected.get(3).size()!=0) {
+			      	 fech.add(la4.get(a));
+			      	 aulas.add(selected.get(3).get(0));
+			      	 hi.add(selected.get(3).get(1));
+			      	 dur.add(selected.get(3).get(2));
+					 }
+			 }
+				 break;
+			 case  4:
+				 la5 =gr.obtenerArrayFechas("Viernes",txtAnual.getText(),cic);
+				 for(int a = 0;a<la5.size();a++) {
+					 if(selected.get(4).size()!=0) {
+			      	 fech.add(la5.get(a));
+			      	 aulas.add(selected.get(4).get(0));
+			      	 hi.add(selected.get(4).get(1));
+			      	 dur.add(selected.get(4).get(2));
+					 }
+			 }
+				 break;
+			 case  5:
+				 la6 = gr.obtenerArrayFechas("Sabado",txtAnual.getText(),cic);
+				 for(int a = 0;a<la6.size();a++) {
+					 if(selected.get(5).size()!=0) {
+			      	 fech.add(la6.get(a));
+			      	 aulas.add(selected.get(5).get(0));
+			      	 hi.add(selected.get(5).get(1));
+			      	 dur.add(selected.get(5).get(2));
+					 }
+			 }
+				 break;
+				 
+			
+			}
+		
+			try {
+				gr.registrarReserva(Integer.parseInt(txtCantAlumnos.getText()),(String) ComBoxTipoAula.getSelectedItem(),(String)ComBoxNombreCurso.getSelectedItem(), fech, aulas, hi, dur,txtIdSolicitante.getText(),txtNombreBedel.getText());
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			}
+			}
+	        
+		}else {
+			cambiardia=false;
+			siguienteDia();
+		}
+		
 		
 	}
 	public static void atras() {
@@ -824,4 +1008,40 @@ public class RegResPeriodica extends JPanel {
 		siguienteDia();
 		
 	}
+	public static void seteoVector(String aula, String dia) {
+	   
+		switch (dia){
+		case "l":
+			l.remove(0);
+			l.add(0,aula);
+			break;
+		case "m":
+			m.remove(0);
+			m.add(0,aula);
+			break;
+		case "mi":
+			mi.remove(0);
+			mi.add(0,aula);
+			break;
+		case "j":
+			j.remove(0);
+			j.add(0,aula);
+			break;
+		case "v":
+			v.remove(0);
+			v.add(0,aula);
+			break;
+		case "s":
+			s.remove(0);
+			s.add(0,aula);
+			break;
+			
+		}
+	}
+	  public void seteo(ArrayList<ConsultaGenerica> cursos) {
+	        for(int i=0; i<cursos.size();i++) {
+	            ComBoxNombreCurso.addItem(cursos.get(i).getValor("nombrecurso").toString());
+	            
+	        }
+	  }
 }

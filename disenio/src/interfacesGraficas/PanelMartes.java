@@ -23,6 +23,7 @@ public class PanelMartes extends JPanel {
 	private JTextField txtHora;
 	private JTextField txtNombreBedel;
 	private JTable table;
+	private JButton btnCancelar;
 	private static JButton btnSiguiente;
 	private static JButton btnAtras;
 	private static JPanel panel;
@@ -140,6 +141,14 @@ public class PanelMartes extends JPanel {
 		btnLunes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RegResPeriodica.cambiarDeDia(0);
+				int i = table.getSelectedRow();
+				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"m");
+				try {
+					RegResPeriodica.avanzar();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnLunes.setRolloverIcon(new ImageIcon(PanelMartes.class.getResource("/imagenes/PanelesRegReserva/button_lunes2.png")));
@@ -169,6 +178,14 @@ public class PanelMartes extends JPanel {
 		btnMiercoles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegResPeriodica.cambiarDeDia(2);
+				int i = table.getSelectedRow();
+				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"m");
+				try {
+					RegResPeriodica.avanzar();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnMiercoles.setEnabled(false);
@@ -187,6 +204,14 @@ public class PanelMartes extends JPanel {
 		btnJueves.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegResPeriodica.cambiarDeDia(3);
+				int i = table.getSelectedRow();
+				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"m");
+				try {
+					RegResPeriodica.avanzar();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnJueves.setEnabled(false);
@@ -205,6 +230,14 @@ public class PanelMartes extends JPanel {
 		btnViernes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegResPeriodica.cambiarDeDia(4);
+				int i = table.getSelectedRow();
+				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"m");
+				try {
+					RegResPeriodica.avanzar();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnViernes.setEnabled(false);
@@ -223,6 +256,14 @@ public class PanelMartes extends JPanel {
 		btnSabado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegResPeriodica.cambiarDeDia(5);
+				int i = table.getSelectedRow();
+				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"m");
+				try {
+					RegResPeriodica.avanzar();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnSabado.setEnabled(false);
@@ -271,43 +312,62 @@ public class PanelMartes extends JPanel {
 		btnSiguiente = new JButton("");
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegResPeriodica.avanzar();
+				int i = table.getSelectedRow();
+				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"m");
+				try {
+					RegResPeriodica.avanzar();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
-		btnSiguiente.setRolloverIcon(new ImageIcon(PanelMartes.class.getResource("/imagenes/PanelesRegReserva/button_siguiente (1)2.png")));
-		btnSiguiente.setIcon(new ImageIcon(PanelMartes.class.getResource("/imagenes/PanelesRegReserva/button_siguiente (1).png")));
+		btnSiguiente.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_siguiente (1)2.png")));
+		btnSiguiente.setSelectedIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_siguiente (1)2.png")));
+		btnSiguiente.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_siguiente (1).png")));
 		btnSiguiente.setOpaque(false);
 		btnSiguiente.setFocusable(false);
 		btnSiguiente.setFocusPainted(false);
 		btnSiguiente.setContentAreaFilled(false);
 		btnSiguiente.setBorderPainted(false);
 		btnSiguiente.setBorder(null);
-		btnSiguiente.setBounds(205, 333, 132, 40);
+		btnSiguiente.setBounds(285, 340, 132, 40);
 		panel.add(btnSiguiente);
 		
 		btnAtras = new JButton("");
 		btnAtras.setEnabled(false);
-		btnAtras.setRolloverIcon(new ImageIcon(PanelMartes.class.getResource("/imagenes/PanelesRegReserva/button_atras (3)2.png")));
-		btnAtras.setIcon(new ImageIcon(PanelMartes.class.getResource("/imagenes/PanelesRegReserva/button_atras (3).png")));
+		btnAtras.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_atras (3)2.png")));
+		btnAtras.setSelectedIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_atras (3)2.png")));
+		btnAtras.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_atras (3).png")));
 		btnAtras.setOpaque(false);
 		btnAtras.setFocusable(false);
 		btnAtras.setFocusPainted(false);
 		btnAtras.setContentAreaFilled(false);
 		btnAtras.setBorderPainted(false);
 		btnAtras.setBorder(null);
-		btnAtras.setBounds(365, 333, 82, 36);
+		btnAtras.setBounds(195, 340, 82, 36);
 		panel.add(btnAtras);
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RegResPeriodica.atras();
 			}
 		});
-		
+		btnCancelar = new JButton("");
+		btnCancelar.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_cancelar2.png")));
+		btnCancelar.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_cancelar.png")));
+		btnCancelar.setOpaque(false);
+		btnCancelar.setFocusable(false);
+		btnCancelar.setFocusPainted(false);
+		btnCancelar.setContentAreaFilled(false);
+		btnCancelar.setBorderPainted(false);
+		btnCancelar.setBorder(null);
+		btnCancelar.setBounds(422, 340, 112, 40);
+		panel.add(btnCancelar);
 		
 		JLabel Fondo = new JLabel("");
-		Fondo.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/FondoRegBed2.1.png")));
 		Fondo.setBounds(0, 0, 602, 401);
 		panel.add(Fondo);
+		Fondo.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/FondoRegBed2.1.png")));
 
 	}
 	public void setboton() {

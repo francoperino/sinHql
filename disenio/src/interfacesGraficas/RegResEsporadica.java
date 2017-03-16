@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.awt.event.KeyAdapter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.awt.CardLayout;
@@ -20,9 +21,12 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
  
+import com.sun.glass.events.KeyEvent;
+ 
 import com.sun.org.apache.xpath.internal.operations.NotEquals;
  
 import Entidades.ConsultaGenerica;
+import Logica.GestorCicloLectivo;
 import Logica.GestorDocente;
 import Logica.GestorReserva;
  
@@ -51,11 +55,12 @@ public class RegResEsporadica extends JPanel {
     private static JComboBox ComBoxDia;
     ArrayList<ArrayList<ConsultaGenerica>> arreg=null;
     private static Integer cancel=0;
-   
+ 
  
     /**
      * Create the panel.
      */
+   
     public RegResEsporadica() {
         setBackground(Color.DARK_GRAY);
         setLayout(null);
@@ -74,7 +79,7 @@ public class RegResEsporadica extends JPanel {
        
        
         txtNombreBedel = new JTextField();
-        txtNombreBedel.setText("Bedel");
+        txtNombreBedel.setText("895sdasd");
         txtNombreBedel.setOpaque(false);
         txtNombreBedel.setHorizontalAlignment(SwingConstants.CENTER);
         txtNombreBedel.setForeground(Color.WHITE);
@@ -124,6 +129,22 @@ public class RegResEsporadica extends JPanel {
         panelResEsporad.add(label);
        
         txtHora = new JTextField();
+        txtHora.addKeyListener(new KeyAdapter() {
+            int limite = 2;
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                boolean bandera = false;            
+                if (txtHora.getSelectedText() != null) {
+                    if (txtHora.getSelectedText().length() == 2) {
+                        bandera = true;
+                    }
+                }
+                if (((c < '0' || c > '9') || (txtHora.getText().length()== 2)) && (bandera == false || (c < '0' || c > '9'))){                  
+                        evt.consume();                  
+                }    
+            }
+        });
         txtHora.setText("00");
         txtHora.setHorizontalAlignment(SwingConstants.CENTER);
         txtHora.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -133,6 +154,21 @@ public class RegResEsporadica extends JPanel {
         panelResEsporad.add(txtHora);
        
         txtMinutos = new JTextField();
+        txtMinutos.addKeyListener(new KeyAdapter() {            
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                boolean bandera = false;            
+                if (txtMinutos.getSelectedText() != null) {
+                    if (txtMinutos.getSelectedText().length() == 2) {
+                        bandera = true;
+                    }
+                }
+                if (((c < '0' || c > '9') || (txtMinutos.getText().length()== 2)) && (bandera == false || (c < '0' || c > '9'))){                   
+                        evt.consume();                  
+                }               
+            } 
+        });
         txtMinutos.setText("00");
         txtMinutos.setHorizontalAlignment(SwingConstants.CENTER);
         txtMinutos.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -149,6 +185,21 @@ public class RegResEsporadica extends JPanel {
         panelResEsporad.add(lblDuracion);
          
            txtCantAlumnos = new JTextField();
+           txtCantAlumnos.addKeyListener(new KeyAdapter() {
+               @Override
+               public void keyTyped(java.awt.event.KeyEvent evt) {
+                   char c = evt.getKeyChar();
+                   boolean bandera = false;            
+                   if (txtCantAlumnos.getSelectedText() != null) {
+                       if (txtCantAlumnos.getSelectedText().length() == 10) {
+                           bandera = true;
+                       }
+                   }
+                   if (((c < '0' || c > '9') || (txtCantAlumnos.getText().length()== 10)) && (bandera == false || (c < '0' || c > '9'))){                  
+                           evt.consume();                  
+                   }     
+               }
+              });
            txtCantAlumnos.setText("00");
            txtCantAlumnos.setHorizontalAlignment(SwingConstants.CENTER);
            txtCantAlumnos.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -158,6 +209,22 @@ public class RegResEsporadica extends JPanel {
            panelResEsporad.add(txtCantAlumnos);
          
            txtIdSolicitante = new JTextField();
+           txtIdSolicitante.addKeyListener(new KeyAdapter() {
+               int limite = 2;
+               @Override
+               public void keyTyped(java.awt.event.KeyEvent evt) {
+                   char c = evt.getKeyChar();
+                   boolean bandera = false;            
+                   if (txtIdSolicitante.getSelectedText() != null) {
+                       if (txtIdSolicitante.getSelectedText().length() == 20) {
+                           bandera = true;
+                       }
+                   }
+                   if (((c < '0' || c > '9') || (txtIdSolicitante.getText().length()== 20)) && (bandera == false || (c < '0' || c > '9'))){                    
+                           evt.consume();                  
+                   }
+                   }
+              });
            txtIdSolicitante.setColumns(10);
            txtIdSolicitante.setBounds(332, 307, 78, 20);
            panelResEsporad.add(txtIdSolicitante);
@@ -225,6 +292,18 @@ public class RegResEsporadica extends JPanel {
          JButton btnSiguiente = new JButton("");
          btnSiguiente.addActionListener(new ActionListener() {
              public void actionPerformed(ActionEvent e) {
+            	
+            	 
+                 RegistrarBedel rg = new RegistrarBedel();              
+                 boolean controlAlumnos = txtCantAlumnos.getText().equals("00");
+                 boolean controlTipoAula = (ComBoxTipoDeAula.getSelectedIndex() == 0);
+                 boolean controlDocente = (txtCorreoSolicitante.getText().equals("Correo") && txtApellidoSolicitante.getText().equals("Apellido") && txtNombreSolicitante.getText().equals("Nombre"));
+                 boolean controlSeleccion = (table.getSelectedRow() == -1);
+                 System.out.println(table.getSelectedRow());
+                 if(controlSeleccion == false) {
+                    if (controlAlumnos == false) {
+                        if(controlTipoAula == false) {
+                            if(controlDocente == false) {
                          String tipoAula=null;
                          if(ComBoxTipoDeAula.getSelectedIndex()==0) {
                                
@@ -259,7 +338,7 @@ public class RegResEsporadica extends JPanel {
                              duracion.add(duracions);
                            
                            }
-                       
+                         PanelResEsporadica.posicion(table.getSelectedRow(),table.getRowCount(),Integer.parseInt(txtCantAlumnos.getText()),filas,(String)txtIdSolicitante.getText(),(String)txtNombreBedel.getText(),fecha,hora,duracion,(String)ComBoxTipoDeAula.getSelectedItem(),(String)ComBoxNombreCurso.getSelectedItem());
                          try {
                               ar = gr.consultarDiaReserva(tipoAula, fecha, cantAlumnos, hora, duracion);
                            
@@ -281,6 +360,12 @@ public class RegResEsporadica extends JPanel {
                          cont=0;
                          arreg=ar;
                          siguienteDia(ar);
+ 
+                            }else rg.mensaje("Ingrese los datos del solicitante para continuar","ERROR");
+                        }else rg.mensaje("Seleccion un tipo de aula para continuar","ERROR");
+                    }else rg.mensaje("La cantidad de alumnos debe ser mayor a cero","ERROR");
+                 }else rg.mensaje("seleccione una fila para continuar","ERROR");
+ 
                
          }      
          });
@@ -386,34 +471,95 @@ public class RegResEsporadica extends JPanel {
         btnAgregar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                
+ 
                 RegistrarBedel rg = new RegistrarBedel();
                 int hora;
                 int minutos;
-                hora = Integer.parseInt(txtHora.getText()) *100;
+                hora = Integer.parseInt(txtHora.getText()) *100;        
                 minutos = Integer.parseInt(txtMinutos.getText());
+                int horaInicio= hora + minutos;
                 String durac =  (String) ComBoxDuracion.getSelectedItem();
                 durac = durac.replace(":","");
                 Integer duracion = Integer.valueOf(durac);
                 Calendar c = Calendar.getInstance();
                 Integer dia = (c.get(Calendar.DATE));
-                Integer mes = (c.get(Calendar.MONTH)+1);
+                Integer mes = (c.get(Calendar.MONTH)+1);               
+                int cantRenglones = table.getRowCount();
+                int banderaRepe = 0;
+                int t = 0;
+                int nuevoDia = (ComBoxDia.getSelectedIndex()+1);
+                int nuevoMes = (ComBoxMes.getSelectedIndex()+1);
+                if(cantRenglones > 0) {
+                while ((banderaRepe == 0) && (t != cantRenglones)) {  //mientras no detecte solapamiento y haya mas renglones por recorrer
+                    String cadenaDiaTabla = (String) table.getValueAt(t, 0);
+                    int DiaTabla = Integer.valueOf(cadenaDiaTabla);             //dia de una reserva ya agregada
+                    
+                    String cadenaMesTabla = (String) table.getValueAt(t, 1);
+                    int MesTabla = Integer.valueOf(cadenaMesTabla);             //mes de una reserva ya agregada
+                    
+                    String cadenaHorainicTabla = table.getValueAt(t, 2).toString();
+                    cadenaHorainicTabla = cadenaHorainicTabla.replaceAll(":","");   //hora inicio de una reserva ya agregada
+                    int horaInicTabla = Integer.valueOf(cadenaHorainicTabla);
+                    
+                    String cadenaDuracTabla = table.getValueAt(t, 3).toString();
+                    cadenaDuracTabla = cadenaDuracTabla.replaceAll(":","");
+                    int duracTabla = Integer.valueOf(cadenaDuracTabla);          
+                    
+                        if (nuevoDia == DiaTabla) {
+                            if (nuevoMes == MesTabla) {                                 
+                                if (horaInicio == horaInicTabla) { 
+                                    if (duracion == duracTabla) { 
+                                        banderaRepe = 1;    //las reservas van a ser iguales
+                                    }
+                                    else banderaRepe=2; //las reservas se van a solapar (empiezan al mismo horario)
+                                }
+                                else {
+                                    if ((horaInicio > horaInicTabla) && (((horaInicio + duracion) - (horaInicTabla + duracTabla)) <= 0)){
+                                            banderaRepe=3;  //estoy colocando una reserva que se solapara con otra ya ingresada
+                                    }
+                                    if ((horaInicio < horaInicTabla)  && (((horaInicio + duracion) - (horaInicTabla + duracTabla)) >= 0)){
+                                        banderaRepe=3;  //estoy colocando una reserva que se solapara con otra ya ingresada
+                                    }   
+                                    if ((horaInicio < horaInicTabla)  && (horaInicio < (horaInicTabla + duracTabla))){
+                                        banderaRepe=3;  //estoy colocando una reserva que se solapara con otra ya ingresada
+                                    }
+                                    if ((horaInicTabla + duracTabla) > (horaInicio)) {
+                                        banderaRepe=3;  //estoy colocando una reserva que se solapara con otra ya ingresada
+                                    }
+                                }
+                            }                           
+                        }                                               
+                t++;        
+                }  
+                }
                 if ((ComBoxMes.getSelectedIndex()+1) >= mes){
                     if((ComBoxDia.getSelectedIndex()+1) > dia) {
                         if((hora >= 700) && (hora <= 2300)) {
                             if((minutos >= 00) && (minutos < 60)) {
-                                if((hora + minutos) <=2330) {
-                                    if((duracion + (hora + minutos)) <=2330){
-                                        model.addRow(new Object[]{ComBoxDia.getSelectedItem(),ComBoxMes.getSelectedItem(),txtHora.getText()+":"+txtMinutos.getText(),ComBoxDuracion.getSelectedItem()});
-                                    } else rg.mensaje("La reserva no debe durar mas de las 23:30","ERROR");
+                                if(horaInicio <=2330) {
+                                    if((duracion + horaInicio) <=2330){
+                                        switch(banderaRepe){
+                                        case 0:
+                                             model.addRow(new Object[]{ComBoxDia.getSelectedItem(),ComBoxMes.getSelectedItem(),txtHora.getText()+":"+txtMinutos.getText(),ComBoxDuracion.getSelectedItem()});
+                                             break;
+                                        case 1: rg.mensaje("No pueden existir dos reservas iguales","ERROR");
+                                            break;
+                                         
+                                        case 2: rg.mensaje("la reserva se solapara con otra (mismo hora inicio)","ERROR");
+                                        break;
+                                        
+                                        case 3: rg.mensaje("la reserva se solapara con otra (mismo intervalo horario)","ERROR");
+                                        break;
+                                        }         
+                                    }else rg.mensaje("La reserva no debe durar mas de las 23:30","ERROR");                                 
                                 }else rg.mensaje("No se puede reservar despues de las 23:30","ERROR");
-                            }
+                            }else rg.mensaje("error al ingresar los minutos de la reserva","ERROR");
                         }else rg.mensaje("Las reservas deben ser entre las 7:00 y 23:30","ERROR");
                     }else rg.mensaje("La reserva debe ser como minimo el dia siguiente al actual","ERROR");
                 }else rg.mensaje("la reserva tiene que ser en el mes actual o siguiente","ERROR");
                
             }
-        });
-       
+        });      
         JButton btnQuitar = new JButton("");
         btnQuitar.setRolloverIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_quitar2.png")));
         btnQuitar.setIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_quitar.png")));
@@ -529,7 +675,8 @@ public class RegResEsporadica extends JPanel {
            /* cl.show(control,"panelresEspo");
             control.revalidate();
             control.repaint();*/
-            avanzarSeleccion(dia,mes,day,arr);         
+            avanzarSeleccion(dia,mes,day,arr);
+            
             cl.show(control,"panelresEspo");
             control.revalidate();
             control.repaint();
@@ -618,10 +765,10 @@ public class RegResEsporadica extends JPanel {
        
     }
     public static void setcancel(Integer i) {
-    	cancel=i;
+        cancel=i;
     }
     public static void avanzarSeleccion(String dia,String mes,int day,ArrayList<ArrayList<ConsultaGenerica>> arr) {
-    	String tipoAula =(String) ComBoxTipoDeAula.getSelectedItem();
+        String tipoAula =(String) ComBoxTipoDeAula.getSelectedItem();
         String hayaire="";
         String haydvd="";
         String haytv="";

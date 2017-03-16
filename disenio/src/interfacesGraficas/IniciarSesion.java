@@ -10,8 +10,11 @@ import java.awt.Color;
 import javax.swing.JTextField;
  
 import Entidades.ConsultaGenerica;
+import Logica.GestorReserva;
 import Logica.GestorUsuario;
- 
+import daos.daoCursos;
+import daos.daoReserva;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -53,6 +56,65 @@ class IniciarSesion {
      * Initialize the contents of the frame.
      */
     private void initialize() {
+    /*	daoCursos dr = new daoCursos();
+    	GestorReserva gr= new GestorReserva();
+    	
+    	try {
+    		ArrayList<String> fec=new ArrayList<>();
+    		for(int i=0;i<10;i++) {
+    			fec.add("2017-03-12");
+    		}
+    		ArrayList<String> a=new ArrayList<>();
+    		for(int i=0;i<10;i++) {
+    			a.add("10");
+    		}
+    		ArrayList<String> h=new ArrayList<>();
+    		for(int i=0;i<10;i++) {
+    			h.add("10:00:00");
+    		}
+    		ArrayList<String> d=new ArrayList<>();
+    		for(int i=0;i<10;i++) {
+    			d.add("01:00:00");
+    		}
+    		//fec={"2017-03-12","2017-03-12","2017-03-12","2017-03-12","2017-03-12","2017-03-12","2017-03-12","2017-03-12","2017-03-12","2017-03-12"};
+    		
+    		gr.registrarReserva(10, "Multimedios", "Fisica 2",fec , a,h, d, "1", "895sdasd");
+			System.out.println(dr.buscarCursoPorNombre("Fisica 2").getCodigocurso());
+			System.out.println(dr.buscarCursoPorNombre("Fisica 2").getNombre());
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}*/
+    	/*GestorReserva gr = new GestorReserva();
+    	ArrayList<String> ar = new ArrayList<>();
+    	ar.add("10:00:00");
+    	ar.add("10:00:00");
+    	ar.add("10:00:00");
+    	ar.add("10:00:00");
+    	ar.add("10:00:00");
+    	ar.add("10:00:00");
+    	ArrayList<String> arr = new ArrayList<>();
+    	arr.add("03:00:00");
+    	arr.add("03:00:00");
+    	arr.add("03:00:00");
+    	arr.add("03:00:00");
+    	arr.add("03:00:00");
+    	arr.add("03:00:00");
+    	
+    	ArrayList<Integer> dias = new ArrayList<>();
+    	dias.add(1);
+    	dias.add(1);
+    	dias.add(1);
+    	dias.add(1);
+    	dias.add(1);
+    	dias.add(1);
+    	try {
+    		gr.validar(dias,"Sin recursos adicionales","",10,ar,arr);
+		
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}*/
         frmInicioSesion = new JFrame();
         frmInicioSesion.setTitle("Gestor aulas FRSF");
         frmInicioSesion.setResizable(false);
