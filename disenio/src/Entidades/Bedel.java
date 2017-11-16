@@ -1,4 +1,4 @@
-package Logica.Entidades;
+package Entidades;
 
 public class Bedel extends Usuario {
 	protected String turno;

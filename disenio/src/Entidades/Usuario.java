@@ -1,10 +1,17 @@
-package Logica.Entidades;
+package Entidades;
 
 public class Usuario {
 
 	protected String nickusuario;
 	protected String nombre;
 	protected String apellido;
+	
+	public Usuario(String datos) {
+		String[] params = datos.split("\t");
+		nickusuario = params[0];
+		nombre = params[1];
+		apellido = params[2];
+	}
 	
 	public String getNombre() {
 		return nombre;

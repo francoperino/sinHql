@@ -1,4 +1,4 @@
-package Logica.Entidades;
+package Entidades;
 // Generated 26/10/2017 18:27:25 by Hibernate Tools 4.3.1
 
 

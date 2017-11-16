@@ -1,4 +1,4 @@
-package Logica.Entidades;
+package Entidades;
 
 import java.util.HashSet;
 import java.util.Set;
