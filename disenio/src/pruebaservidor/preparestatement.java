@@ -51,13 +51,14 @@ public class preparestatement {
 	      String turno = "Tarde";
 	      String ape = "mansilla";
 	      //String consulta = "select u.apellido,u.nombre,u.nickusuario,b.turno from usuario u,bedel b where (u.nickusuario = b.nickusuario) and b.turno ='"+turno+"' and u.apellido = '"+ape+"'";
-	      String filtro = "A";
-	      String consulta = "select * from usuario WHERE Nombre LIKE '%" + filtro + "%';";
-	      ArrayList<Usuario> res = (ArrayList<Usuario>)((Object)Conexion.consultar(consulta, Usuario.class));
-	      for(Usuario usu : res) {
+	      String nickUsuario = "mansilla13";
+	      String consulta = "select * from bedel b where b.nickusuario = '"+nickUsuario+"' ;";
+	      ArrayList<Bedel> res = (ArrayList<Bedel>)((Object)Conexion.consultar(consulta, Bedel.class));
+	      System.out.println(res.isEmpty());
+	      /*for(Usuario usu : res) {
 	    	  System.out.print(usu.getNickusuario() + " - " + usu.getNombre() + " - " + usu.getApellido());
 	    	  System.out.println();
-	      }
+	      }*/
 	 }
 	 catch(Exception ex) {
 	      System.out.println("Exception: " + ex.getMessage());

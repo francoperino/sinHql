@@ -2,6 +2,7 @@ package interfacesGraficas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -22,7 +23,15 @@ import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 
+import Logica.GestorBedel;
+
 public class RegistrarBedel extends JPanel{
+	public void mensaje(String error,String titulo){
+        if(JOptionPane.showConfirmDialog(null,
+            error, titulo
+            , JOptionPane.DEFAULT_OPTION
+            , JOptionPane.INFORMATION_MESSAGE)==0);
+    }
 	private JTextField Admin;
 	private JTextField textFApellido;
 	private JTextField textFNombre;
@@ -170,6 +179,60 @@ public class RegistrarBedel extends JPanel{
 		button_1.setBorderPainted(false);
 		
 		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GestorBedel gb = new GestorBedel();
+			     String myPass=new String (PassfieldC.getPassword());
+			     String miPass= new String (PassfieldConfirmarC.getPassword());
+			     String tu = (String) comboBoxTurno.getSelectedItem();
+			     String apelido = textFApellido.getText();
+			     String nobre = textFNombre.getText();
+			     String nick = textFNickUs.getText();
+			     if(myPass.equals(miPass)){
+			        Integer valor = null;
+					try {
+						valor = gb.registrarBedel(apelido, nobre ,tu,nick,myPass);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			      switch(valor){
+			            case 1:
+			                mensaje("Debe contener como minimo un caracter especial","contraseña invalida");
+			                break;
+			            case 2:
+			                mensaje("Debe contener como minimo un digito","contraseña invalida");
+			                break;
+			                
+			            case 3:
+			                mensaje("Debe contener como minimo una mayuscula","contraseña invalida");
+			                break;
+			                
+			            case 4:
+			                mensaje("La contraseña debe ser mayor a 6 caracteres y menor que 20","contraseña invalida");
+			                break;
+			            case 7:
+			                mensaje("Bedel registrado correctamente","Registro exitoso");
+			                break;
+			            case 100:
+			                mensaje("El nick del bedel ya existe","Bedel ya registrado");
+			                break;
+			            
+			        }
+			     }
+			     else{
+			         mensaje("Los dos campos de contraseña, deben ser iguales","Contraseñas distintas");
+			     }
+				
+				
+				 
+				
+				
+				
+		        
+				
+			}
+		});
 		button.setBounds(217, 320, 115, 43);
 		ContentPanRegBed.add(button);
 		button.setFocusPainted(false);
