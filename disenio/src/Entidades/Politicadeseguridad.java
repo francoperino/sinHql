@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class Politicadeseguridad  {
 
-
+    
      private int idpolitica;
      private String signosespeciales;
      private Integer longclavemin;
@@ -14,6 +14,14 @@ public class Politicadeseguridad  {
      private Boolean igualaanterior;
      private Set claves = new HashSet(0);
 
+ 	public Politicadeseguridad(String datos) {
+ 		String[] params = datos.split("\t");
+ 		idpolitica = Integer.parseInt(params[0]);
+ 		signosespeciales = params[1];
+ 		longclavemin = Integer.parseInt(params[2]);
+ 		igualaanterior = params[3].equals("1");
+ 		contienedigito = params[4].equals("1");
+ 	}
     public Politicadeseguridad() {
     }
 
@@ -22,7 +30,6 @@ public class Politicadeseguridad  {
         this.idpolitica = idpolitica;
     }
     public Politicadeseguridad( String signosespeciales, Integer longclavemin, Boolean contienedigito, Boolean igualaanterior, Set claves) {
-       //this.idpolitica = idpolitica;
        this.signosespeciales = signosespeciales;
        this.longclavemin = longclavemin;
        this.contienedigito = contienedigito;

@@ -11,7 +11,7 @@ public class GestorBedel {
 	       daoBedel db = new daoBedel();
 	       GestorPoliticaClave gpc = new GestorPoliticaClave();
 	       
-	        Integer valor = gpc.validarClave(contrasea);
+	        Integer valor = gpc.validarPoliticas(contrasea);
 	        switch(valor){
 	            case 0:
 	                 if(db.consultarNickBedel(nickUsuario).isEmpty()){

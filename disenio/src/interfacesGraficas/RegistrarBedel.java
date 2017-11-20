@@ -209,7 +209,7 @@ public class RegistrarBedel extends JPanel{
 			                break;
 			                
 			            case 4:
-			                mensaje("La contraseña debe ser mayor a 6 caracteres y menor que 20","contraseña invalida");
+			                mensaje("La contraseña no cumple con la longitud minima de la politica","contraseña invalida");
 			                break;
 			            case 7:
 			                mensaje("Bedel registrado correctamente","Registro exitoso");

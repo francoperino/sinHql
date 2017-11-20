@@ -17,12 +17,12 @@ public class Clave   {
     }
 
 	
-    public Clave(int idclave, Politicadeseguridad politicadeseguridad) {
-        this.idclave = idclave;
+    public Clave( Politicadeseguridad politicadeseguridad) {
+        
         this.politicadeseguridad = politicadeseguridad;
     }
     public Clave( Politicadeseguridad politicadeseguridad, Usuario usuario, String claveactual, Date fechamodificacion) {
-       //this.idclave = idclave;
+      
        this.politicadeseguridad = politicadeseguridad;
        this.usuario = usuario;
        this.claveactual = claveactual;
