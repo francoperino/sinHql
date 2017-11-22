@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="disenio/src"/>
+	<classpathentry kind="lib" path="C:/Users/franc/eclipse/java-oxygen/eclipse/plugins/mysql-connector-java-5.1.44-bin.jar" sourcepath="C:/Users/franc/eclipse-workspace/disenio/bin"/>
+	<classpathentry kind="output" path="disenio/bin"/>
+</classpath>
