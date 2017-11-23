@@ -12,7 +12,7 @@ public class Conexion {
         try {
         	Class.forName("com.mysql.jdbc.Driver").newInstance();
             String connectionUrl = "jdbc:mysql://localhost:3306/disenio";
-            Connection conect = DriverManager.getConnection(connectionUrl, "root","1995");
+            Connection conect = DriverManager.getConnection(connectionUrl, "root","");
             return conect;
         } 
         catch (Exception ex) 
