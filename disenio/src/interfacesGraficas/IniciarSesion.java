@@ -68,8 +68,8 @@ class IniciarSesion {
 				String cadenaNick = textFieldNick.getText();
 				String cadenaPass = passwordField.getText();
 				if(("admin".equals(cadenaNick)) && ("123".equals(cadenaPass))){
-					InicioAdmin iniAd = new InicioAdmin();
-					iniAd.main(null);
+					InicioAdmin.main(null);
+					InicioAdmin.llamarAdmin();
 					frmInicioSesion.dispose();
 				}
 				else {

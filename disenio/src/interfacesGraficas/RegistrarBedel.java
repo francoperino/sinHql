@@ -81,7 +81,11 @@ public class RegistrarBedel extends JPanel{
 		btnInicAdm.setBorder(null);
 		btnInicAdm.setOpaque(false);
 		btnInicAdm.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			
+		public void actionPerformed(ActionEvent arg0) {
+			ContentPanRegBed.setVisible(false);
+			ContentPanRegBed.removeAll();
+			InicioAdmin.llamarAdmin();
 				
 			}
 		});

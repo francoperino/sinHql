@@ -26,13 +26,13 @@ public class InicioAdmin extends JFrame {
 	static JPanel PanelAdmin = new JPanel();
 	private JTextField txtAdmin;
 	static JPanel panel1Admin = new JPanel();
-	
+	static InicioAdmin frame = new InicioAdmin();
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InicioAdmin frame = new InicioAdmin();
+					
 					frame.setVisible(true);
 					frame.setResizable(false);
 					frame.setTitle("Admin");
@@ -73,7 +73,7 @@ public class InicioAdmin extends JFrame {
 		txtAdmin.setFont(new Font("Tahoma", Font.BOLD, 18));
 		txtAdmin.setEditable(false);
 		txtAdmin.setColumns(10);
-		//con esto se mostraba antes, probando nuevo metodo
+		
 		RegistrarBedel registrarBedel = new RegistrarBedel();
 		PanelAdmin.add(registrarBedel, "name_149023799906942");
 		
@@ -88,14 +88,14 @@ public class InicioAdmin extends JFrame {
 			public void actionPerformed(ActionEvent e) {	//VA A INTERFAZ REGISTRAR BEDEL
 				registrarBedel.setVisible(true);
 				panel1Admin.setVisible(false);
-				/*RegistrarBedel RegBed = new RegistrarBedel();
+				RegistrarBedel RegBed = new RegistrarBedel();
 				RegBed.setSize(600,400);
 				RegBed.setLocation(0,0);
 				
-				//PanelAdmin.removeAll();
+				PanelAdmin.removeAll();
 				PanelAdmin.add(RegBed, BorderLayout.CENTER);
 				PanelAdmin.revalidate();
-				PanelAdmin.repaint();*/
+				PanelAdmin.repaint();
 			}
 		});
 		btnRegBed.setFocusPainted(false);
@@ -133,9 +133,12 @@ public class InicioAdmin extends JFrame {
 		panel1Admin.add(btnCerrarSesAdm);
 		btnCerrarSesAdm.setFocusPainted(false);
 		btnCerrarSesAdm.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) { //cancelar vuelve al inicio sesion
-				IniciarSesion.main(null);
-				dispose();
+			public void actionPerformed(ActionEvent e) {
+			frame.setVisible(false);
+			 IniciarSesion.main(null);
+			
+			
+				
 			}
 		});
 		btnCerrarSesAdm.setBorder(null);
@@ -157,6 +160,9 @@ public static void  llamarAdmin() {
 	 PanelAdmin.add(panel1Admin,BorderLayout.CENTER);
 	 PanelAdmin.revalidate();
 	 PanelAdmin.repaint();
-	}
+	 PanelAdmin.repaint();
+		PanelAdmin.setBackground(Color.DARK_GRAY);
+		PanelAdmin.setBorder(new EmptyBorder(5, 5, 5, 5));
+}
 	
 }
