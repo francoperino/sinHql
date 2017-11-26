@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import Entidades.ConsultaGenerica;
 
 public class GestorUtilidades {
-	public static void llenarTabla(JTable tabla, ArrayList<Object> list) throws Exception{
+	public static void llenarTabla(JTable tabla, ArrayList<ConsultaGenerica> list) throws Exception{
         try{
             DefaultTableModel tableModel = new DefaultTableModel(){
                 @Override

@@ -14,9 +14,15 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import Entidades.ConsultaGenerica;
+import Logica.GestorBedel;
+import Logica.GestorUtilidades;
+
 import javax.swing.JScrollBar;
 
 public class BuscarBedel extends JPanel {
@@ -123,6 +129,26 @@ public class BuscarBedel extends JPanel {
 		textField.setColumns(10);
 		
 		JButton btnBuscar = new JButton("");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GestorBedel gb = new GestorBedel();
+				
+				String turno = (String) comboBoxTurno.getSelectedItem();
+				String ape = textField.getText().trim();
+				
+				try {
+					ArrayList<ConsultaGenerica> list = gb.BuscarBedel(turno, ape);
+					if(list.isEmpty()) {
+						RegistrarBedel rb = new RegistrarBedel();
+						rb.mensaje("No existe un bedel, con esos parametros", "Bedel no encontrado");
+					}else
+					GestorUtilidades.llenarTabla(table,list );
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		btnBuscar.setRolloverIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/button_buscar2.png")));
 		btnBuscar.setIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/button_buscar.png")));
 		btnBuscar.setOpaque(false);
@@ -137,10 +163,7 @@ public class BuscarBedel extends JPanel {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"", null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
+				{"", "", "", ""},
 				{null, null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
@@ -149,7 +172,7 @@ public class BuscarBedel extends JPanel {
 				{null, null, null, null},
 			},
 			new String[] {
-				"Apellido", "Nombre", "Turno", "Nick de usuario"
+				"Apellido", "Nombre", "Turno", "Nick usuario"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
@@ -157,12 +180,6 @@ public class BuscarBedel extends JPanel {
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
-			}
-			boolean[] columnEditables = new boolean[] {
-				true, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
 			}
 		});
 		table.getColumnModel().getColumn(0).setResizable(false);
@@ -173,6 +190,13 @@ public class BuscarBedel extends JPanel {
 		ContentPanBuscBed.add(table);
 		
 		JButton btnCancelar = new JButton("");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ContentPanBuscBed.setVisible(false);
+				ContentPanBuscBed.removeAll();
+				InicioAdmin.llamarAdmin();
+			}
+		});
 		btnCancelar.setRolloverIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/button_cancelar2.png")));
 		btnCancelar.setIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/button_cancelar.png")));
 		btnCancelar.setOpaque(false);

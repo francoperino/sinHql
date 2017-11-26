@@ -1,5 +1,10 @@
 package Logica;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import Entidades.Bedel;
+import Entidades.ConsultaGenerica;
 import daos.daoBedel;
 
 public class GestorBedel {
@@ -12,7 +17,12 @@ public class GestorBedel {
 	        switch(valor){
 	            case 0:
 	                 if(db.consultarNickBedel(nickUsuario).isEmpty()){
-	                     db.insertarBedel(apellido,nombre,turno,nickUsuario,contrasea);
+	                	 Bedel b = new Bedel();
+	                	 b.setApellido(apellido);
+	                	 b.setNombre(nombre);
+	                	 b.setNickusuario(nickUsuario);
+	                	 b.setTurno(turno);
+	                     db.insertarBedel(b,contrasea);
 	                     valor =7 ;
 	                     
 	                 }
@@ -30,4 +40,22 @@ public class GestorBedel {
 	                
 	       return valor; 
 	    }
+     public ArrayList<ConsultaGenerica> BuscarBedel(String turno,String apellido) throws Exception {
+    	 ArrayList<ConsultaGenerica> lista = null;
+    	 daoBedel db = new daoBedel();
+    	 if(apellido.equals("")&& turno.equals("Todos")) {
+    		 lista = db.BuscarPorTurno();
+    	 }else { 
+    	   if(apellido.equals("")) {
+    		   lista = db.BuscarPorTurno(turno);
+    		 
+    	  }
+    	   else { 
+    		   if(turno.equals("Todos")) {
+    			   lista = db.BuscarPorApellido(apellido);
+    		   }
+    		   else {lista = db.BuscarPorApellidoYTurno(apellido, turno);}
+    	 }}
+    	 return lista;
+     }
 }
