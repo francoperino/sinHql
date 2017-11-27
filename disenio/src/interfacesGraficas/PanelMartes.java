@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.UIManager;
+import javax.swing.JScrollPane;
 
 public class PanelMartes extends JPanel {
 	private JTextField textField;
@@ -197,31 +198,38 @@ public class PanelMartes extends JPanel {
 		button_6.setBounds(47, 340, 89, 33);
 		add(button_6);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(205, 140, 352, 176);
+		add(scrollPane);
+		
 		table = new JTable();
-		table.setFillsViewportHeight(true);
-		table.setBorder(UIManager.getBorder("TextArea.border"));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"1", "juan", "qqqqqqqqqqq", "37584"},
-				{"2", "pedro", "wwwwwww", "2233"},
-				{"3", "cdfg", "eeeeeeeeeee", "22222"},
-				{"4", "fghj", "rrrrrrrr", "333333"},
-				{"5", "kkikik", "ttttttttttt", "8888888"},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
 			},
 			new String[] {
-				"idPersona", "Nombre", "Apellido", "DNI"
+				"Num. Aula", "                    Caracteristicas", "Capacidad"
 			}
 		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class
+			boolean[] columnEditables = new boolean[] {
+				false, false, false
 			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
 			}
 		});
-		table.getTableHeader().setVisible(true);
-		table.setBounds(240, 186, 144, 67);
-		add(table);
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(60);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(1).setPreferredWidth(200);
+		table.getColumnModel().getColumn(2).setResizable(false);
+		table.getColumnModel().getColumn(2).setPreferredWidth(60);
+		scrollPane.setViewportView(table);
+		table.setRowHeight(50);
+		
+		
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/FondoRegBed2.1.png")));
