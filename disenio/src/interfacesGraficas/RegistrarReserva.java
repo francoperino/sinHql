@@ -127,6 +127,22 @@ public class RegistrarReserva extends JPanel {
 		Fondo.setIcon(new ImageIcon(RegistrarReserva.class.getResource("/imagenes/RegistrarReserva/FondoRegBed2.1.png")));
 		Fondo.setBounds(0, 0, 602, 401);
 		panel.add(Fondo);
+		
+		PanelesRegPeriodica panelesRegPeriodica = new PanelesRegPeriodica();
+		panelesRegPeriodica.setBounds(0, 0, 1, 1);
+		add(panelesRegPeriodica);
+		
+		PanelResEsporadica panelResEsporadica = new PanelResEsporadica();
+		panelResEsporadica.setBounds(0, 0, 1, 1);
+		add(panelResEsporadica);
+		
+		RegResEsporadica regResEsporadica = new RegResEsporadica();
+		regResEsporadica.setBounds(0, 0, 1, 1);
+		add(regResEsporadica);
+		
+		RegResPeriodica regResPeriodica = new RegResPeriodica();
+		regResPeriodica.setBounds(0, 0, 104, 18);
+		add(regResPeriodica);
 
 	}
 }

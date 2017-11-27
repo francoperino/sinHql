@@ -36,6 +36,7 @@ public class RegResPeriodica extends JPanel {
 	private JTextField txtApellido;
 	private JTextField txtNombre;
 	private JTextField txtCorreo;
+	private JPanel ContentPanelsRegRes;
 
 	/**
 	 * Create the panel.
@@ -43,7 +44,7 @@ public class RegResPeriodica extends JPanel {
 	public RegResPeriodica() {
 		setLayout(null);
 		
-		JPanel ContentPanelsRegRes = new JPanel();
+		ContentPanelsRegRes = new JPanel();
 		ContentPanelsRegRes.setBounds(0, 0, 600, 400);
 		add(ContentPanelsRegRes);
 		ContentPanelsRegRes.setLayout(null);
@@ -436,5 +437,8 @@ public class RegResPeriodica extends JPanel {
 		panelSabado.setBounds(0, 0, 1, 1);
 		ContentPanelsRegRes.add(panelSabado);
 
+	}
+	public JPanel getContentPanelsRegRes() {
+		return ContentPanelsRegRes;
 	}
 }

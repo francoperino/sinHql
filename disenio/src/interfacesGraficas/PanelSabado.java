@@ -192,7 +192,7 @@ public class PanelSabado extends JPanel {
 		add(button_6);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(225, 150, 352, 176);
+		scrollPane.setBounds(205, 140, 352, 176);
 		add(scrollPane);
 		
 		table = new JTable();

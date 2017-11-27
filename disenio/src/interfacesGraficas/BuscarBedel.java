@@ -263,6 +263,14 @@ public class BuscarBedel extends JPanel {
 		Fondo.setIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/FondoRegBed2.2.png")));
 		ContentPanBuscBed.add(Fondo);
 		
+		PanelModificarBedel panelModificarBedel = new PanelModificarBedel();
+		panelModificarBedel.setBounds(0, 0, 1, 1);
+		add(panelModificarBedel);
+		
+		PanelEliminarBedel panelEliminarBedel = new PanelEliminarBedel();
+		panelEliminarBedel.setBounds(0, 0, 1, 1);
+		add(panelEliminarBedel);
+		
 		
 
 	}
