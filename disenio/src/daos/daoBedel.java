@@ -58,14 +58,14 @@ private Connection con;
     	
     	return res1;
     }
-    public ArrayList <ConsultaGenerica> BuscarPorApellido(String apellido) throws Exception{
-    	String consulta1 = "select * from bedel b, Usuario u where  u.nickusuario = b.nickusuario and u.apellido = ' "+apellido+"';";
+    public ArrayList <ConsultaGenerica> BuscarPorApellido(String ape) throws Exception{
+    	String consulta1 = "select * from bedel b, Usuario u where  u.nickusuario = b.nickusuario and upper(u.apellido) like '"+ape.toUpperCase()+"%';";
     	ArrayList<ConsultaGenerica> res1 = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta1, ConsultaGenerica.class));
 		return res1;  
     	
     }
-    public ArrayList<ConsultaGenerica> BuscarPorApellidoYTurno(String apellido,String turno) throws Exception{
-    	String consulta1 = "select * from bedel b, Usuario u where  u.nickusuario = b.nickusuario and u.apellido = ' "+apellido+"'and b.turno = '"+turno+"';";
+    public ArrayList<ConsultaGenerica> BuscarPorApellidoYTurno(String apel,String tur) throws Exception{
+    	String consulta1 = "select * from bedel b, Usuario u where  u.nickusuario = b.nickusuario and upper(u.apellido) like ' "+apel.toUpperCase()+"%'and b.turno = '"+tur+"';";
     	ArrayList<ConsultaGenerica> res1 = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta1, ConsultaGenerica.class));
 		return res1; 
 	

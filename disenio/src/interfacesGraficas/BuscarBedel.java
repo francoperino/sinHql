@@ -135,9 +135,11 @@ public class BuscarBedel extends JPanel {
 				
 				String turno = (String) comboBoxTurno.getSelectedItem();
 				String ape = textField.getText().trim();
+				String apelido  = ape.replaceAll(" ","");
+				
 				
 				try {
-					ArrayList<ConsultaGenerica> list = gb.BuscarBedel(turno, ape);
+					ArrayList<ConsultaGenerica> list = gb.BuscarBedel(turno, apelido);
 					if(list.isEmpty()) {
 						RegistrarBedel rb = new RegistrarBedel();
 						rb.mensaje("No existe un bedel, con esos parametros", "Bedel no encontrado");
@@ -163,13 +165,6 @@ public class BuscarBedel extends JPanel {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"", "", "", ""},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
 			},
 			new String[] {
 				"Apellido", "Nombre", "Turno", "Nick usuario"
@@ -187,6 +182,10 @@ public class BuscarBedel extends JPanel {
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(3).setResizable(false);
 		table.setBounds(200, 107, 357, 208);
+		table.getTableHeader().setVisible(true);
+		JScrollBar scrollBar = new JScrollBar();
+		scrollBar.setBounds(556, 107, 17, 208);
+		ContentPanBuscBed.add(scrollBar);
 		ContentPanBuscBed.add(table);
 		
 		JButton btnCancelar = new JButton("");
@@ -229,9 +228,7 @@ public class BuscarBedel extends JPanel {
 		btnEliminar.setBounds(310, 335, 110, 40);
 		ContentPanBuscBed.add(btnEliminar);
 		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(556, 107, 17, 208);
-		ContentPanBuscBed.add(scrollBar);
+		
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setBounds(0, 0, 602, 401);
