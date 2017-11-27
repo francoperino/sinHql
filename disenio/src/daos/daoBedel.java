@@ -1,19 +1,15 @@
 package daos;
 
-import java.sql.DriverManager;
-import java.sql.ResultSet;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.sql.Connection;
 
-//import com.mysql.jdbc.PreparedStatement;
-//import com.mysql.jdbc.Statement;
 
 import Entidades.Bedel;
 import Entidades.ConsultaGenerica;
-import Entidades.Politicadeseguridad;
-import Entidades.Usuario;
+
 
 public class daoBedel {
 
@@ -64,10 +60,10 @@ private Connection con;
 		return res1;  
     	
     }
-    public ArrayList<ConsultaGenerica> BuscarPorApellidoYTurno(String apel,String tur) throws Exception{
-    	String consulta1 = "select * from bedel b, Usuario u where  u.nickusuario = b.nickusuario and upper(u.apellido) like ' "+apel.toUpperCase()+"%'and b.turno = '"+tur+"';";
-    	ArrayList<ConsultaGenerica> res1 = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta1, ConsultaGenerica.class));
-		return res1; 
+    public ArrayList<ConsultaGenerica> BuscarPorApellidoYTurno(String apel,String turnoooo) throws Exception{
+    	String consulta3 = "SELECT * FROM bedel b, Usuario u WHERE  u.nickusuario = b.nickusuario AND b.turno = '"+turnoooo+"' AND upper(u.apellido) like ' "+apel.toUpperCase()+"%';";
+    	ArrayList<ConsultaGenerica> res2 = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta3,ConsultaGenerica.class));
+		return res2; 
 	
 }
 }

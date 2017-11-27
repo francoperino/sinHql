@@ -26,6 +26,9 @@ import Logica.GestorUtilidades;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.ListSelectionModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class BuscarBedel extends JPanel {
 	private JTextField txtAdmin;
@@ -172,21 +175,14 @@ public class BuscarBedel extends JPanel {
 		ContentPanBuscBed.add(scrollPane);
 		
 		table = new JTable();
+		
+		
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setBackground(new Color(255, 255, 255));
 		table.setForeground(new Color(0, 0, 0));
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
 			},
 			new String[] {
 				"Apellido", "Nombre", "Turno", "Nick usuario"
@@ -197,12 +193,6 @@ public class BuscarBedel extends JPanel {
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
-			}
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
 			}
 		});
 		table.getColumnModel().getColumn(0).setResizable(false);
@@ -231,6 +221,13 @@ public class BuscarBedel extends JPanel {
 		ContentPanBuscBed.add(btnCancelar);
 		
 		JButton btnModif = new JButton("");
+		btnModif.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+		});
+		btnModif.setEnabled(false);
 		btnModif.setRolloverIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/button_modificar22.png")));
 		btnModif.setIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/button_modificar2.png")));
 		btnModif.setOpaque(false);
@@ -251,7 +248,14 @@ public class BuscarBedel extends JPanel {
 		btnEliminar.setBounds(310, 335, 110, 40);
 		ContentPanBuscBed.add(btnEliminar);
 		
-		
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				if(table.getSelectedRow()<0) {
+					
+				}else btnModif.setEnabled(true);
+			}
+		});
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setBackground(new Color(0, 0, 0));
