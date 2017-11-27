@@ -10,12 +10,18 @@ import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.UIManager;
 
 public class PanelMartes extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JTable table;
 
 	/**
 	 * Create the panel.
@@ -116,6 +122,10 @@ public class PanelMartes extends JPanel {
 		add(textField_3);
 		
 		JButton button_1 = new JButton("");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		button_1.setRolloverIcon(new ImageIcon(PanelMartes.class.getResource("/imagenes/PanelesRegReserva/button_lunes2.png")));
 		button_1.setIcon(new ImageIcon(PanelMartes.class.getResource("/imagenes/PanelesRegReserva/button_lunes.png")));
 		button_1.setOpaque(false);
@@ -187,11 +197,36 @@ public class PanelMartes extends JPanel {
 		button_6.setBounds(47, 340, 89, 33);
 		add(button_6);
 		
+		table = new JTable();
+		table.setFillsViewportHeight(true);
+		table.setBorder(UIManager.getBorder("TextArea.border"));
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"1", "juan", "qqqqqqqqqqq", "37584"},
+				{"2", "pedro", "wwwwwww", "2233"},
+				{"3", "cdfg", "eeeeeeeeeee", "22222"},
+				{"4", "fghj", "rrrrrrrr", "333333"},
+				{"5", "kkikik", "ttttttttttt", "8888888"},
+			},
+			new String[] {
+				"idPersona", "Nombre", "Apellido", "DNI"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, String.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		table.getTableHeader().setVisible(true);
+		table.setBounds(240, 186, 144, 67);
+		add(table);
+		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/FondoRegBed2.1.png")));
 		Fondo.setBounds(0, 0, 602, 401);
 		add(Fondo);
 
 	}
-
 }

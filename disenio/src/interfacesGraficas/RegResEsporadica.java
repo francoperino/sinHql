@@ -25,6 +25,7 @@ public class RegResEsporadica extends JPanel {
 	 * Create the panel.
 	 */
 	public RegResEsporadica() {
+		setBackground(Color.DARK_GRAY);
 		setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -259,7 +260,7 @@ public class RegResEsporadica extends JPanel {
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/FondoRegBed2.1.png")));
-		Fondo.setBounds(10, 0, 602, 401);
+		Fondo.setBounds(0, 0, 602, 401);
 		panel.add(Fondo);
 
 	}

@@ -15,6 +15,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollBar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class BuscarAula extends JPanel {
 	private JTextField txtBedel;
@@ -141,30 +143,44 @@ public class BuscarAula extends JPanel {
 		button.setBounds(418, 30, 117, 40);
 		panel.add(button);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(205, 131, 353, 188);
+		panel.add(scrollPane);
+		
 		table = new JTable();
+		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
 			},
 			new String[] {
-				"New column", "New column", "New column", "New column", "New column", "New column"
+				"Numero", "Piso", "        Tipo", "Capacidad", "      Estado"
 			}
-		));
-		table.setBounds(205, 131, 353, 188);
-		panel.add(table);
-		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(558, 131, 17, 188);
-		panel.add(scrollBar);
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, true
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(48);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(1).setPreferredWidth(29);
+		table.getColumnModel().getColumn(2).setResizable(false);
+		table.getColumnModel().getColumn(3).setResizable(false);
+		table.getColumnModel().getColumn(3).setPreferredWidth(60);
 		
 		JButton btnModifAula = new JButton("");
 		btnModifAula.setRolloverIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarBedelimgs/button_modificar22.png")));

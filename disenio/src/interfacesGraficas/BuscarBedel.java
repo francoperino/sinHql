@@ -24,6 +24,8 @@ import Logica.GestorBedel;
 import Logica.GestorUtilidades;
 
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class BuscarBedel extends JPanel {
 	private JTextField txtAdmin;
@@ -161,10 +163,30 @@ public class BuscarBedel extends JPanel {
 		btnBuscar.setBorder(null);
 		btnBuscar.setBounds(451, 35, 106, 49);
 		ContentPanBuscBed.add(btnBuscar);
+		JScrollBar scrollBar = new JScrollBar();
+		scrollBar.setBounds(556, 107, 17, 208);
+		ContentPanBuscBed.add(scrollBar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(200, 107, 357, 208);
+		ContentPanBuscBed.add(scrollPane);
 		
 		table = new JTable();
+		table.setBackground(new Color(255, 255, 255));
+		table.setForeground(new Color(0, 0, 0));
+		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
 			},
 			new String[] {
 				"Apellido", "Nombre", "Turno", "Nick usuario"
@@ -176,17 +198,18 @@ public class BuscarBedel extends JPanel {
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
 		});
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(3).setResizable(false);
-		table.setBounds(200, 107, 357, 208);
 		table.getTableHeader().setVisible(true);
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(556, 107, 17, 208);
-		ContentPanBuscBed.add(scrollBar);
-		ContentPanBuscBed.add(table);
 		
 		JButton btnCancelar = new JButton("");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -231,6 +254,7 @@ public class BuscarBedel extends JPanel {
 		
 		
 		JLabel Fondo = new JLabel("");
+		Fondo.setBackground(new Color(0, 0, 0));
 		Fondo.setBounds(0, 0, 602, 401);
 		Fondo.setIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/FondoRegBed2.2.png")));
 		ContentPanBuscBed.add(Fondo);
