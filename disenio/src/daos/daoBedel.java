@@ -61,7 +61,7 @@ private Connection con;
     	
     }
     public ArrayList<ConsultaGenerica> BuscarPorApellidoYTurno(String apel,String turnoooo) throws Exception{
-    	String consulta3 = "SELECT * FROM bedel b, Usuario u WHERE  u.nickusuario = b.nickusuario AND b.turno = '"+turnoooo+"' AND upper(u.apellido) like ' "+apel.toUpperCase()+"%';";
+    	String consulta3 = "SELECT * FROM bedel b, Usuario u WHERE  u.nickusuario = b.nickusuario AND b.turno = '"+turnoooo+"' AND upper(u.apellido) like '"+apel.toUpperCase()+"%';";
     	ArrayList<ConsultaGenerica> res2 = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta3,ConsultaGenerica.class));
 		return res2; 
 	
