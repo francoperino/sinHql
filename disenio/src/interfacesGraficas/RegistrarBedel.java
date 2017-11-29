@@ -11,6 +11,8 @@ import java.awt.Panel;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -171,23 +173,133 @@ public class RegistrarBedel extends JPanel{
 		ContentPanRegBed.add(textFApellido);
 		textFApellido.setColumns(10);
 		
+		
+		 
+	    textFApellido.addKeyListener(new KeyListener(){
+			 int limite  = 20;
+			public void keyTyped(KeyEvent e)
+			 
+			{if (textFApellido.getText().length()== limite)
+			 
+			     e.consume();
+			}
+
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			});
+	    
 		textFNombre = new JTextField();
 		textFNombre.setBounds(444, 80, 115, 20);
 		ContentPanRegBed.add(textFNombre);
 		textFNombre.setColumns(10);
 		
+		textFNombre.addKeyListener(new KeyListener(){
+			 int limite  = 20;
+			public void keyTyped(KeyEvent e)
+			 
+			{if (textFNombre.getText().length()== limite)
+			 
+			     e.consume();
+			}
+
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			});
+		
 		textFNickUs = new JTextField();
 		textFNickUs.setBounds(444, 130, 115, 20);
 		ContentPanRegBed.add(textFNickUs);
 		textFNickUs.setColumns(10);
-		
+		textFNickUs.addKeyListener(new KeyListener(){
+			 int limite  = 20;
+			public void keyTyped(KeyEvent e)
+			 
+			{if (textFNickUs.getText().length()== limite)
+			 
+			     e.consume();
+			}
+
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			});
 		PassfieldC = new JPasswordField();
 		PassfieldC.setBounds(444, 180, 115, 20);
 		ContentPanRegBed.add(PassfieldC);
 		
+		PassfieldC.addKeyListener(new KeyListener(){
+			 int limite  = 20;
+			public void keyTyped(KeyEvent e)
+			 
+			{if (PassfieldC.getText().length()== limite)
+			 
+			     e.consume();
+			}
+
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			});
+		
 		PassfieldConfirmarC = new JPasswordField();
 		PassfieldConfirmarC.setBounds(444, 230, 115, 20);
 		ContentPanRegBed.add(PassfieldConfirmarC);
+		
+		PassfieldConfirmarC.addKeyListener(new KeyListener(){
+			 int limite  = 20;
+			public void keyTyped(KeyEvent e)
+			 
+			{if (PassfieldConfirmarC.getText().length()== limite)
+			 
+			     e.consume();
+			}
+
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			});
 		
 		JButton btnCancelar = new JButton("");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -217,6 +329,9 @@ public class RegistrarBedel extends JPanel{
 			     String apelido = textFApellido.getText();
 			     String nobre = textFNombre.getText();
 			     String nick = textFNickUs.getText();
+			     if(apelido.length()==0 || nobre.length()==0 || nick.length()==0) {
+			    	 mensaje("Los campos deben contener al menos 2 digitos","Longitud incorrecta");
+			     }else {
 			     if(myPass.equals(miPass)){
 			        Integer valor = 0;
 		
@@ -254,6 +369,7 @@ public class RegistrarBedel extends JPanel{
 			     else{
 			         mensaje("Los dos campos de contraseña, deben ser iguales","Contraseñas distintas");
 			     }
+			  }
 				
 				
 				 
@@ -279,6 +395,7 @@ public class RegistrarBedel extends JPanel{
 		Fondo.setIcon(new ImageIcon(RegistrarBedel.class.getResource("/imagenes/RegistrarBedelimgs/FondoRegBed2.2.png")));
 
 	}
+	
 	public JPanel getPanelRegBed() {
 		return ContentPanRegBed;
 	}

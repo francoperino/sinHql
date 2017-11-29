@@ -26,19 +26,16 @@ public class PanelModificarBedel extends JPanel {
 	private JTextField txtNombre;
 	private JTextField txtApellido;
 	private JTextField txtNickUsuario;
-	private JPanel ContentPanModifBedel;
 	private JComboBox ComBox;
 
-	/**
-	 * Create the panel.
-	 */
+	
 	public PanelModificarBedel() {
-		setLayout(null);
 		
-		ContentPanModifBedel = new JPanel();
-		ContentPanModifBedel.setBounds(0, 0, 600, 400);
-		add(ContentPanModifBedel);
-		ContentPanModifBedel.setLayout(null);
+		
+		//ContentPanModifBedel = new JPanel();
+		//ContentPanModifBedel.setBounds(0, 0, 600, 400);
+		//add(ContentPanModifBedel);
+		this.setLayout(null);
 		
 		txtAdmin = new JTextField();
 		txtAdmin.setText("Admin");
@@ -50,14 +47,12 @@ public class PanelModificarBedel extends JPanel {
 		txtAdmin.setColumns(10);
 		txtAdmin.setBorder(null);
 		txtAdmin.setBounds(37, 109, 112, 28);
-		ContentPanModifBedel.add(txtAdmin);
+		this.add(txtAdmin);
 		
 		JButton btnAtras = new JButton("");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ContentPanModifBedel.setVisible(false);
-				BuscarBedel bb = new BuscarBedel();
-			    bb.mostrarse();
+				
 			}
 		});
 		btnAtras.setRolloverIcon(new ImageIcon(PanelModificarBedel.class.getResource("/imagenes/PanelModificarBedel/button_atras (3)2.png")));
@@ -69,49 +64,49 @@ public class PanelModificarBedel extends JPanel {
 		btnAtras.setBorderPainted(false);
 		btnAtras.setBorder(null);
 		btnAtras.setBounds(47, 148, 86, 33);
-		ContentPanModifBedel.add(btnAtras);
+		this.add(btnAtras);
 		
 		JLabel lblApellido = new JLabel("Apellido");
 		lblApellido.setIconTextGap(10);
 		lblApellido.setForeground(Color.WHITE);
 		lblApellido.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblApellido.setBounds(217, 30, 71, 20);
-		ContentPanModifBedel.add(lblApellido);
+		this.add(lblApellido);
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setIconTextGap(10);
 		lblNombre.setForeground(Color.WHITE);
 		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblNombre.setBounds(217, 80, 91, 20);
-		ContentPanModifBedel.add(lblNombre);
+		this.add(lblNombre);
 		
 		JLabel lblNickUsuario = new JLabel("Nick de usuario");
 		lblNickUsuario.setIconTextGap(10);
 		lblNickUsuario.setForeground(Color.WHITE);
 		lblNickUsuario.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblNickUsuario.setBounds(217, 130, 140, 20);
-		ContentPanModifBedel.add(lblNickUsuario);
+		this.add(lblNickUsuario);
 		
 		JLabel lblContraseña = new JLabel("Contrase\u00F1a");
 		lblContraseña.setIconTextGap(10);
 		lblContraseña.setForeground(Color.WHITE);
 		lblContraseña.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblContraseña.setBounds(217, 180, 106, 20);
-		ContentPanModifBedel.add(lblContraseña);
+		this.add(lblContraseña);
 		
 		JLabel lblConfirmaContra = new JLabel("Confirmar contrase\u00F1a");
 		lblConfirmaContra.setIconTextGap(10);
 		lblConfirmaContra.setForeground(Color.WHITE);
 		lblConfirmaContra.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblConfirmaContra.setBounds(217, 230, 213, 20);
-		ContentPanModifBedel.add(lblConfirmaContra);
+		this.add(lblConfirmaContra);
 		
 		JLabel lblTurno = new JLabel("Turno");
 		lblTurno.setIconTextGap(10);
 		lblTurno.setForeground(Color.WHITE);
 		lblTurno.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTurno.setBounds(217, 280, 91, 20);
-		ContentPanModifBedel.add(lblTurno);
+		this.add(lblTurno);
 		
 		ComBox = new JComboBox();
 		ComBox.setModel(new DefaultComboBoxModel(new String[] {"Noche", "Tarde", "Ma\u00F1ana"}));
@@ -120,31 +115,30 @@ public class PanelModificarBedel extends JPanel {
 		ComBox.setFont(new Font("Tahoma", Font.BOLD, 18));
 		ComBox.setBackground(Color.WHITE);
 		ComBox.setBounds(440, 280, 115, 20);
-		ContentPanModifBedel.add(ComBox);
+		this.add(ComBox);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(440, 230, 115, 20);
-		ContentPanModifBedel.add(passwordField);
+		this.add(passwordField);
 		
 		passwordConfPass = new JPasswordField();
 		passwordConfPass.setBounds(440, 180, 115, 20);
-		ContentPanModifBedel.add(passwordConfPass);
+		this.add(passwordConfPass);
 		
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
 		txtNombre.setBounds(440, 80, 115, 20);
-		ContentPanModifBedel.add(txtNombre);
+		this.add(txtNombre);
 		
 		txtApellido = new JTextField();
 		txtApellido.setColumns(10);
 		txtApellido.setBounds(440, 30, 115, 20);
-		ContentPanModifBedel.add(txtApellido);
+		this.add(txtApellido);
 		
 		JButton btnCancelar = new JButton("");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ContentPanModifBedel.setVisible(false);
-				ContentPanModifBedel.removeAll();
+				
 				InicioAdmin.llamarAdmin();
 			}
 		});
@@ -157,7 +151,7 @@ public class PanelModificarBedel extends JPanel {
 		btnCancelar.setBorderPainted(false);
 		btnCancelar.setBorder(null);
 		btnCancelar.setBounds(373, 324, 112, 40);
-		ContentPanModifBedel.add(btnCancelar);
+		this.add(btnCancelar);
 		
 		JButton btnConfirmar = new JButton("");
 		btnConfirmar.setRolloverIcon(new ImageIcon(PanelModificarBedel.class.getResource("/imagenes/PanelModificarBedel/button_confirmar2.png")));
@@ -169,7 +163,7 @@ public class PanelModificarBedel extends JPanel {
 		btnConfirmar.setBorderPainted(false);
 		btnConfirmar.setBorder(null);
 		btnConfirmar.setBounds(217, 324, 143, 40);
-		ContentPanModifBedel.add(btnConfirmar);
+		this.add(btnConfirmar);
 		
 		txtNickUsuario = new JTextField();
 		txtNickUsuario.setOpaque(false);
@@ -180,12 +174,12 @@ public class PanelModificarBedel extends JPanel {
 		txtNickUsuario.setColumns(10);
 		txtNickUsuario.setBorder(null);
 		txtNickUsuario.setBounds(399, 130, 153, 20);
-		ContentPanModifBedel.add(txtNickUsuario);
+		this.add(txtNickUsuario);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(PanelModificarBedel.class.getResource("/imagenes/PanelModificarBedel/FondoRegBed2.2.png")));
 		Fondo.setBounds(0, 0, 602, 401);
-		ContentPanModifBedel.add(Fondo);
+		this.add(Fondo);
 		
 		
 
@@ -198,6 +192,6 @@ public class PanelModificarBedel extends JPanel {
     	
     }
 	public JPanel getContentPanModifBedel() {
-		return ContentPanModifBedel;
+		return this.getContentPanModifBedel();
 	}
 }

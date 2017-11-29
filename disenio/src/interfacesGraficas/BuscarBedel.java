@@ -39,10 +39,12 @@ public class BuscarBedel extends JPanel {
 	private JPanel ContentPanBuscBed;
     private JPanel ContentPanBusc;
     private CardLayout cl;
+    private PanelModificarBedel modbedel;
 	/**
 	 * Create the panel.
 	 */
 	public BuscarBedel() {
+		modbedel = new PanelModificarBedel();
 		setLayout(null);
 		cl=new CardLayout();
 		ContentPanBusc = new JPanel();
@@ -237,18 +239,26 @@ public class BuscarBedel extends JPanel {
 		JButton btnModif = new JButton("");
 		btnModif.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				PanelModificarBedel modbedel = new PanelModificarBedel();
+				
 				Bedel bel = new Bedel();
+				
 				int i = table.getSelectedRow();
 				bel.setApellido((String)table.getValueAt(i,3));
 				bel.setNombre((String)table.getValueAt(i,2));
 				bel.setTurno((String)table.getValueAt(i,1));
 			    bel.setNickusuario((String)table.getValueAt(i,0));
-				modbedel.setSize(600,400);
+				/*modbedel.setSize(600,400);
 				modbedel.setLocation(0, 0);
 				ContentPanBusc.add(modbedel, BorderLayout.CENTER);
-				ContentPanBuscBed.setVisible(false);
-				modbedel.seteo(bel);
+			*/
+			    modbedel.seteo(bel);
+			    
+				cl.show(ContentPanBusc, "Modificar");
+				ContentPanBusc.revalidate();
+				ContentPanBusc.repaint();
+				
+				
+				
 			}
 		});
 		btnModif.setEnabled(false);
@@ -264,6 +274,7 @@ public class BuscarBedel extends JPanel {
 		ContentPanBuscBed.add(btnModif);
 		
 		JButton btnEliminar = new JButton("");
+		btnEliminar.setEnabled(false);
 		btnEliminar.setFocusPainted(false);
 		btnEliminar.setRolloverIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/button_eliminar (1)2.png")));
 		btnEliminar.setContentAreaFilled(false);
@@ -286,17 +297,16 @@ public class BuscarBedel extends JPanel {
 		Fondo.setBounds(0, 0, 602, 401);
 		Fondo.setIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/FondoRegBed2.2.png")));
 		ContentPanBuscBed.add(Fondo);
-		
 		PanelModificarBedel ContentPanModifiBedel = new PanelModificarBedel();
-		ContentPanBusc.add(ContentPanModifiBedel, "name_589139197325472");
+		ContentPanBusc.add("Modificar",ContentPanModifiBedel);
+		ContentPanModifiBedel.setLayout(null);
 		
 		PanelEliminarBedel ContentPanEliminarBedel = new PanelEliminarBedel();
-		ContentPanBusc.add(ContentPanEliminarBedel, "name_589139223914038");
+		ContentPanBusc.add( "Eliminar",ContentPanEliminarBedel);
+		
 		
 		
 
 	}
-	public void mostrarse() {
-		ContentPanBusc.setVisible(true);
-	}
+	
 }
