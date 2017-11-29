@@ -56,6 +56,12 @@ public class BuscarAula extends JPanel {
 		btnInicio.setBounds(38, 144, 103, 40);
 		panel.add(btnInicio);
 		
+		btnInicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				InicioBedel.llamarBedel();
+			}
+		});
+		
 		JButton btnRegBed = new JButton("");
 		btnRegBed.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

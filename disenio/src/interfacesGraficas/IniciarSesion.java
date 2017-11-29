@@ -73,8 +73,8 @@ class IniciarSesion {
 					frmInicioSesion.dispose();
 				}
 				else {
-					InicioBedel IniBed = new InicioBedel();
-					IniBed.main(null);
+					InicioBedel.main(null);
+					InicioBedel.llamarBedel();
 					frmInicioSesion.dispose();
 				}
 								

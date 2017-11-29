@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -46,6 +48,12 @@ public class RegistrarReserva extends JPanel {
 		btnInicio.setBorderPainted(false);
 		btnInicio.setBounds(38, 146, 103, 40);
 		panel.add(btnInicio);
+		
+		btnInicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				InicioBedel.llamarBedel();
+			}
+		});
 		
 		JButton btnBuscarAula = new JButton("");
 		btnBuscarAula.setRolloverIcon(new ImageIcon(RegistrarReserva.class.getResource("/imagenes/RegistrarReserva/button_buscar-aula2.png")));
