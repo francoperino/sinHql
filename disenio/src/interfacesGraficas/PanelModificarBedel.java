@@ -5,12 +5,19 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+
+import Entidades.Bedel;
+import javafx.scene.control.ComboBox;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelModificarBedel extends JPanel {
 	private JTextField txtAdmin;
@@ -20,6 +27,7 @@ public class PanelModificarBedel extends JPanel {
 	private JTextField txtApellido;
 	private JTextField txtNickUsuario;
 	private JPanel ContentPanModifBedel;
+	private JComboBox ComBox;
 
 	/**
 	 * Create the panel.
@@ -45,6 +53,13 @@ public class PanelModificarBedel extends JPanel {
 		ContentPanModifBedel.add(txtAdmin);
 		
 		JButton btnAtras = new JButton("");
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ContentPanModifBedel.setVisible(false);
+				BuscarBedel bb = new BuscarBedel();
+			    bb.mostrarse();
+			}
+		});
 		btnAtras.setRolloverIcon(new ImageIcon(PanelModificarBedel.class.getResource("/imagenes/PanelModificarBedel/button_atras (3)2.png")));
 		btnAtras.setIcon(new ImageIcon(PanelModificarBedel.class.getResource("/imagenes/PanelModificarBedel/button_atras (3).png")));
 		btnAtras.setOpaque(false);
@@ -98,7 +113,7 @@ public class PanelModificarBedel extends JPanel {
 		lblTurno.setBounds(217, 280, 91, 20);
 		ContentPanModifBedel.add(lblTurno);
 		
-		JComboBox ComBox = new JComboBox();
+		ComBox = new JComboBox();
 		ComBox.setModel(new DefaultComboBoxModel(new String[] {"Noche", "Tarde", "Ma\u00F1ana"}));
 		ComBox.setMaximumRowCount(3);
 		ComBox.setForeground(Color.BLACK);
@@ -126,6 +141,13 @@ public class PanelModificarBedel extends JPanel {
 		ContentPanModifBedel.add(txtApellido);
 		
 		JButton btnCancelar = new JButton("");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ContentPanModifBedel.setVisible(false);
+				ContentPanModifBedel.removeAll();
+				InicioAdmin.llamarAdmin();
+			}
+		});
 		btnCancelar.setRolloverIcon(new ImageIcon(PanelModificarBedel.class.getResource("/imagenes/PanelModificarBedel/button_cancelar2.png")));
 		btnCancelar.setIcon(new ImageIcon(PanelModificarBedel.class.getResource("/imagenes/PanelModificarBedel/button_cancelar.png")));
 		btnCancelar.setOpaque(false);
@@ -150,7 +172,6 @@ public class PanelModificarBedel extends JPanel {
 		ContentPanModifBedel.add(btnConfirmar);
 		
 		txtNickUsuario = new JTextField();
-		txtNickUsuario.setText("Mansilla97");
 		txtNickUsuario.setOpaque(false);
 		txtNickUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		txtNickUsuario.setForeground(Color.WHITE);
@@ -158,16 +179,24 @@ public class PanelModificarBedel extends JPanel {
 		txtNickUsuario.setEditable(false);
 		txtNickUsuario.setColumns(10);
 		txtNickUsuario.setBorder(null);
-		txtNickUsuario.setBounds(440, 130, 112, 20);
+		txtNickUsuario.setBounds(399, 130, 153, 20);
 		ContentPanModifBedel.add(txtNickUsuario);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(PanelModificarBedel.class.getResource("/imagenes/PanelModificarBedel/FondoRegBed2.2.png")));
 		Fondo.setBounds(0, 0, 602, 401);
 		ContentPanModifBedel.add(Fondo);
+		
+		
 
 	}
-
+    public void seteo(Bedel b) {
+    	txtNombre.setText(b.getNombre());
+    	txtApellido.setText(b.getApellido());
+    	txtNickUsuario.setText(b.getNickusuario());
+    	ComBox.setSelectedItem((String)b.getTurno());
+    	
+    }
 	public JPanel getContentPanModifBedel() {
 		return ContentPanModifBedel;
 	}

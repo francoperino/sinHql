@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import Entidades.Bedel;
 import Entidades.ConsultaGenerica;
 import Logica.GestorBedel;
 import Logica.GestorUtilidades;
@@ -29,24 +30,30 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.ListSelectionModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.CardLayout;
 
 public class BuscarBedel extends JPanel {
 	private JTextField txtAdmin;
 	private JTextField textField;
 	private JTable table;
 	private JPanel ContentPanBuscBed;
-
+    private JPanel ContentPanBusc;
+    private CardLayout cl;
 	/**
 	 * Create the panel.
 	 */
 	public BuscarBedel() {
 		setLayout(null);
+		cl=new CardLayout();
+		ContentPanBusc = new JPanel();
+		ContentPanBusc.setBounds(0, 0, 600, 400);
+		add(ContentPanBusc);
+		ContentPanBusc.setLayout(cl);
 		
 		ContentPanBuscBed = new JPanel();
-		ContentPanBuscBed.setBounds(0, 0, 600, 400);
-		add(ContentPanBuscBed);
+		ContentPanBusc.add(ContentPanBuscBed, "name_589139167770428");
 		ContentPanBuscBed.setLayout(null);
-		
+		ContentPanBuscBed.setVisible(true);
 		txtAdmin = new JTextField();
 		txtAdmin.setForeground(Color.WHITE);
 		txtAdmin.setText("Admin");
@@ -63,8 +70,8 @@ public class BuscarBedel extends JPanel {
 		JButton btnInicioBed = new JButton("");
 		btnInicioBed.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ContentPanBuscBed.setVisible(false);
-				ContentPanBuscBed.removeAll();
+				ContentPanBusc.setVisible(false);
+				ContentPanBusc.removeAll();
 				InicioAdmin.llamarAdmin();
 			}
 		});
@@ -185,7 +192,7 @@ public class BuscarBedel extends JPanel {
 			new Object[][] {
 			},
 			new String[] {
-				"Apellido", "Nombre", "Turno", "Nick usuario"
+				"nickusuario", "turno", "nombre", "apellido"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
@@ -209,6 +216,13 @@ public class BuscarBedel extends JPanel {
 				InicioAdmin.llamarAdmin();
 			}
 		});
+		/*PanelModificarBedel panmod = new PanelModificarBedel();
+		ContentPanBuscBed.add(panmod);
+		*/
+		
+		
+				
+		
 		btnCancelar.setRolloverIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/button_cancelar2.png")));
 		btnCancelar.setIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/button_cancelar.png")));
 		btnCancelar.setOpaque(false);
@@ -223,8 +237,18 @@ public class BuscarBedel extends JPanel {
 		JButton btnModif = new JButton("");
 		btnModif.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
+				PanelModificarBedel modbedel = new PanelModificarBedel();
+				Bedel bel = new Bedel();
+				int i = table.getSelectedRow();
+				bel.setApellido((String)table.getValueAt(i,3));
+				bel.setNombre((String)table.getValueAt(i,2));
+				bel.setTurno((String)table.getValueAt(i,1));
+			    bel.setNickusuario((String)table.getValueAt(i,0));
+				modbedel.setSize(600,400);
+				modbedel.setLocation(0, 0);
+				ContentPanBusc.add(modbedel, BorderLayout.CENTER);
+				ContentPanBuscBed.setVisible(false);
+				modbedel.seteo(bel);
 			}
 		});
 		btnModif.setEnabled(false);
@@ -263,15 +287,16 @@ public class BuscarBedel extends JPanel {
 		Fondo.setIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/FondoRegBed2.2.png")));
 		ContentPanBuscBed.add(Fondo);
 		
-		PanelModificarBedel panelModificarBedel = new PanelModificarBedel();
-		panelModificarBedel.setBounds(0, 0, 1, 1);
-		add(panelModificarBedel);
+		PanelModificarBedel ContentPanModifiBedel = new PanelModificarBedel();
+		ContentPanBusc.add(ContentPanModifiBedel, "name_589139197325472");
 		
-		PanelEliminarBedel panelEliminarBedel = new PanelEliminarBedel();
-		panelEliminarBedel.setBounds(0, 0, 1, 1);
-		add(panelEliminarBedel);
+		PanelEliminarBedel ContentPanEliminarBedel = new PanelEliminarBedel();
+		ContentPanBusc.add(ContentPanEliminarBedel, "name_589139223914038");
 		
 		
 
+	}
+	public void mostrarse() {
+		ContentPanBusc.setVisible(true);
 	}
 }
