@@ -8,9 +8,13 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 public class ListadoResCurso extends JPanel {
 	private JTextField txtNombreBedel;
+	private JTable table;
 
 	/**
 	 * Create the panel.
@@ -72,6 +76,44 @@ public class ListadoResCurso extends JPanel {
 		btnImprimir.setBorder(null);
 		btnImprimir.setBounds(211, 340, 128, 40);
 		ContentPanListadoResCurso.add(btnImprimir);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(230, 113, 343, 194);
+		ContentPanListadoResCurso.add(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+			},
+			new String[] {
+				"Dia", "Hora Inicio", "Duracion", "Aula"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(2).setResizable(false);
+		table.getColumnModel().getColumn(3).setResizable(false);
+		scrollPane.setViewportView(table);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(ListadoResCurso.class.getResource("/imagenes/ListadoResCurso/FondoRegBed2.1.png")));

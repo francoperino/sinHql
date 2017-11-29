@@ -10,11 +10,15 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 public class ListadoResDiaEsp extends JPanel {
 	private JTextField txtNombreBedel;
 	private JTextField txtReservaDelDia;
 	private JTextField txtTipoDeAula;
+	private JTable table;
 
 	/**
 	 * Create the panel.
@@ -115,6 +119,40 @@ public class ListadoResDiaEsp extends JPanel {
 		btnImprimir.setBorder(null);
 		btnImprimir.setBounds(211, 340, 128, 40);
 		ContentPanListadoResDiaEsp.add(btnImprimir);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(205, 125, 385, 178);
+		ContentPanListadoResDiaEsp.add(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+			},
+			new String[] {
+				"     Hora", "                                    Descripcion"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(1).setPreferredWidth(300);
+		scrollPane.setViewportView(table);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(ListadoResDiaEsp.class.getResource("/imagenes/ListadoResDiaEsp/FondoRegBed2.1.png")));

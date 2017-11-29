@@ -183,6 +183,10 @@ public class BuscarAula extends JPanel {
 		table.getColumnModel().getColumn(3).setPreferredWidth(60);
 		
 		JButton btnModifAula = new JButton("");
+		btnModifAula.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnModifAula.setRolloverIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarBedelimgs/button_modificar22.png")));
 		btnModifAula.setIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/button_modificar2.png")));
 		btnModifAula.setFocusPainted(false);

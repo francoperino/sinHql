@@ -8,6 +8,9 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class PanelResEsporadica extends JPanel {
 	private JTextField textField;
@@ -16,6 +19,7 @@ public class PanelResEsporadica extends JPanel {
 	private JLabel lblReservaDelDia;
 	private JLabel lblMes;
 	private JPanel ContentPanResEsporadica;
+	private JTable table;
 
 	/**
 	 * Create the panel.
@@ -89,6 +93,36 @@ public class PanelResEsporadica extends JPanel {
 		lblMes.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblMes.setBounds(197, 76, 43, 20);
 		ContentPanResEsporadica.add(lblMes);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(205, 140, 352, 176);
+		ContentPanResEsporadica.add(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+			},
+			new String[] {
+				"Num. Aula", "                    Caracteristicas", "Capacidad"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, true
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(60);
+		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(1).setPreferredWidth(200);
+		table.getColumnModel().getColumn(2).setPreferredWidth(60);
+		table.setRowHeight(50);
+		scrollPane.setViewportView(table);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setBounds(0, 0, 602, 401);
