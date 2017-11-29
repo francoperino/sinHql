@@ -211,8 +211,8 @@ public class BuscarBedel extends JPanel {
 		JButton btnCancelar = new JButton("");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//ContentPanBuscBed.setVisible(false);
-				//ContentPanBuscBed.removeAll();
+				ContentPanBuscBed.setVisible(false);
+				ContentPanBuscBed.removeAll();
 				InicioAdmin.llamarAdmin();
 			}
 		});

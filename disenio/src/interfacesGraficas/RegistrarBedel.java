@@ -302,8 +302,8 @@ public class RegistrarBedel extends JPanel{
 		JButton btnCancelar = new JButton("");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//ContentPanRegBed.setVisible(false);
-				//ContentPanRegBed.removeAll();
+				ContentPanRegBed.setVisible(false);
+				ContentPanRegBed.removeAll();
 				InicioAdmin.llamarAdmin();
 				
 				
