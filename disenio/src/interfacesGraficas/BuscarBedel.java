@@ -72,8 +72,6 @@ public class BuscarBedel extends JPanel {
 		JButton btnInicioBed = new JButton("");
 		btnInicioBed.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ContentPanBusc.setVisible(false);
-				ContentPanBusc.removeAll();
 				InicioAdmin.llamarAdmin();
 			}
 		});
