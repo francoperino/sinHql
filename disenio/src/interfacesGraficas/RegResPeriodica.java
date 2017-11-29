@@ -372,17 +372,17 @@ public class RegResPeriodica extends JPanel {
 		txtCorreo.setBounds(401, 306, 173, 20);
 		panelSeleccion.add(txtCorreo);
 		
-		JButton btnRegResPer = new JButton("");
-		btnRegResPer.setRolloverIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/button_siguiente (1)2.png")));
-		btnRegResPer.setIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/button_siguiente (1).png")));
-		btnRegResPer.setOpaque(false);
-		btnRegResPer.setFocusable(false);
-		btnRegResPer.setFocusPainted(false);
-		btnRegResPer.setContentAreaFilled(false);
-		btnRegResPer.setBorderPainted(false);
-		btnRegResPer.setBorder(null);
-		btnRegResPer.setBounds(387, 338, 132, 40);
-		panelSeleccion.add(btnRegResPer);
+		JButton btnSiguiente = new JButton("");
+		btnSiguiente.setRolloverIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/button_siguiente (1)2.png")));
+		btnSiguiente.setIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/button_siguiente (1).png")));
+		btnSiguiente.setOpaque(false);
+		btnSiguiente.setFocusable(false);
+		btnSiguiente.setFocusPainted(false);
+		btnSiguiente.setContentAreaFilled(false);
+		btnSiguiente.setBorderPainted(false);
+		btnSiguiente.setBorder(null);
+		btnSiguiente.setBounds(387, 338, 132, 40);
+		panelSeleccion.add(btnSiguiente);
 		
 		JButton button = new JButton("");
 		button.setRolloverIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/button_atras (3)2.png")));

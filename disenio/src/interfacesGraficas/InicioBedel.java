@@ -15,12 +15,18 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Component;
 import javax.swing.SwingConstants;
+
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 
 public class InicioBedel extends JFrame {
 
-	private JPanel contentPane;
+	//private JPanel contentPane;
 	private JTextField txtBedel;
+	static JPanel InicoBedel = new JPanel();
+	static JPanel InicoBedel1 = new JPanel();
+	private CardLayout cl;
 
 	/**
 	 * Launch the application.
@@ -42,14 +48,41 @@ public class InicioBedel extends JFrame {
 	 * Create the frame.
 	 */
 	public InicioBedel() {
+		cl = new CardLayout();
+		InicoBedel.repaint();
+		InicoBedel.setBackground(Color.DARK_GRAY);
+		InicoBedel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(InicoBedel);
+		InicoBedel.setLayout(cl);
+		
+		
+		InicoBedel1.setBackground(Color.DARK_GRAY);
+		InicoBedel1.setBorder(null);
+		InicoBedel.add("InicioBedel1",InicoBedel1);
+		InicoBedel1.setLayout(null);
+		
+		
+		
 		setResizable(false);
 		setTitle("Bedel");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 603, 426);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		//contentPane = new JPanel();
+		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		//setContentPane(contentPane);
+		//contentPane.setLayout(null);
+		
+		ListaResDiaEsp listadia = new ListaResDiaEsp();
+		InicoBedel.add("listadia",listadia);
+		
+		ListaResCurso curso = new ListaResCurso();
+		InicoBedel.add("curso",curso);
+		
+		RegistrarReserva regreserva = new RegistrarReserva();
+		InicoBedel.add("regreserva",regreserva);
+		
+		BuscarAula busaula = new BuscarAula();
+		InicoBedel.add("busaula",busaula);
 		
 		JButton btnLRDiaEsp = new JButton("");
 		btnLRDiaEsp.setFocusPainted(false);
@@ -58,13 +91,26 @@ public class InicioBedel extends JFrame {
 		btnLRDiaEsp.setContentAreaFilled(false);
 		btnLRDiaEsp.setIcon(new ImageIcon(InicioBedel.class.getResource("/imagenes/InicioBedelImgs/button_dia-especifico (1).png")));
 		btnLRDiaEsp.setBounds(68, 286, 189, 49);
-		contentPane.add(btnLRDiaEsp);
+		InicoBedel1.add(btnLRDiaEsp);
+		btnLRDiaEsp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	//VA A INTERFAZ REGISTRAR BEDEL
+				//listadia.setVisible(true);
+				//InicoBedel1.setVisible(false);
+				listadia.setSize(600,400);
+				listadia.setLocation(0,0);
+				//InicoBedel.removeAll();
+				//InicoBedel.add(listadia, BorderLayout.CENTER);
+				cl.show(InicoBedel,"listadia");
+				InicoBedel.revalidate();
+				InicoBedel.repaint();
+			}
+		});
 		
 		JLabel lblKf = new JLabel("Listar Reservas ");
 		lblKf.setForeground(Color.WHITE);
 		lblKf.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblKf.setBounds(229, 243, 142, 32);
-		contentPane.add(lblKf);
+		InicoBedel1.add(lblKf);
 		
 		JButton btnBuscarAula = new JButton("");
 		btnBuscarAula.setFocusPainted(false);
@@ -73,7 +119,16 @@ public class InicioBedel extends JFrame {
 		btnBuscarAula.setContentAreaFilled(false);
 		btnBuscarAula.setIcon(new ImageIcon(InicioBedel.class.getResource("/imagenes/InicioBedelImgs/button_buscar-aula.png")));
 		btnBuscarAula.setBounds(339, 167, 166, 49);
-		contentPane.add(btnBuscarAula);
+		InicoBedel1.add(btnBuscarAula);
+		btnBuscarAula.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	//VA A INTERFAZ REGISTRAR BEDEL
+				curso.setSize(600,400);
+				curso.setLocation(0,0);
+				cl.show(InicoBedel,"busaula");
+				InicoBedel.revalidate();
+				InicoBedel.repaint();
+			}
+		});
 		
 		JButton btnLRCurso = new JButton("");
 		btnLRCurso.setFocusPainted(false);
@@ -82,7 +137,16 @@ public class InicioBedel extends JFrame {
 		btnLRCurso.setContentAreaFilled(false);
 		btnLRCurso.setIcon(new ImageIcon(InicioBedel.class.getResource("/imagenes/InicioBedelImgs/button_curso.png")));
 		btnLRCurso.setBounds(339, 286, 116, 49);
-		contentPane.add(btnLRCurso);
+		InicoBedel1.add(btnLRCurso);
+		btnLRCurso.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	//VA A INTERFAZ REGISTRAR BEDEL
+				curso.setSize(600,400);
+				curso.setLocation(0,0);
+				cl.show(InicoBedel,"curso");
+				InicoBedel.revalidate();
+				InicoBedel.repaint();
+			}
+		});
 		
 		JButton btnRegReserva = new JButton("");
 		btnRegReserva.setFocusPainted(false);
@@ -91,7 +155,16 @@ public class InicioBedel extends JFrame {
 		btnRegReserva.setIcon(new ImageIcon(InicioBedel.class.getResource("/imagenes/InicioBedelImgs/button_registrar-reserva.png")));
 		btnRegReserva.setContentAreaFilled(false);
 		btnRegReserva.setBounds(38, 167, 219, 49);
-		contentPane.add(btnRegReserva);
+		InicoBedel1.add(btnRegReserva);
+		btnRegReserva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	//VA A INTERFAZ REGISTRAR BEDEL
+				regreserva.setSize(600,400);
+				regreserva.setLocation(0,0);
+				cl.show(InicoBedel,"regreserva");
+				InicoBedel.revalidate();
+				InicoBedel.repaint();
+			}
+		});
 		
 		JButton btnCerrarSesion = new JButton("");
 		btnCerrarSesion.setFocusPainted(false);
@@ -106,7 +179,7 @@ public class InicioBedel extends JFrame {
 		btnCerrarSesion.setContentAreaFilled(false);
 		btnCerrarSesion.setIcon(new ImageIcon(InicioBedel.class.getResource("/imagenes/InicioBedelImgs/button_cerrar-sesion.png")));
 		btnCerrarSesion.setBounds(381, 11, 205, 49);
-		contentPane.add(btnCerrarSesion);
+		InicoBedel1.add(btnCerrarSesion);
 		
 		txtBedel = new JTextField();
 		txtBedel.setOpaque(false);
@@ -118,12 +191,12 @@ public class InicioBedel extends JFrame {
 		txtBedel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		txtBedel.setForeground(Color.WHITE);
 		txtBedel.setBounds(228, 134, 116, 22);
-		contentPane.add(txtBedel);
+		InicoBedel1.add(txtBedel);
 		txtBedel.setColumns(10);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(InicioBedel.class.getResource("/imagenes/InicioBedelImgs/Captura de pantalla (47).png")));
 		Fondo.setBounds(0, 0, 599, 400);
-		contentPane.add(Fondo);
+		InicoBedel1.add(Fondo);
 	}
 }

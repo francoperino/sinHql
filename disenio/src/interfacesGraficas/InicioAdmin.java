@@ -77,6 +77,8 @@ public class InicioAdmin extends JFrame {
 		RegistrarBedel registrarBedel = new RegistrarBedel();
 		PanelAdmin.add(registrarBedel, "name_149023799906942");
 		
+		
+		
 		BuscarBedel buscarBedel = new BuscarBedel();
 		buscarBedel.setForeground(Color.DARK_GRAY);
 		PanelAdmin.add(buscarBedel, "name_147490125892888");
@@ -88,12 +90,13 @@ public class InicioAdmin extends JFrame {
 			public void actionPerformed(ActionEvent e) {	//VA A INTERFAZ REGISTRAR BEDEL
 				registrarBedel.setVisible(true);
 				panel1Admin.setVisible(false);
-				RegistrarBedel RegBed = new RegistrarBedel();
-				RegBed.setSize(600,400);
-				RegBed.setLocation(0,0);
-				
+				//RegistrarBedel RegBed = new RegistrarBedel();
+				//RegBed.setSize(600,400);
+				//RegBed.setLocation(0,0);
+				registrarBedel.setSize(600,400);
+				registrarBedel.setLocation(0,0);
 				PanelAdmin.removeAll();
-				PanelAdmin.add(RegBed, BorderLayout.CENTER);
+				PanelAdmin.add(registrarBedel, BorderLayout.CENTER);
 				PanelAdmin.revalidate();
 				PanelAdmin.repaint();
 			}
