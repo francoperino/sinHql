@@ -20,6 +20,7 @@ public class PanelResEsporadica extends JPanel {
 	private JLabel lblMes;
 	private JPanel ContentPanResEsporadica;
 	private JTable table;
+	private JButton button_1;
 
 	/**
 	 * Create the panel.
@@ -123,6 +124,18 @@ public class PanelResEsporadica extends JPanel {
 		table.getColumnModel().getColumn(2).setPreferredWidth(60);
 		table.setRowHeight(50);
 		tablaDatos.setViewportView(table);
+		
+		button_1 = new JButton("");
+		button_1.setRolloverIcon(new ImageIcon(PanelResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_siguiente (1)2.png")));
+		button_1.setIcon(new ImageIcon(PanelResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_siguiente (1).png")));
+		button_1.setOpaque(false);
+		button_1.setFocusable(false);
+		button_1.setFocusPainted(false);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+		button_1.setBorder(null);
+		button_1.setBounds(22, 200, 132, 40);
+		ContentPanResEsporadica.add(button_1);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setBounds(0, 0, 602, 401);
