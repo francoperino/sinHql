@@ -171,7 +171,7 @@ public class BuscarBedel extends JPanel {
 		JButton btnCancelar = new JButton("");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				InicioAdmin.llamarAdmin(1);
+				InicioAdmin.llamarAdmin(2);
 			}
 		});
 

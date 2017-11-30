@@ -29,6 +29,8 @@ public class InicioAdmin extends JFrame {
     static JPanel panel1Admin = new JPanel();
     static InicioAdmin frame = new InicioAdmin();
     private static CardLayout cl;
+    private static RegistrarBedel registrarBedel;
+    private static BuscarBedel buscarBedel;
     
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -76,12 +78,12 @@ public class InicioAdmin extends JFrame {
         txtAdmin.setEditable(false);
         txtAdmin.setColumns(10);
         
-        RegistrarBedel registrarBedel = new RegistrarBedel();
+        registrarBedel = new RegistrarBedel();
         PanelAdmin.add("registrarBedel",registrarBedel);
         
         
         
-        BuscarBedel buscarBedel = new BuscarBedel();
+        buscarBedel = new BuscarBedel();
         buscarBedel.setForeground(Color.DARK_GRAY);
         PanelAdmin.add("buscarBedel",buscarBedel);
         
@@ -92,7 +94,7 @@ public class InicioAdmin extends JFrame {
             public void actionPerformed(ActionEvent e) {  
             	if(tipo==1) {
             		PanelAdmin.remove(registrarBedel);
-            		RegistrarBedel registrarBedel = new RegistrarBedel();
+            		registrarBedel = new RegistrarBedel();
                     PanelAdmin.add("registrarBedel",registrarBedel);
             	}
             	
@@ -112,9 +114,9 @@ public class InicioAdmin extends JFrame {
         JButton btnBuscarBed = new JButton("");
         btnBuscarBed.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) { //VA A INTERFAZ BUSCAR BEDEL
-            	if(tipo==1) {
+            	if(tipo==2) {
             		PanelAdmin.remove(buscarBedel);
-            		BuscarBedel buscarBedel = new BuscarBedel();
+            		buscarBedel = new BuscarBedel();
             		buscarBedel.setForeground(Color.DARK_GRAY);
             		PanelAdmin.add("buscarBedel",buscarBedel);
             	}
@@ -170,12 +172,32 @@ public class InicioAdmin extends JFrame {
 
 
 	public static void mostrarrgistrarbedel() {
-		cl.show(PanelAdmin,"registrarBedel");	
+		if(tipo==1) {
+    		PanelAdmin.remove(registrarBedel);
+    		registrarBedel = new RegistrarBedel();
+            PanelAdmin.add("registrarBedel",registrarBedel);
+    	}
+		registrarBedel.setSize(600,400);
+        registrarBedel.setLocation(0,0);
+        cl.show(PanelAdmin,"registrarBedel");
+        PanelAdmin.revalidate();
+        PanelAdmin.repaint();
 	}
 
 
 	public static void mostrarBuscarBedel() {
-		cl.show(PanelAdmin,"buscarBedel");
+		if(tipo==2) {
+    		PanelAdmin.remove(buscarBedel);
+    		buscarBedel = new BuscarBedel();
+    		buscarBedel.setForeground(Color.DARK_GRAY);
+    		PanelAdmin.add("buscarBedel",buscarBedel);
+    	}
+        buscarBedel.setSize(600,400);
+        buscarBedel.setLocation(0,0);
+        
+        cl.show(PanelAdmin,"buscarBedel");
+        PanelAdmin.revalidate();
+        PanelAdmin.repaint();
 		
 	}
 }
