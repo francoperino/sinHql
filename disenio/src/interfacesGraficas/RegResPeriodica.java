@@ -31,8 +31,8 @@ public class RegResPeriodica extends JPanel {
 	private JTextField HoraFinSabado;
 	private JTextField txtCantAlumnos;
 	private JTextField txtAnual;
-	private JTextField textField_1;
-	private JTextField textField_5;
+	private JTextField txtIdSolicitante;
+	private JTextField txtNombreBedel;
 	private JTextField txtApellido;
 	private JTextField txtNombre;
 	private JTextField txtCorreo;
@@ -206,53 +206,53 @@ public class RegResPeriodica extends JPanel {
 		HoraFinSabado.setBounds(419, 180, 30, 20);
 		panelSeleccion.add(HoraFinSabado);
 		
-		JComboBox ComboxDuraLunes = new JComboBox();
-		ComboxDuraLunes.setModel(new DefaultComboBoxModel(new String[] {"00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00"}));
-		ComboxDuraLunes.setForeground(Color.BLACK);
-		ComboxDuraLunes.setFont(new Font("Tahoma", Font.BOLD, 18));
-		ComboxDuraLunes.setBackground(Color.WHITE);
-		ComboxDuraLunes.setBounds(498, 55, 76, 20);
-		panelSeleccion.add(ComboxDuraLunes);
+		JComboBox ComBoxDuracionLunes = new JComboBox();
+		ComBoxDuracionLunes.setModel(new DefaultComboBoxModel(new String[] {"00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00"}));
+		ComBoxDuracionLunes.setForeground(Color.BLACK);
+		ComBoxDuracionLunes.setFont(new Font("Tahoma", Font.BOLD, 18));
+		ComBoxDuracionLunes.setBackground(Color.WHITE);
+		ComBoxDuracionLunes.setBounds(498, 55, 76, 20);
+		panelSeleccion.add(ComBoxDuracionLunes);
 		
-		JComboBox ComboxDuraMartes = new JComboBox();
-		ComboxDuraMartes.setModel(new DefaultComboBoxModel(new String[] {"00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00"}));
-		ComboxDuraMartes.setForeground(Color.BLACK);
-		ComboxDuraMartes.setFont(new Font("Tahoma", Font.BOLD, 18));
-		ComboxDuraMartes.setBackground(Color.WHITE);
-		ComboxDuraMartes.setBounds(498, 80, 76, 20);
-		panelSeleccion.add(ComboxDuraMartes);
+		JComboBox ComBoxDuracionMartes = new JComboBox();
+		ComBoxDuracionMartes.setModel(new DefaultComboBoxModel(new String[] {"00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00"}));
+		ComBoxDuracionMartes.setForeground(Color.BLACK);
+		ComBoxDuracionMartes.setFont(new Font("Tahoma", Font.BOLD, 18));
+		ComBoxDuracionMartes.setBackground(Color.WHITE);
+		ComBoxDuracionMartes.setBounds(498, 80, 76, 20);
+		panelSeleccion.add(ComBoxDuracionMartes);
 		
-		JComboBox ComboxDuraMiercoles = new JComboBox();
-		ComboxDuraMiercoles.setModel(new DefaultComboBoxModel(new String[] {"00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00"}));
-		ComboxDuraMiercoles.setForeground(Color.BLACK);
-		ComboxDuraMiercoles.setFont(new Font("Tahoma", Font.BOLD, 18));
-		ComboxDuraMiercoles.setBackground(Color.WHITE);
-		ComboxDuraMiercoles.setBounds(498, 105, 76, 20);
-		panelSeleccion.add(ComboxDuraMiercoles);
+		JComboBox ComBoxDuracionMiercoles = new JComboBox();
+		ComBoxDuracionMiercoles.setModel(new DefaultComboBoxModel(new String[] {"00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00"}));
+		ComBoxDuracionMiercoles.setForeground(Color.BLACK);
+		ComBoxDuracionMiercoles.setFont(new Font("Tahoma", Font.BOLD, 18));
+		ComBoxDuracionMiercoles.setBackground(Color.WHITE);
+		ComBoxDuracionMiercoles.setBounds(498, 105, 76, 20);
+		panelSeleccion.add(ComBoxDuracionMiercoles);
 		
-		JComboBox ComboxDuraJueves = new JComboBox();
-		ComboxDuraJueves.setModel(new DefaultComboBoxModel(new String[] {"00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00"}));
-		ComboxDuraJueves.setForeground(Color.BLACK);
-		ComboxDuraJueves.setFont(new Font("Tahoma", Font.BOLD, 18));
-		ComboxDuraJueves.setBackground(Color.WHITE);
-		ComboxDuraJueves.setBounds(498, 130, 76, 20);
-		panelSeleccion.add(ComboxDuraJueves);
+		JComboBox ComBoxDuracionJueves = new JComboBox();
+		ComBoxDuracionJueves.setModel(new DefaultComboBoxModel(new String[] {"00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00"}));
+		ComBoxDuracionJueves.setForeground(Color.BLACK);
+		ComBoxDuracionJueves.setFont(new Font("Tahoma", Font.BOLD, 18));
+		ComBoxDuracionJueves.setBackground(Color.WHITE);
+		ComBoxDuracionJueves.setBounds(498, 130, 76, 20);
+		panelSeleccion.add(ComBoxDuracionJueves);
 		
-		JComboBox ComboxDuraViernes = new JComboBox();
-		ComboxDuraViernes.setModel(new DefaultComboBoxModel(new String[] {"00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00"}));
-		ComboxDuraViernes.setForeground(Color.BLACK);
-		ComboxDuraViernes.setFont(new Font("Tahoma", Font.BOLD, 18));
-		ComboxDuraViernes.setBackground(Color.WHITE);
-		ComboxDuraViernes.setBounds(498, 155, 76, 20);
-		panelSeleccion.add(ComboxDuraViernes);
+		JComboBox ComBoxDuracionViernes = new JComboBox();
+		ComBoxDuracionViernes.setModel(new DefaultComboBoxModel(new String[] {"00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00"}));
+		ComBoxDuracionViernes.setForeground(Color.BLACK);
+		ComBoxDuracionViernes.setFont(new Font("Tahoma", Font.BOLD, 18));
+		ComBoxDuracionViernes.setBackground(Color.WHITE);
+		ComBoxDuracionViernes.setBounds(498, 155, 76, 20);
+		panelSeleccion.add(ComBoxDuracionViernes);
 		
-		JComboBox ComboxDuraSabado = new JComboBox();
-		ComboxDuraSabado.setModel(new DefaultComboBoxModel(new String[] {"00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00"}));
-		ComboxDuraSabado.setForeground(Color.BLACK);
-		ComboxDuraSabado.setFont(new Font("Tahoma", Font.BOLD, 18));
-		ComboxDuraSabado.setBackground(Color.WHITE);
-		ComboxDuraSabado.setBounds(498, 180, 76, 20);
-		panelSeleccion.add(ComboxDuraSabado);
+		JComboBox ComBoxDuracionSabado = new JComboBox();
+		ComBoxDuracionSabado.setModel(new DefaultComboBoxModel(new String[] {"00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00"}));
+		ComBoxDuracionSabado.setForeground(Color.BLACK);
+		ComBoxDuracionSabado.setFont(new Font("Tahoma", Font.BOLD, 18));
+		ComBoxDuracionSabado.setBackground(Color.WHITE);
+		ComBoxDuracionSabado.setBounds(498, 180, 76, 20);
+		panelSeleccion.add(ComBoxDuracionSabado);
 		
 		JLabel lblTipoDeAula = new JLabel("Tipo de aula");
 		lblTipoDeAula.setIconTextGap(10);
@@ -261,14 +261,14 @@ public class RegResPeriodica extends JPanel {
 		lblTipoDeAula.setBounds(205, 209, 95, 20);
 		panelSeleccion.add(lblTipoDeAula);
 		
-		JComboBox ComboxTipoAula = new JComboBox();
-		ComboxTipoAula.setModel(new DefaultComboBoxModel(new String[] {"Seleccione", "Multimedios", "Informatica", "Sin recursos adicionales"}));
-		ComboxTipoAula.setMaximumRowCount(4);
-		ComboxTipoAula.setForeground(Color.BLACK);
-		ComboxTipoAula.setFont(new Font("Tahoma", Font.BOLD, 14));
-		ComboxTipoAula.setBackground(Color.WHITE);
-		ComboxTipoAula.setBounds(312, 211, 190, 20);
-		panelSeleccion.add(ComboxTipoAula);
+		JComboBox ComBoxTipoAula = new JComboBox();
+		ComBoxTipoAula.setModel(new DefaultComboBoxModel(new String[] {"Seleccione", "Multimedios", "Informatica", "Sin recursos adicionales"}));
+		ComBoxTipoAula.setMaximumRowCount(4);
+		ComBoxTipoAula.setForeground(Color.BLACK);
+		ComBoxTipoAula.setFont(new Font("Tahoma", Font.BOLD, 14));
+		ComBoxTipoAula.setBackground(Color.WHITE);
+		ComBoxTipoAula.setBounds(312, 211, 190, 20);
+		panelSeleccion.add(ComBoxTipoAula);
 		
 		JLabel lblCantidadDeAlumnos = new JLabel("Cantidad de alumnos:");
 		lblCantidadDeAlumnos.setIconTextGap(10);
@@ -304,22 +304,22 @@ public class RegResPeriodica extends JPanel {
 		lblSolicitante.setBounds(205, 307, 112, 20);
 		panelSeleccion.add(lblSolicitante);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(321, 307, 70, 20);
-		panelSeleccion.add(textField_1);
+		txtIdSolicitante = new JTextField();
+		txtIdSolicitante.setColumns(10);
+		txtIdSolicitante.setBounds(321, 307, 70, 20);
+		panelSeleccion.add(txtIdSolicitante);
 		
-		textField_5 = new JTextField();
-		textField_5.setText("Bedel");
-		textField_5.setOpaque(false);
-		textField_5.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_5.setForeground(Color.WHITE);
-		textField_5.setFont(new Font("Tahoma", Font.BOLD, 18));
-		textField_5.setEditable(false);
-		textField_5.setColumns(10);
-		textField_5.setBorder(null);
-		textField_5.setBounds(38, 105, 112, 28);
-		panelSeleccion.add(textField_5);
+		txtNombreBedel = new JTextField();
+		txtNombreBedel.setText("Bedel");
+		txtNombreBedel.setOpaque(false);
+		txtNombreBedel.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNombreBedel.setForeground(Color.WHITE);
+		txtNombreBedel.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txtNombreBedel.setEditable(false);
+		txtNombreBedel.setColumns(10);
+		txtNombreBedel.setBorder(null);
+		txtNombreBedel.setBounds(38, 105, 112, 28);
+		panelSeleccion.add(txtNombreBedel);
 		
 		txtApellido = new JTextField();
 		txtApellido.setText("Apellido");
@@ -340,13 +340,13 @@ public class RegResPeriodica extends JPanel {
 		lblCurso.setBounds(205, 240, 112, 20);
 		panelSeleccion.add(lblCurso);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setMaximumRowCount(4);
-		comboBox.setForeground(Color.BLACK);
-		comboBox.setFont(new Font("Tahoma", Font.BOLD, 14));
-		comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(312, 240, 190, 20);
-		panelSeleccion.add(comboBox);
+		JComboBox ComBoxNombreCurso = new JComboBox();
+		ComBoxNombreCurso.setMaximumRowCount(4);
+		ComBoxNombreCurso.setForeground(Color.BLACK);
+		ComBoxNombreCurso.setFont(new Font("Tahoma", Font.BOLD, 14));
+		ComBoxNombreCurso.setBackground(Color.WHITE);
+		ComBoxNombreCurso.setBounds(312, 240, 190, 20);
+		panelSeleccion.add(ComBoxNombreCurso);
 		
 		txtNombre = new JTextField();
 		txtNombre.setText("Nombre");
