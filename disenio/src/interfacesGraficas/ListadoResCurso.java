@@ -77,9 +77,9 @@ public class ListadoResCurso extends JPanel {
 		btnImprimir.setBounds(211, 340, 128, 40);
 		ContentPanListadoResCurso.add(btnImprimir);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(230, 113, 343, 194);
-		ContentPanListadoResCurso.add(scrollPane);
+		JScrollPane tablaDatos = new JScrollPane();
+		tablaDatos.setBounds(230, 113, 343, 194);
+		ContentPanListadoResCurso.add(tablaDatos);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -113,7 +113,7 @@ public class ListadoResCurso extends JPanel {
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(3).setResizable(false);
-		scrollPane.setViewportView(table);
+		tablaDatos.setViewportView(table);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(ListadoResCurso.class.getResource("/imagenes/ListadoResCurso/FondoRegBed2.1.png")));

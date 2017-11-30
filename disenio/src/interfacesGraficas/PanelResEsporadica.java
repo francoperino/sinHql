@@ -13,7 +13,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelResEsporadica extends JPanel {
-	private JTextField textField;
+	private JTextField txtNombreBedel;
 	private JTextField txtReservaDelDia;
 	private JTextField txtDia;
 	private JLabel lblReservaDelDia;
@@ -32,17 +32,17 @@ public class PanelResEsporadica extends JPanel {
 		add(ContentPanResEsporadica);
 		ContentPanResEsporadica.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setText("Bedel");
-		textField.setOpaque(false);
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setForeground(Color.WHITE);
-		textField.setFont(new Font("Tahoma", Font.BOLD, 18));
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBorder(null);
-		textField.setBounds(37, 107, 112, 28);
-		ContentPanResEsporadica.add(textField);
+		txtNombreBedel = new JTextField();
+		txtNombreBedel.setText("Bedel");
+		txtNombreBedel.setOpaque(false);
+		txtNombreBedel.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNombreBedel.setForeground(Color.WHITE);
+		txtNombreBedel.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txtNombreBedel.setEditable(false);
+		txtNombreBedel.setColumns(10);
+		txtNombreBedel.setBorder(null);
+		txtNombreBedel.setBounds(37, 107, 112, 28);
+		ContentPanResEsporadica.add(txtNombreBedel);
 		
 		JButton btnAtras = new JButton("");
 		btnAtras.setRolloverIcon(new ImageIcon(PanelResEsporadica.class.getResource("/imagenes/PanelResEsporadica/button_atras (3)2.png")));
@@ -94,9 +94,9 @@ public class PanelResEsporadica extends JPanel {
 		lblMes.setBounds(197, 76, 43, 20);
 		ContentPanResEsporadica.add(lblMes);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(205, 140, 352, 176);
-		ContentPanResEsporadica.add(scrollPane);
+		JScrollPane tablaDatos = new JScrollPane();
+		tablaDatos.setBounds(205, 140, 352, 176);
+		ContentPanResEsporadica.add(tablaDatos);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -122,7 +122,7 @@ public class PanelResEsporadica extends JPanel {
 		table.getColumnModel().getColumn(1).setPreferredWidth(200);
 		table.getColumnModel().getColumn(2).setPreferredWidth(60);
 		table.setRowHeight(50);
-		scrollPane.setViewportView(table);
+		tablaDatos.setViewportView(table);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setBounds(0, 0, 602, 401);

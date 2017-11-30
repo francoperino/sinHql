@@ -43,17 +43,17 @@ public class ListadoResDiaEsp extends JPanel {
 		txtNombreBedel.setBounds(37, 107, 112, 28);
 		ContentPanListadoResDiaEsp.add(txtNombreBedel);
 		
-		JButton button = new JButton("");
-		button.setRolloverIcon(new ImageIcon(ListadoResDiaEsp.class.getResource("/imagenes/ListadoResDiaEsp/button_atras (3)2.png")));
-		button.setIcon(new ImageIcon(ListadoResDiaEsp.class.getResource("/imagenes/ListadoResDiaEsp/button_atras (3).png")));
-		button.setOpaque(false);
-		button.setFocusable(false);
-		button.setFocusPainted(false);
-		button.setContentAreaFilled(false);
-		button.setBorderPainted(false);
-		button.setBorder(null);
-		button.setBounds(48, 144, 82, 36);
-		ContentPanListadoResDiaEsp.add(button);
+		JButton btnAtras = new JButton("");
+		btnAtras.setRolloverIcon(new ImageIcon(ListadoResDiaEsp.class.getResource("/imagenes/ListadoResDiaEsp/button_atras (3)2.png")));
+		btnAtras.setIcon(new ImageIcon(ListadoResDiaEsp.class.getResource("/imagenes/ListadoResDiaEsp/button_atras (3).png")));
+		btnAtras.setOpaque(false);
+		btnAtras.setFocusable(false);
+		btnAtras.setFocusPainted(false);
+		btnAtras.setContentAreaFilled(false);
+		btnAtras.setBorderPainted(false);
+		btnAtras.setBorder(null);
+		btnAtras.setBounds(48, 144, 82, 36);
+		ContentPanListadoResDiaEsp.add(btnAtras);
 		
 		JLabel lblResDelDia = new JLabel("Reserva del dia:");
 		lblResDelDia.setIconTextGap(10);
@@ -120,9 +120,9 @@ public class ListadoResDiaEsp extends JPanel {
 		btnImprimir.setBounds(211, 340, 128, 40);
 		ContentPanListadoResDiaEsp.add(btnImprimir);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(205, 125, 385, 178);
-		ContentPanListadoResDiaEsp.add(scrollPane);
+		JScrollPane tablaDatos = new JScrollPane();
+		tablaDatos.setBounds(205, 125, 385, 178);
+		ContentPanListadoResDiaEsp.add(tablaDatos);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -152,7 +152,7 @@ public class ListadoResDiaEsp extends JPanel {
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(1).setPreferredWidth(300);
-		scrollPane.setViewportView(table);
+		tablaDatos.setViewportView(table);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(ListadoResDiaEsp.class.getResource("/imagenes/ListadoResDiaEsp/FondoRegBed2.1.png")));

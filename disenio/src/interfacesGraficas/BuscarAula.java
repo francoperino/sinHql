@@ -20,7 +20,7 @@ import javax.swing.ScrollPaneConstants;
 
 public class BuscarAula extends JPanel {
 	private JTextField txtBedel;
-	private JTextField txtMm;
+	private JTextField txtNroAula;
 	private JTextField txtCapacidad;
 	private JTable table;
 
@@ -81,23 +81,23 @@ public class BuscarAula extends JPanel {
 		lblListarReserva.setBounds(10, 245, 131, 28);
 		panel.add(lblListarReserva);
 		
-		JButton btnLRCurso = new JButton("");
-		btnLRCurso.setFocusPainted(false);
-		btnLRCurso.setRolloverIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/button_curso2.png")));
-		btnLRCurso.setIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/button_curso.png")));
-		btnLRCurso.setContentAreaFilled(false);
-		btnLRCurso.setBorderPainted(false);
-		btnLRCurso.setBounds(38, 279, 103, 40);
-		panel.add(btnLRCurso);
+		JButton btnListarReservaCurso = new JButton("");
+		btnListarReservaCurso.setFocusPainted(false);
+		btnListarReservaCurso.setRolloverIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/button_curso2.png")));
+		btnListarReservaCurso.setIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/button_curso.png")));
+		btnListarReservaCurso.setContentAreaFilled(false);
+		btnListarReservaCurso.setBorderPainted(false);
+		btnListarReservaCurso.setBounds(38, 279, 103, 40);
+		panel.add(btnListarReservaCurso);
 		
-		JButton btnLRDiaEsp = new JButton("");
-		btnLRDiaEsp.setFocusPainted(false);
-		btnLRDiaEsp.setRolloverIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/button_dia-especifico (1)2.png")));
-		btnLRDiaEsp.setIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/button_dia-especifico (1).png")));
-		btnLRDiaEsp.setContentAreaFilled(false);
-		btnLRDiaEsp.setBorderPainted(false);
-		btnLRDiaEsp.setBounds(5, 327, 181, 49);
-		panel.add(btnLRDiaEsp);
+		JButton btnListarReservaDiaEsp = new JButton("");
+		btnListarReservaDiaEsp.setFocusPainted(false);
+		btnListarReservaDiaEsp.setRolloverIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/button_dia-especifico (1)2.png")));
+		btnListarReservaDiaEsp.setIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/button_dia-especifico (1).png")));
+		btnListarReservaDiaEsp.setContentAreaFilled(false);
+		btnListarReservaDiaEsp.setBorderPainted(false);
+		btnListarReservaDiaEsp.setBounds(5, 327, 181, 49);
+		panel.add(btnListarReservaDiaEsp);
 		
 		JLabel lblNroAula = new JLabel("Numero aula");
 		lblNroAula.setIconTextGap(10);
@@ -106,26 +106,26 @@ public class BuscarAula extends JPanel {
 		lblNroAula.setBounds(205, 30, 123, 20);
 		panel.add(lblNroAula);
 		
-		txtMm = new JTextField();
-		txtMm.setColumns(10);
-		txtMm.setBounds(348, 30, 60, 20);
-		panel.add(txtMm);
+		txtNroAula = new JTextField();
+		txtNroAula.setColumns(10);
+		txtNroAula.setBounds(348, 30, 60, 20);
+		panel.add(txtNroAula);
 		
-		JLabel label = new JLabel("Turno");
-		label.setIconTextGap(10);
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Tahoma", Font.BOLD, 18));
-		label.setBounds(205, 100, 91, 20);
-		panel.add(label);
+		JLabel lblTurno = new JLabel("Turno");
+		lblTurno.setIconTextGap(10);
+		lblTurno.setForeground(Color.WHITE);
+		lblTurno.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblTurno.setBounds(205, 100, 91, 20);
+		panel.add(lblTurno);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Todas", "Multimedios", "Informatica", "Sin recursos adicionales"}));
-		comboBox.setMaximumRowCount(4);
-		comboBox.setForeground(Color.BLACK);
-		comboBox.setFont(new Font("Tahoma", Font.BOLD, 14));
-		comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(348, 100, 190, 20);
-		panel.add(comboBox);
+		JComboBox ComBoxTurno = new JComboBox();
+		ComBoxTurno.setModel(new DefaultComboBoxModel(new String[] {"Todas", "Multimedios", "Informatica", "Sin recursos adicionales"}));
+		ComBoxTurno.setMaximumRowCount(4);
+		ComBoxTurno.setForeground(Color.BLACK);
+		ComBoxTurno.setFont(new Font("Tahoma", Font.BOLD, 14));
+		ComBoxTurno.setBackground(Color.WHITE);
+		ComBoxTurno.setBounds(348, 100, 190, 20);
+		panel.add(ComBoxTurno);
 		
 		JLabel lblCapacidad = new JLabel("Capacidad");
 		lblCapacidad.setIconTextGap(10);
@@ -140,22 +140,22 @@ public class BuscarAula extends JPanel {
 		txtCapacidad.setBounds(348, 65, 28, 20);
 		panel.add(txtCapacidad);
 		
-		JButton button = new JButton("");
-		button.setRolloverIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/button_buscar2.png")));
-		button.setFocusPainted(false);
-		button.setIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/button_buscar.png")));
-		button.setContentAreaFilled(false);
-		button.setBorderPainted(false);
-		button.setBounds(418, 30, 117, 40);
-		panel.add(button);
+		JButton btnBuscar = new JButton("");
+		btnBuscar.setRolloverIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/button_buscar2.png")));
+		btnBuscar.setFocusPainted(false);
+		btnBuscar.setIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/button_buscar.png")));
+		btnBuscar.setContentAreaFilled(false);
+		btnBuscar.setBorderPainted(false);
+		btnBuscar.setBounds(418, 30, 117, 40);
+		panel.add(btnBuscar);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(205, 131, 353, 188);
-		panel.add(scrollPane);
+		JScrollPane tablaDatos = new JScrollPane();
+		tablaDatos.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		tablaDatos.setBounds(205, 131, 353, 188);
+		panel.add(tablaDatos);
 		
 		table = new JTable();
-		scrollPane.setViewportView(table);
+		tablaDatos.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},

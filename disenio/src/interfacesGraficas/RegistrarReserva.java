@@ -23,10 +23,10 @@ public class RegistrarReserva extends JPanel {
 	public RegistrarReserva() {
 		setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 600, 400);
-		add(panel);
-		panel.setLayout(null);
+		JPanel ContentPanRegReserva = new JPanel();
+		ContentPanRegReserva.setBounds(0, 0, 600, 400);
+		add(ContentPanRegReserva);
+		ContentPanRegReserva.setLayout(null);
 		
 		txtBedel = new JTextField();
 		txtBedel.setText("Bedel");
@@ -38,7 +38,7 @@ public class RegistrarReserva extends JPanel {
 		txtBedel.setColumns(10);
 		txtBedel.setBorder(null);
 		txtBedel.setBounds(38, 107, 112, 28);
-		panel.add(txtBedel);
+		ContentPanRegReserva.add(txtBedel);
 		
 		JButton btnInicio = new JButton("");
 		btnInicio.setRolloverIcon(new ImageIcon(RegistrarReserva.class.getResource("/imagenes/RegistrarReserva/button_inicio (2).png")));
@@ -47,7 +47,7 @@ public class RegistrarReserva extends JPanel {
 		btnInicio.setContentAreaFilled(false);
 		btnInicio.setBorderPainted(false);
 		btnInicio.setBounds(38, 146, 103, 40);
-		panel.add(btnInicio);
+		ContentPanRegReserva.add(btnInicio);
 		
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -62,13 +62,13 @@ public class RegistrarReserva extends JPanel {
 		btnBuscarAula.setContentAreaFilled(false);
 		btnBuscarAula.setBorderPainted(false);
 		btnBuscarAula.setBounds(10, 197, 161, 49);
-		panel.add(btnBuscarAula);
+		ContentPanRegReserva.add(btnBuscarAula);
 		
 		JLabel label = new JLabel("Listar Reserva");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.BOLD, 18));
 		label.setBounds(10, 247, 131, 28);
-		panel.add(label);
+		ContentPanRegReserva.add(label);
 		
 		JButton btnCurso = new JButton("");
 		btnCurso.setRolloverIcon(new ImageIcon(RegistrarReserva.class.getResource("/imagenes/RegistrarReserva/button_curso2.png")));
@@ -77,7 +77,7 @@ public class RegistrarReserva extends JPanel {
 		btnCurso.setContentAreaFilled(false);
 		btnCurso.setBorderPainted(false);
 		btnCurso.setBounds(38, 281, 103, 40);
-		panel.add(btnCurso);
+		ContentPanRegReserva.add(btnCurso);
 		
 		JButton btnDiaEspecifico = new JButton("");
 		btnDiaEspecifico.setRolloverIcon(new ImageIcon(RegistrarReserva.class.getResource("/imagenes/RegistrarReserva/button_dia-especifico (1)2.png")));
@@ -86,7 +86,7 @@ public class RegistrarReserva extends JPanel {
 		btnDiaEspecifico.setContentAreaFilled(false);
 		btnDiaEspecifico.setBorderPainted(false);
 		btnDiaEspecifico.setBounds(5, 329, 181, 49);
-		panel.add(btnDiaEspecifico);
+		ContentPanRegReserva.add(btnDiaEspecifico);
 		
 		JRadioButton rdbtnEsporadica = new JRadioButton("Esporadica");
 		rdbtnEsporadica.setForeground(Color.WHITE);
@@ -94,7 +94,7 @@ public class RegistrarReserva extends JPanel {
 		rdbtnEsporadica.setContentAreaFilled(false);
 		rdbtnEsporadica.setFocusPainted(false);
 		rdbtnEsporadica.setBounds(205, 30, 119, 23);
-		panel.add(rdbtnEsporadica);
+		ContentPanRegReserva.add(rdbtnEsporadica);
 		
 		JRadioButton rdbtnPeriodica = new JRadioButton("Periodica");
 		rdbtnPeriodica.setForeground(Color.WHITE);
@@ -102,7 +102,7 @@ public class RegistrarReserva extends JPanel {
 		rdbtnPeriodica.setFocusPainted(false);
 		rdbtnPeriodica.setContentAreaFilled(false);
 		rdbtnPeriodica.setBounds(205, 86, 119, 23);
-		panel.add(rdbtnPeriodica);
+		ContentPanRegReserva.add(rdbtnPeriodica);
 		
 		JComboBox comBoxTipoPeriodica = new JComboBox();
 		comBoxTipoPeriodica.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar", "Anual", "1er Cuatrimestre", "2do Cuatrimestre"}));
@@ -111,7 +111,7 @@ public class RegistrarReserva extends JPanel {
 		comBoxTipoPeriodica.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comBoxTipoPeriodica.setBackground(Color.WHITE);
 		comBoxTipoPeriodica.setBounds(330, 86, 149, 20);
-		panel.add(comBoxTipoPeriodica);
+		ContentPanRegReserva.add(comBoxTipoPeriodica);
 		
 		JButton btnCancelar = new JButton("");
 		btnCancelar.setRolloverIcon(new ImageIcon(RegistrarReserva.class.getResource("/imagenes/RegistrarReserva/button_cancelar2.png")));
@@ -120,7 +120,7 @@ public class RegistrarReserva extends JPanel {
 		btnCancelar.setContentAreaFilled(false);
 		btnCancelar.setBorderPainted(false);
 		btnCancelar.setBounds(367, 146, 112, 40);
-		panel.add(btnCancelar);
+		ContentPanRegReserva.add(btnCancelar);
 		
 		JButton btnRegistrar = new JButton("");
 		btnRegistrar.setRolloverIcon(new ImageIcon(RegistrarReserva.class.getResource("/imagenes/RegistrarReserva/button_registrar2.png")));
@@ -129,17 +129,14 @@ public class RegistrarReserva extends JPanel {
 		btnRegistrar.setContentAreaFilled(false);
 		btnRegistrar.setBorderPainted(false);
 		btnRegistrar.setBounds(205, 146, 131, 40);
-		panel.add(btnRegistrar);
+		ContentPanRegReserva.add(btnRegistrar);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(RegistrarReserva.class.getResource("/imagenes/RegistrarReserva/FondoRegBed2.1.png")));
 		Fondo.setBounds(0, 0, 602, 401);
-		panel.add(Fondo);
+		ContentPanRegReserva.add(Fondo);
 		
-		PanelesRegPeriodica panelesRegPeriodica = new PanelesRegPeriodica();
-		panelesRegPeriodica.setBounds(0, 0, 1, 1);
-		add(panelesRegPeriodica);
-		
+	
 		PanelResEsporadica panelResEsporadica = new PanelResEsporadica();
 		panelResEsporadica.setBounds(0, 0, 1, 1);
 		add(panelResEsporadica);
