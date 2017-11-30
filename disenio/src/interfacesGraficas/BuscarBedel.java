@@ -133,9 +133,9 @@ public class BuscarBedel extends JPanel {
 		textField.setBounds(310, 30, 115, 20);
 		ContentPanBuscBed.add(textField);
 		textField.setColumns(10);
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(556, 107, 17, 208);
-		ContentPanBuscBed.add(scrollBar);
+		//JScrollBar scrollBar = new JScrollBar();
+		//scrollBar.setBounds(556, 107, 17, 208);
+		//ContentPanBuscBed.add(scrollBar);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(200, 107, 357, 208);
