@@ -8,8 +8,13 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Color;
 import javax.swing.JTextField;
+
+import Entidades.ConsultaGenerica;
+import Logica.GestorUsuario;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 import javax.swing.JPasswordField;
@@ -64,22 +69,97 @@ class IniciarSesion {
 		btnIngresar.setBorder(null);
 		btnIngresar.setIcon(new ImageIcon(IniciarSesion.class.getResource("/imagenes/inicioSesionImgs/button_ingresar.png")));
 		btnIngresar.addActionListener(new ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent a) {
-				String cadenaNick = textFieldNick.getText();
-				String cadenaPass = passwordField.getText();
-				if(("admin".equals(cadenaNick)) && ("123".equals(cadenaPass))){
-					InicioAdmin.main(null);
-					InicioAdmin.llamarAdmin();
-					frmInicioSesion.dispose();
-				}
-				else {
-					InicioBedel.main(null);
-					InicioBedel.llamarBedel();
-					frmInicioSesion.dispose();
-				}
-								
-			}
-		});
+            public void actionPerformed(java.awt.event.ActionEvent a) {
+               
+                String cadenaNick = textFieldNick.getText();
+                String cadenaPass = passwordField.getText();
+               
+                   
+                 
+                   /*  for(ConsultaGenerica usu : res) {
+                  System.out.print(usu.getValor("nickusuario") + " - " + usu.getValor("claveactual") );
+                  */
+                GestorUsuario gu = new GestorUsuario();
+                Integer i = null;
+                try {
+                    i = gu.ConsultaInicio(cadenaNick);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+               
+                RegistrarBedel regb = new RegistrarBedel();
+ 
+                 ArrayList<ConsultaGenerica> res = null;
+                try {
+                    res = (ArrayList<ConsultaGenerica>) gu.ConsultaClave(cadenaNick);
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                switch (i){
+                case 7:{
+                   
+                   
+               
+                    regb.mensaje("no existe esa combinacion","datos incorrectos");
+                   
+                   
+                    break;
+                }
+                case 0:{
+                   
+                   
+                    try {
+                        if(res.get(0).getValor("max(c.claveactual)").equals(cadenaPass)) {
+                            InicioBedel.main(null);
+                            InicioBedel.llamarBedel();
+                            frmInicioSesion.dispose();
+                           
+                        }
+                        else {
+                            regb.mensaje("Contraseña incorrecta","contraseña no valida");
+                        }
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                   
+                   
+                    break;
+                }
+                case 1:{
+                   
+                    try {
+                        if(res.get(0).getValor("max(c.claveactual)").equals(cadenaPass)) {
+                           
+                            InicioAdmin.main(null);
+                            InicioAdmin.llamarAdmin(0);
+                            frmInicioSesion.dispose();
+                        }
+                        else {
+                           
+                            regb.mensaje("Contraseña incorrecta","contraseña no valida");
+                        }
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                   
+                   
+                    break;
+                }
+                     
+                  }
+                     
+               
+                   
+                     
+               
+               
+                               
+            }
+        });
 		
 		JButton btnSalir = new JButton("");
 		btnSalir.setFocusPainted(false);

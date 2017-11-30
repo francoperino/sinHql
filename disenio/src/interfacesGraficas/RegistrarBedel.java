@@ -85,7 +85,7 @@ public class RegistrarBedel extends JPanel{
 		btnInicAdm.addActionListener(new ActionListener() {
 			
 		public void actionPerformed(ActionEvent arg0) {
-						InicioAdmin.llamarAdmin();
+						InicioAdmin.llamarAdmin(0);
 				
 			}
 		});
@@ -94,14 +94,7 @@ public class RegistrarBedel extends JPanel{
 		JButton btnBuscarBed = new JButton("");
 		btnBuscarBed.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BuscarBedel BuscBed = new BuscarBedel();
-				BuscBed.setSize(600,400);
-				BuscBed.setLocation(0, 0);
-				
-				ContentPanRegBed.removeAll();
-				ContentPanRegBed.add(BuscBed, BorderLayout.CENTER);
-				ContentPanRegBed.revalidate();
-				ContentPanRegBed.repaint();
+				InicioAdmin.mostrarBuscarBedel();
 				
 			}
 		});
@@ -302,9 +295,7 @@ public class RegistrarBedel extends JPanel{
 		JButton btnCancelar = new JButton("");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//ContentPanRegBed.setVisible(false);
-				//ContentPanRegBed.removeAll();
-				InicioAdmin.llamarAdmin();
+				InicioAdmin.llamarAdmin(1);
 				
 				
 			}

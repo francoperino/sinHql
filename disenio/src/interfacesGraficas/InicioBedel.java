@@ -66,10 +66,6 @@ public class InicioBedel extends JFrame {
         
         
         
-        //contentPane = new JPanel();
-        //contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        //setContentPane(contentPane);
-        //contentPane.setLayout(null);
         
         ListaResDiaEsp listadia = new ListaResDiaEsp();
         InicoBedel.add("listadia",listadia);
@@ -93,12 +89,8 @@ public class InicioBedel extends JFrame {
         InicoBedel1.add(btnLRDiaEsp);
         btnLRDiaEsp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {    //VA A INTERFAZ REGISTRAR BEDEL
-                //listadia.setVisible(true);
-                //InicoBedel1.setVisible(false);
                 listadia.setSize(600,400);
                 listadia.setLocation(0,0);
-                //InicoBedel.removeAll();
-                //InicoBedel.add(listadia, BorderLayout.CENTER);
                 cl.show(InicoBedel,"listadia");
                 InicoBedel.revalidate();
                 InicoBedel.repaint();
@@ -202,4 +194,5 @@ public class InicioBedel extends JFrame {
     public static void  llamarBedel() {
         cl.show(InicoBedel,"InicioBedel1");
     }
+
 }

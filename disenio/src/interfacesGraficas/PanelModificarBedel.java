@@ -32,9 +32,6 @@ public class PanelModificarBedel extends JPanel {
 	public PanelModificarBedel() {
 		
 		
-		//ContentPanModifBedel = new JPanel();
-		//ContentPanModifBedel.setBounds(0, 0, 600, 400);
-		//add(ContentPanModifBedel);
 		this.setLayout(null);
 		
 		txtAdmin = new JTextField();
@@ -52,7 +49,7 @@ public class PanelModificarBedel extends JPanel {
 		JButton btnAtras = new JButton("");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				BuscarBedel.regresar();
 			}
 		});
 		btnAtras.setRolloverIcon(new ImageIcon(PanelModificarBedel.class.getResource("/imagenes/PanelModificarBedel/button_atras (3)2.png")));
@@ -139,7 +136,7 @@ public class PanelModificarBedel extends JPanel {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				InicioAdmin.llamarAdmin();
+				BuscarBedel.cancelar(1);
 			}
 		});
 		btnCancelar.setRolloverIcon(new ImageIcon(PanelModificarBedel.class.getResource("/imagenes/PanelModificarBedel/button_cancelar2.png")));

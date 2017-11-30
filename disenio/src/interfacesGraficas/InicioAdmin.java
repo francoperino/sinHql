@@ -23,6 +23,7 @@ public class InicioAdmin extends JFrame {
      * 
      */
     private static final long serialVersionUID = 1L;
+    private static int tipo;
     static JPanel PanelAdmin = new JPanel();
     private JTextField txtAdmin;
     static JPanel panel1Admin = new JPanel();
@@ -88,15 +89,15 @@ public class InicioAdmin extends JFrame {
         btnRegBed.setBounds(63, 220, 190, 40);
         panel1Admin.add(btnRegBed);
         btnRegBed.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {    //VA A INTERFAZ REGISTRAR BEDEL
-                //registrarBedel.setVisible(true);
-                //panel1Admin.setVisible(false);
-                //RegistrarBedel RegBed = new RegistrarBedel();
-                //RegBed.setSize(600,400);
-                //RegBed.setLocation(0,0);
+            public void actionPerformed(ActionEvent e) {  
+            	if(tipo==1) {
+            		PanelAdmin.remove(registrarBedel);
+            		RegistrarBedel registrarBedel = new RegistrarBedel();
+                    PanelAdmin.add("registrarBedel",registrarBedel);
+            	}
+            	
                 registrarBedel.setSize(600,400);
                 registrarBedel.setLocation(0,0);
-                //PanelAdmin.removeAll();
                 cl.show(PanelAdmin,"registrarBedel");
                 PanelAdmin.revalidate();
                 PanelAdmin.repaint();
@@ -111,9 +112,12 @@ public class InicioAdmin extends JFrame {
         JButton btnBuscarBed = new JButton("");
         btnBuscarBed.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) { //VA A INTERFAZ BUSCAR BEDEL
-                /*buscarBedel.setVisible(true);
-                panel.setVisible(false);*/
-                //BuscarBedel BuscBed = new BuscarBedel();
+            	if(tipo==1) {
+            		PanelAdmin.remove(buscarBedel);
+            		BuscarBedel buscarBedel = new BuscarBedel();
+            		buscarBedel.setForeground(Color.DARK_GRAY);
+            		PanelAdmin.add("buscarBedel",buscarBedel);
+            	}
                 buscarBedel.setSize(600,400);
                 buscarBedel.setLocation(0,0);
                 
@@ -158,16 +162,20 @@ public class InicioAdmin extends JFrame {
                 
         
     }
-/*public static void  llamarAdmin() {
-     PanelAdmin.removeAll();
-     PanelAdmin.add(panel1Admin,BorderLayout.CENTER);
-     PanelAdmin.revalidate();
-     PanelAdmin.repaint();
-     PanelAdmin.repaint();
-        PanelAdmin.setBackground(Color.DARK_GRAY);
-        PanelAdmin.setBorder(new EmptyBorder(5, 5, 5, 5));
-}*/
-    public static void  llamarAdmin() {
+
+    public static void  llamarAdmin(int t) {
+    	tipo=t;
         cl.show(PanelAdmin,"panel1Admin");
     }
+
+
+	public static void mostrarrgistrarbedel() {
+		cl.show(PanelAdmin,"registrarBedel");	
+	}
+
+
+	public static void mostrarBuscarBedel() {
+		cl.show(PanelAdmin,"buscarBedel");
+		
+	}
 }

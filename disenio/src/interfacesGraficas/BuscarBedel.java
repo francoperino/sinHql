@@ -36,10 +36,10 @@ public class BuscarBedel extends JPanel {
 	private JTextField txtAdmin;
 	private JTextField textField;
 	private JTable table;
-	private JPanel ContentPanBuscBed;
-    private JPanel ContentPanBusc;
-    private CardLayout cl;
-    private PanelModificarBedel modbedel;
+	private static JPanel ContentPanBuscBed;
+    private static JPanel ContentPanBusc;
+    private static CardLayout cl;
+    private static PanelModificarBedel modbedel;
 	/**
 	 * Create the panel.
 	 */
@@ -53,9 +53,10 @@ public class BuscarBedel extends JPanel {
 		ContentPanBusc.setLayout(cl);
 		
 		ContentPanBuscBed = new JPanel();
-		ContentPanBusc.add(ContentPanBuscBed, "name_589139167770428");
+		ContentPanBusc.add("ContentPanBuscBed",ContentPanBuscBed);
+		ContentPanBusc.add("modbedel",modbedel);
 		ContentPanBuscBed.setLayout(null);
-		ContentPanBuscBed.setVisible(true);
+		//ContentPanBuscBed.setVisible(true);
 		txtAdmin = new JTextField();
 		txtAdmin.setForeground(Color.WHITE);
 		txtAdmin.setText("Admin");
@@ -72,7 +73,7 @@ public class BuscarBedel extends JPanel {
 		JButton btnInicioBed = new JButton("");
 		btnInicioBed.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				InicioAdmin.llamarAdmin();
+				InicioAdmin.llamarAdmin(0);
 			}
 		});
 		
@@ -114,15 +115,8 @@ public class BuscarBedel extends JPanel {
 		
 		JButton btnRegBed = new JButton("");
 		btnRegBed.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) { //ACAAAAAAAAAAAAAACAAAAAAAAAAAAAACAAAAAAAAAAAAAACAAAAAAAAAAAAA
-				RegistrarBedel RegBed = new RegistrarBedel();
-				RegBed.setSize(600,400);
-				RegBed.setLocation(0, 0);
-				
-				ContentPanBuscBed.removeAll();
-				ContentPanBuscBed.add(RegBed, BorderLayout.CENTER);
-				ContentPanBuscBed.revalidate();
-				ContentPanBuscBed.repaint();
+			public void actionPerformed(ActionEvent e) { 
+				InicioAdmin.mostrarrgistrarbedel();
 			}
 		});
 		btnRegBed.setRolloverIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/button_registrar-bedel22.png")));
@@ -139,40 +133,6 @@ public class BuscarBedel extends JPanel {
 		textField.setBounds(310, 30, 115, 20);
 		ContentPanBuscBed.add(textField);
 		textField.setColumns(10);
-		
-		JButton btnBuscar = new JButton("");
-		btnBuscar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				GestorBedel gb = new GestorBedel();
-				
-				String turno = (String) comboBoxTurno.getSelectedItem();
-				String ape = textField.getText().trim();
-				String apelido  = ape.replaceAll(" ","");
-				
-				
-				try {
-					ArrayList<ConsultaGenerica> list = gb.BuscarBedel(turno, apelido);
-					if(list.isEmpty()) {
-						RegistrarBedel rb = new RegistrarBedel();
-						rb.mensaje("No existe un bedel, con esos parametros", "Bedel no encontrado");
-					}else
-					GestorUtilidades.llenarTabla(table,list );
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		btnBuscar.setRolloverIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/button_buscar2.png")));
-		btnBuscar.setIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/button_buscar.png")));
-		btnBuscar.setOpaque(false);
-		btnBuscar.setFocusable(false);
-		btnBuscar.setFocusPainted(false);
-		btnBuscar.setContentAreaFilled(false);
-		btnBuscar.setBorderPainted(false);
-		btnBuscar.setBorder(null);
-		btnBuscar.setBounds(451, 35, 106, 49);
-		ContentPanBuscBed.add(btnBuscar);
 		JScrollBar scrollBar = new JScrollBar();
 		scrollBar.setBounds(556, 107, 17, 208);
 		ContentPanBuscBed.add(scrollBar);
@@ -211,14 +171,10 @@ public class BuscarBedel extends JPanel {
 		JButton btnCancelar = new JButton("");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//ContentPanBuscBed.setVisible(false);
-				//ContentPanBuscBed.removeAll();
-				InicioAdmin.llamarAdmin();
+				InicioAdmin.llamarAdmin(1);
 			}
 		});
-		/*PanelModificarBedel panmod = new PanelModificarBedel();
-		ContentPanBuscBed.add(panmod);
-		*/
+
 		
 		
 				
@@ -245,13 +201,10 @@ public class BuscarBedel extends JPanel {
 				bel.setNombre((String)table.getValueAt(i,2));
 				bel.setTurno((String)table.getValueAt(i,1));
 			    bel.setNickusuario((String)table.getValueAt(i,0));
-				/*modbedel.setSize(600,400);
-				modbedel.setLocation(0, 0);
-				ContentPanBusc.add(modbedel, BorderLayout.CENTER);
-			*/
+		
 			    modbedel.seteo(bel);
 			    
-				cl.show(ContentPanBusc, "Modificar");
+				cl.show(ContentPanBusc, "modbedel");
 				ContentPanBusc.revalidate();
 				ContentPanBusc.repaint();
 				
@@ -270,6 +223,42 @@ public class BuscarBedel extends JPanel {
 		btnModif.setBorder(null);
 		btnModif.setBounds(190, 335, 121, 40);
 		ContentPanBuscBed.add(btnModif);
+		
+		JButton btnBuscar = new JButton("");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnModif.setEnabled(false);
+				GestorBedel gb = new GestorBedel();
+				
+				String turno = (String) comboBoxTurno.getSelectedItem();
+				String ape = textField.getText().trim();
+				String apelido  = ape.replaceAll(" ","");
+				
+				
+				try {
+					ArrayList<ConsultaGenerica> list = gb.BuscarBedel(turno, apelido);
+					if(list.isEmpty()) {
+						RegistrarBedel rb = new RegistrarBedel();
+						rb.mensaje("No existe un bedel, con esos parametros", "Bedel no encontrado");
+					}else
+					GestorUtilidades.llenarTabla(table,list );
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		btnBuscar.setRolloverIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/button_buscar2.png")));
+		btnBuscar.setIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/button_buscar.png")));
+		btnBuscar.setOpaque(false);
+		btnBuscar.setFocusable(false);
+		btnBuscar.setFocusPainted(false);
+		btnBuscar.setContentAreaFilled(false);
+		btnBuscar.setBorderPainted(false);
+		btnBuscar.setBorder(null);
+		btnBuscar.setBounds(451, 35, 106, 49);
+		ContentPanBuscBed.add(btnBuscar);
+		
 		
 		JButton btnEliminar = new JButton("");
 		btnEliminar.setEnabled(false);
@@ -295,16 +284,21 @@ public class BuscarBedel extends JPanel {
 		Fondo.setBounds(0, 0, 602, 401);
 		Fondo.setIcon(new ImageIcon(BuscarBedel.class.getResource("/imagenes/BuscarBedelimgs/FondoRegBed2.2.png")));
 		ContentPanBuscBed.add(Fondo);
-		PanelModificarBedel ContentPanModifiBedel = new PanelModificarBedel();
-		ContentPanBusc.add("Modificar",ContentPanModifiBedel);
-		ContentPanModifiBedel.setLayout(null);
 		
 		PanelEliminarBedel ContentPanEliminarBedel = new PanelEliminarBedel();
 		ContentPanBusc.add( "Eliminar",ContentPanEliminarBedel);
 		
-		
-		
 
+	}
+	public static void regresar() {
+		cl.show(ContentPanBusc, "ContentPanBuscBed");
+		
+	}
+	
+	public static void cancelar(int t) {
+		//ContentPanBusc.remove(modbedel);
+		InicioAdmin.llamarAdmin(t);
+		
 	}
 	
 }
