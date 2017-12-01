@@ -318,7 +318,7 @@ public class RegistrarBedel extends JPanel{
 			     String apelido = textFApellido.getText();
 			     String nobre = textFNombre.getText();
 			     String nick = textFNickUs.getText();
-			     if(apelido.length()==0 || nobre.length()==0 || nick.length()==0) {
+			     if(apelido.length()==0 || nobre.length()<2 || nick.length()<2) {
 			    	 mensaje("Los campos deben contener al menos 2 digitos","Longitud incorrecta");
 			     }else {
 			     if(myPass.equals(miPass)){

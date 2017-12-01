@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 
 import Entidades.Bedel;
 import Entidades.ConsultaGenerica;
+import Logica.GestorBedel;
 import Logica.GestorUsuario;
 import javafx.scene.control.ComboBox;
 
@@ -19,6 +20,8 @@ import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
@@ -30,7 +33,7 @@ public class PanelModificarBedel extends JPanel {
 	private JTextField txtApellido;
 	private JTextField txtNickUsuario;
 	private JComboBox ComBox;
-
+    private String contra;
 	
 	public PanelModificarBedel() {
 		
@@ -121,19 +124,107 @@ public class PanelModificarBedel extends JPanel {
 		passwordField.setBounds(440, 230, 115, 20);
 		this.add(passwordField);
 		
+		passwordField.addKeyListener(new KeyListener(){
+			 int limite  = 20;
+			public void keyTyped(KeyEvent e)
+			 
+			{if (passwordField.getText().length()== limite)
+			 
+			     e.consume();
+			}
+
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			});
+		
 		passwordConfPass = new JPasswordField();
 		passwordConfPass.setBounds(440, 180, 115, 20);
 		this.add(passwordConfPass);
+		
+		passwordConfPass.addKeyListener(new KeyListener(){
+			 int limite  = 20;
+			public void keyTyped(KeyEvent e)
+			 
+			{if (passwordConfPass.getText().length()== limite)
+			 
+			     e.consume();
+			}
+
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			});
 		
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
 		txtNombre.setBounds(440, 80, 115, 20);
 		this.add(txtNombre);
 		
+		txtNombre.addKeyListener(new KeyListener(){
+			 int limite  = 20;
+			public void keyTyped(KeyEvent e)
+			 
+			{if (txtNombre.getText().length()== limite)
+			 
+			     e.consume();
+			}
+
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			});
+		
 		txtApellido = new JTextField();
 		txtApellido.setColumns(10);
 		txtApellido.setBounds(440, 30, 115, 20);
 		this.add(txtApellido);
+		
+		txtApellido.addKeyListener(new KeyListener(){
+			 int limite  = 20;
+			public void keyTyped(KeyEvent e)
+			 
+			{if (txtApellido.getText().length()== limite)
+			 
+			     e.consume();
+			}
+
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			});
 		
 		JButton btnCancelar = new JButton("");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -154,6 +245,59 @@ public class PanelModificarBedel extends JPanel {
 		this.add(btnCancelar);
 		
 		JButton btnConfirmar = new JButton("");
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GestorBedel gb = new GestorBedel();
+				RegistrarBedel rg = new RegistrarBedel(); 
+			     String myPass=new String (passwordField.getPassword());
+			     String miPass= new String (passwordConfPass.getPassword());
+			     String tu = (String) ComBox.getSelectedItem();
+			     String apelido = txtApellido.getText();
+			     String nobre = txtNombre.getText();
+			     String nic = txtNickUsuario.getText();
+			     
+			     
+			     
+			     if(apelido.length()<2 || nobre.length()<2) {
+			    	 rg.mensaje("Los campos deben contener al menos 2 digitos","Longitud incorrecta");
+			     }else {
+			     if(myPass.equals(miPass)){
+			        Integer valor = 0;
+		
+						try {
+							valor = gb.modificarBedel(myPass,tu,apelido,nobre,nic,contra);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					
+			      switch(valor){
+			            case 1:
+			                rg.mensaje("Debe contener como minimo un caracter especial","contraseña invalida");
+			                break;
+			            case 2:
+			                rg.mensaje("Debe contener como minimo un digito","contraseña invalida");
+			                break;
+			                
+			            case 3:
+			            	 rg.mensaje("Debe contener como minimo una mayuscula","contraseña invalida");
+			                break;
+			                
+			            case 4:
+			            	 rg.mensaje("La contraseña no cumple con la longitud minima de la politica","contraseña invalida");
+			                break;
+			            case 7:
+			            	 rg.mensaje("Bedel modificado correctamente","Modificacion exitosa");
+			                break;
+			            
+			        }
+			     }
+			     else{
+			    	 rg.mensaje("Los dos campos de contraseña, deben ser iguales","Contraseñas distintas");
+			     }
+			  }		
+			}
+		});
 		btnConfirmar.setRolloverIcon(new ImageIcon(PanelModificarBedel.class.getResource("/imagenes/PanelModificarBedel/button_confirmar2.png")));
 		btnConfirmar.setIcon(new ImageIcon(PanelModificarBedel.class.getResource("/imagenes/PanelModificarBedel/button_confirmar.png")));
 		btnConfirmar.setOpaque(false);
@@ -201,6 +345,7 @@ public class PanelModificarBedel extends JPanel {
     	String pass = res.get(0).getValor("max(c.claveactual)");
     	passwordField.setText(pass);
     	passwordConfPass.setText(pass);
+    	contra = pass;
     	
     }
 	public JPanel getContentPanModifBedel() {

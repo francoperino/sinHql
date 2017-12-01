@@ -66,4 +66,20 @@ private Connection con;
 		return res2; 
 	
 }
+	public void actualizarBedel(Bedel b, String myPass) throws Exception {
+		Conexion.ejecutarSentencia("update usuario u set u.nombre='"+b.getNombre()+"', u.apellido ='"+b.getApellido()+"' where u.nickusuario = '"+b.getNickusuario()+"'; ");
+		Conexion.ejecutarSentencia("update bedel b set b.turno ='"+b.getTurno()+"' where b.nickusuario ='"+b.getNickusuario()+"';");
+		Calendar c = Calendar.getInstance();
+		String dia = Integer.toString(c.get(Calendar.DATE));
+		String mes = Integer.toString(c.get(Calendar.MONTH)+1);
+		String annio = Integer.toString(c.get(Calendar.YEAR));
+		String fechaActual= ""+annio+"-"+mes+"-"+dia+"";
+		String consulta= "select MAX(idpolitica) AS maxid from politicadeseguridad;"; 
+	    ArrayList<ConsultaGenerica> res = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta, ConsultaGenerica.class));  
+		Conexion.ejecutarSentencia("insert into clave(nickusuario,claveactual,fechamodificacion,idpolitica)"+"values('"+b.getNickusuario()+"','"+myPass+"','"+fechaActual+"','"+res.get(0).getValor("maxid")+"');");
+	}
+	public void actualizarBedel(Bedel b) throws Exception {
+		Conexion.ejecutarSentencia("update usuario u set u.nombre='"+b.getNombre()+"', u.apellido ='"+b.getApellido()+"' where u.nickusuario = '"+b.getNickusuario()+"'; ");
+		Conexion.ejecutarSentencia("update bedel b set b.turno ='"+b.getTurno()+"' where b.nickusuario ='"+b.getNickusuario()+"';");	
+	}
 }

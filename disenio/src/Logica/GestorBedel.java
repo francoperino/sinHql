@@ -58,4 +58,37 @@ public class GestorBedel {
     	 }}
     	 return lista;
      }
+	public Integer modificarBedel(String myPass, String tu, String apelido, String nobre,String nick,String contra) throws Exception {
+		daoBedel db = new daoBedel();
+		GestorPoliticaClave gpc = new GestorPoliticaClave();
+	       
+        Integer valor = gpc.validarPoliticas(myPass);
+        switch(valor){
+            case 0:  
+            	     
+                	 Bedel b = new Bedel();
+                	 b.setNickusuario(nick);
+                	 b.setApellido(apelido);
+                	 b.setNombre(nobre);
+                	 b.setTurno(tu);
+                	 if(contra.equals(myPass)) {
+                		 db.actualizarBedel(b);
+                     
+                     valor =7 ;    
+            	     }
+            	     else {
+            	    	 db.actualizarBedel(b,myPass);
+            	    	 valor = 7;
+            	     }
+                break;
+            default:
+                
+                
+                break;
+                
+            
+        }
+                
+       return valor; 
+	}
 }
