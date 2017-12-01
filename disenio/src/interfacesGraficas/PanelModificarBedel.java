@@ -10,6 +10,8 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 
 import Entidades.Bedel;
+import Entidades.ConsultaGenerica;
+import Logica.GestorUsuario;
 import javafx.scene.control.ComboBox;
 
 import javax.swing.JButton;
@@ -17,6 +19,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class PanelModificarBedel extends JPanel {
@@ -186,6 +189,18 @@ public class PanelModificarBedel extends JPanel {
     	txtApellido.setText(b.getApellido());
     	txtNickUsuario.setText(b.getNickusuario());
     	ComBox.setSelectedItem((String)b.getTurno());
+    	ArrayList<ConsultaGenerica> res = null;
+    	GestorUsuario gu = new GestorUsuario();
+    	try {
+			res = (ArrayList<ConsultaGenerica>) gu.ConsultaClave(b.getNickusuario());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	String pass = res.get(0).getValor("max(c.claveactual)");
+    	passwordField.setText(pass);
+    	passwordConfPass.setText(pass);
     	
     }
 	public JPanel getContentPanModifBedel() {
