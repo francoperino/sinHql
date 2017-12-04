@@ -342,7 +342,7 @@ public class PanelModificarBedel extends JPanel {
 			e.printStackTrace();
 		}
     	
-    	String pass = res.get(0).getValor("max(c.claveactual)");
+    	String pass = res.get(0).getValor("claveactual");
     	passwordField.setText(pass);
     	passwordConfPass.setText(pass);
     	contra = pass;

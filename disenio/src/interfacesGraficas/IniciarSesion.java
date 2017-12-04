@@ -111,7 +111,7 @@ class IniciarSesion {
                    
                    
                     try {
-                        if(res.get(0).getValor("max(c.claveactual)").equals(cadenaPass)) {
+                        if(res.get(0).getValor("claveactual").equals(cadenaPass)) {
                             InicioBedel.main(null);
                             InicioBedel.llamarBedel();
                             frmInicioSesion.dispose();
@@ -131,7 +131,7 @@ class IniciarSesion {
                 case 1:{
                    
                     try {
-                        if(res.get(0).getValor("max(c.claveactual)").equals(cadenaPass)) {
+                        if(res.get(0).getValor("claveactual").equals(cadenaPass)) {
                            
                             InicioAdmin.main(null);
                             InicioAdmin.llamarAdmin(0);

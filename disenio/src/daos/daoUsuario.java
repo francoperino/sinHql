@@ -27,9 +27,13 @@ public class daoUsuario {
           return res;
     }
     public static ArrayList<ConsultaGenerica> clave(String nick) throws Exception {
-        String consulta = "select  max(c.claveactual) from clave c where  c.nickusuario='"+nick+"';";
-         ArrayList<ConsultaGenerica> res = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta, ConsultaGenerica.class));
+       
+        String consulta1 = "select MAX(c.idclave) AS maxid from clave c where c.nickusuario = '"+nick+"';";
+        ArrayList<ConsultaGenerica> res = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta1, ConsultaGenerica.class));
+		 Integer id = Integer.parseInt(res.get(0).getValor("maxid"));
+		String consulta = "select  c.claveactual from clave c where  c.idclave='"+Integer.parseInt(res.get(0).getValor("maxid"))+"';";
+        ArrayList<ConsultaGenerica> res1 = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta, ConsultaGenerica.class));
          
-          return res;
+          return res1;
     }
 }
