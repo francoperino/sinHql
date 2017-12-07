@@ -1,19 +1,20 @@
 package Logica;
 
-import java.util.ArrayList;
+import java.text.ParseException;
+
+import Entidades.Ciclolectivo;
 
 public class GestorReserva {
-public void ConsultarDiaReserva(String tipoAula,String periodo,Integer numAlumnos,ArrayList horaInicio,ArrayList duracion, ArrayList diaSemana){
-	
-	
-	
-	
-	
-	
-	
-	}
-public void ConsultarDiaReserva(String tipoAula,ArrayList fechas,Integer numAlumnos,ArrayList horaInicio,ArrayList duracion, ArrayList diaSemana) {
-	
-}
 
+	public String [][] consultarDiaReserva(String tipoAula, String periodo, String cantAlumnos,String[] horaInicio, String[] duracion, String[] diaSemana) throws ParseException {
+		
+		GestorCicloLectivo gcl= new GestorCicloLectivo();
+		Ciclolectivo cl=new Ciclolectivo();
+		cl=gcl.obtenerCicloLectivo(periodo);
+		
+		
+		
+		String a[][] = {{"a"},{"e"}};
+		return a;
+	}
 }
