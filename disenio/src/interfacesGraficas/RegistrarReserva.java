@@ -7,26 +7,35 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ButtonGroup;
 
 public class RegistrarReserva extends JPanel {
 	private JTextField txtBedel;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private static CardLayout cl;
+	private static RegResEsporadica regResEsporadica;
+    private static RegResPeriodica regResPeriodica;
+    private static JPanel ContentPanRegReserva;
 
 	/**
 	 * Create the panel.
 	 */
 	public RegistrarReserva() {
-		setLayout(null);
-		
-		JPanel ContentPanRegReserva = new JPanel();
+		 cl = new CardLayout();
+		RegistrarBedel regb = new RegistrarBedel();
+		ContentPanRegReserva = new JPanel();
 		ContentPanRegReserva.setBounds(0, 0, 600, 400);
 		add(ContentPanRegReserva);
-		ContentPanRegReserva.setLayout(null);
+		ContentPanRegReserva.setLayout(cl);
+		
+		
 		
 		txtBedel = new JTextField();
 		txtBedel.setText("Bedel");
@@ -89,6 +98,7 @@ public class RegistrarReserva extends JPanel {
 		ContentPanRegReserva.add(btnDiaEspecifico);
 		
 		JRadioButton rdbtnEsporadica = new JRadioButton("Esporadica");
+		buttonGroup.add(rdbtnEsporadica);
 		rdbtnEsporadica.setForeground(Color.WHITE);
 		rdbtnEsporadica.setFont(new Font("Tahoma", Font.BOLD, 16));
 		rdbtnEsporadica.setContentAreaFilled(false);
@@ -97,6 +107,7 @@ public class RegistrarReserva extends JPanel {
 		ContentPanRegReserva.add(rdbtnEsporadica);
 		
 		JRadioButton rdbtnPeriodica = new JRadioButton("Periodica");
+		buttonGroup.add(rdbtnPeriodica);
 		rdbtnPeriodica.setForeground(Color.WHITE);
 		rdbtnPeriodica.setFont(new Font("Tahoma", Font.BOLD, 16));
 		rdbtnPeriodica.setFocusPainted(false);
@@ -123,6 +134,27 @@ public class RegistrarReserva extends JPanel {
 		ContentPanRegReserva.add(btnCancelar);
 		
 		JButton btnRegistrar = new JButton("");
+		btnRegistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(!rdbtnEsporadica.isSelected() && !rdbtnPeriodica.isSelected()) {
+					regb.mensaje("Debe seleccionar el tipo de reserva", "No hay reserva seleccionada");
+				}
+				else {
+					if(rdbtnEsporadica.isSelected()) {
+						System.out.println("Seleccionada Esporadica");
+					}else {
+					if(rdbtnPeriodica.isSelected() && comBoxTipoPeriodica.getSelectedIndex()!=0) {
+						System.out.println("Seleccionada Periodica");
+						
+					}
+					else { regb.mensaje("Seleccione el tipo de reserva periodica","No selecciono tipo");
+							}
+					
+			
+				}}
+			}
+		});
 		btnRegistrar.setRolloverIcon(new ImageIcon(RegistrarReserva.class.getResource("/imagenes/RegistrarReserva/button_registrar2.png")));
 		btnRegistrar.setIcon(new ImageIcon(RegistrarReserva.class.getResource("/imagenes/RegistrarReserva/button_registrar.png")));
 		btnRegistrar.setFocusPainted(false);
@@ -136,18 +168,20 @@ public class RegistrarReserva extends JPanel {
 		Fondo.setBounds(0, 0, 602, 401);
 		ContentPanRegReserva.add(Fondo);
 		
+		regResPeriodica = new RegResPeriodica();
+		ContentPanRegReserva.add(regResPeriodica, "regResPer");
+		regResPeriodica.setBounds(0, 0, 104, 18);
+		
+		regResEsporadica = new RegResEsporadica();
+		ContentPanRegReserva.add(regResEsporadica, "regResEsp");
+		regResEsporadica.setBounds(0, 0, 1, 1);
+		
 	
 		PanelResEsporadica panelResEsporadica = new PanelResEsporadica();
+		ContentPanRegReserva.add(panelResEsporadica, "panelResEsp");
 		panelResEsporadica.setBounds(0, 0, 1, 1);
-		add(panelResEsporadica);
-		
-		RegResEsporadica regResEsporadica = new RegResEsporadica();
-		regResEsporadica.setBounds(0, 0, 1, 1);
-		add(regResEsporadica);
-		
-		RegResPeriodica regResPeriodica = new RegResPeriodica();
-		regResPeriodica.setBounds(0, 0, 104, 18);
-		add(regResPeriodica);
 
-	}
+		
+		
+		}
 }
