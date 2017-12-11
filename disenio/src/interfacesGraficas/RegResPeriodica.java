@@ -437,6 +437,11 @@ public class RegResPeriodica extends JPanel {
 		btnAtras.setBorder(null);
 		btnAtras.setBounds(48, 144, 90, 40);
 		panelSeleccion.add(btnAtras);
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrarReserva.regresar();
+			}
+		});
 		
 		JButton btnResetear = new JButton("");
 		btnResetear.setRolloverIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/button_resetear (1)2.png")));
@@ -449,6 +454,40 @@ public class RegResPeriodica extends JPanel {
 		btnResetear.setBorder(null);
 		btnResetear.setBounds(22, 200, 128, 40);
 		panelSeleccion.add(btnResetear);
+		btnResetear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//ContentPanelsRegRes.repaint();
+				//this.RegResPeriodica();
+				ChekBoxLunes.setState(false);
+				ChekBoxMartes.setState(false);
+				ChekBoxMiercoles.setState(false);
+				ChekBoxJueves.setState(false);
+				ChekBoxViernes.setState(false);
+				CheckBoxSabado.setState(false);
+				ComBoxTipoAula.setSelectedIndex(0);
+				txtCantAlumnos.setText("");
+				txtIdSolicitante.setText("");
+				HoraIniLunes.setText("00");
+				HoraIniMartes.setText("00");
+				HoraIniMiercoles.setText("00");
+				HoraIniJueves.setText("00");
+				HoraIniViernes.setText("00");
+				HoraIniSabado.setText("00");
+				HoraFinLunes.setText("00");
+				HoraFinMartes.setText("00");
+				HoraFinMiercoles.setText("00");
+				HoraFinJueves.setText("00");
+				HoraFinViernes.setText("00");
+				HoraFinSabado.setText("00");
+				ComBoxDuracionLunes.setSelectedIndex(0);
+				ComBoxDuracionMartes.setSelectedIndex(0);
+				ComBoxDuracionMiercoles.setSelectedIndex(0);
+				ComBoxDuracionJueves.setSelectedIndex(0);
+				ComBoxDuracionViernes.setSelectedIndex(0);
+				ComBoxDuracionSabado.setSelectedIndex(0);
+				ContentPanelsRegRes.repaint();
+			}
+		});
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setBounds(0, 0, 602, 459);

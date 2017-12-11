@@ -20,29 +20,37 @@ public class RegistrarReserva extends JPanel {
 	private JTextField txtBedel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private static CardLayout sl;
-	//static JPanel  ContentPanRegReserva = new JPanel();
+	private static JPanel  ContentPan ;
+	private static JPanel ContentPanRegReserva;
+	private static RegResPeriodica  regResPeriodica;
+	private static RegResEsporadica regResEsporadica;
 
 
 	/**
 	 * Create the panel.
 	 */
 	public RegistrarReserva() {
-		 
+		
+		 setLayout(null);
 		 sl = new CardLayout();
+		 ContentPan = new JPanel();
+		 ContentPan.setBounds(0, 0, 600, 400);
 		 RegistrarBedel regb = new RegistrarBedel();
-		 JPanel ContentPanRegReserva = new JPanel();
+		 ContentPanRegReserva = new JPanel();
 		 ContentPanRegReserva.setBounds(0, 0, 600, 400);
 		 ContentPanRegReserva.setLayout(null);
 		 //add(ContentPanRegReserva);
-		 this.setLayout(sl);
+		 add(ContentPan);
+		 ContentPan.setLayout(sl);
 		 
-		 this.add("ContentPanRegReserva",ContentPanRegReserva);
 		 
-		 RegResPeriodica  regResPeriodica = new RegResPeriodica();
-         this.add("regResPeriodica", regResPeriodica);
+		 ContentPan.add("ContentPanRegReserva",ContentPanRegReserva);
+		 
+		 regResPeriodica = new RegResPeriodica();
+		 ContentPan.add("regResPeriodica", regResPeriodica);
 			 
-		 RegResEsporadica regResEsporadica = new RegResEsporadica();
-		 this.add("regResEsporadica", regResEsporadica);
+		 regResEsporadica = new RegResEsporadica();
+		 ContentPan.add("regResEsporadica", regResEsporadica);
 		
 		 /*PanelResEsporadica panelResEsporadica = new PanelResEsporadica();
 		 this.add("panelResEsporadica", panelResEsporadica);*/
@@ -175,17 +183,17 @@ public class RegistrarReserva extends JPanel {
 						//System.out.println("Seleccionada Esporadica");
 						regResEsporadica.setSize(600,400);
 						regResEsporadica.setLocation(0,0);
-						sl.show(RegistrarReserva.this,"regResEsporadica");
-						RegistrarReserva.this.revalidate();
-						RegistrarReserva.this.repaint();
+						sl.show(ContentPan,"regResEsporadica");
+						ContentPan.revalidate();
+						ContentPan.repaint();
 					}else {
 					if(rdbtnPeriodica.isSelected() && comBoxTipoPeriodica.getSelectedIndex()!=0) {
 						//System.out.println("Seleccionada Periodica");
 						regResPeriodica.setSize(600,400);
 						regResPeriodica.setLocation(0,0);
-						sl.show(RegistrarReserva.this,"regResPeriodica");
-						RegistrarReserva.this.revalidate();
-						RegistrarReserva.this.repaint();
+						sl.show(ContentPan,"regResPeriodica");
+						ContentPan.revalidate();
+						ContentPan.repaint();
 						
 					}
 					else { regb.mensaje("Seleccione el tipo de reserva periodica","No selecciono tipo");
@@ -207,11 +215,27 @@ public class RegistrarReserva extends JPanel {
 		Fondo.setIcon(new ImageIcon(RegistrarReserva.class.getResource("/imagenes/RegistrarReserva/FondoRegBed2.1.png")));
 		Fondo.setBounds(0, 0, 602, 401);
 		ContentPanRegReserva.add(Fondo);
-			 	 
+			
         
 		
 		
 		
 		
 		}
+	
+	public static void regresar () {
+		sl.show(ContentPan, "ContentPanRegReserva");
+		
+	}
+
+	/*public static void reset() {
+		ContentPan.remove(regResPeriodica);
+		regResPeriodica = new RegResPeriodica();
+		ContentPan.add("regResPeriodica", regResPeriodica);
+		regResPeriodica.setSize(600,400);
+		regResPeriodica.setLocation(0,0);
+		sl.show(ContentPan,"regResPeriodica");
+		ContentPan.revalidate();
+		ContentPan.repaint();
+	}*/
 }

@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -61,6 +63,11 @@ public class RegResEsporadica extends JPanel {
 		btnAtras.setBorder(null);
 		btnAtras.setBounds(48, 144, 82, 36);
 		panelResEsporad.add(btnAtras);
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrarReserva.regresar();
+			}
+		});
 		
 		JButton btnSiguiente = new JButton("");
 		btnSiguiente.setRolloverIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_siguiente (1)2.png")));
