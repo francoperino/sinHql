@@ -20,22 +20,19 @@ public class RegistrarReserva extends JPanel {
 	private JTextField txtBedel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private static CardLayout cl;
-	private static RegResEsporadica regResEsporadica;
-    private static RegResPeriodica regResPeriodica;
-    private static JPanel ContentPanRegReserva;
+	static JPanel  ContentPanRegReserva = new JPanel();
+
 
 	/**
 	 * Create the panel.
 	 */
 	public RegistrarReserva() {
 		 cl = new CardLayout();
-		RegistrarBedel regb = new RegistrarBedel();
-		ContentPanRegReserva = new JPanel();
-		ContentPanRegReserva.setBounds(0, 0, 600, 400);
-		add(ContentPanRegReserva);
-		ContentPanRegReserva.setLayout(cl);
-		
-		
+		 RegistrarBedel regb = new RegistrarBedel();
+		 ContentPanRegReserva = new JPanel();
+		 ContentPanRegReserva.setBounds(0, 0, 600, 400);
+		 add(ContentPanRegReserva);
+		 ContentPanRegReserva.setLayout(cl);
 		
 		txtBedel = new JTextField();
 		txtBedel.setText("Bedel");
@@ -149,7 +146,7 @@ public class RegistrarReserva extends JPanel {
 						
 					}
 					else { regb.mensaje("Seleccione el tipo de reserva periodica","No selecciono tipo");
-							}
+					}
 					
 			
 				}}
@@ -167,20 +164,17 @@ public class RegistrarReserva extends JPanel {
 		Fondo.setIcon(new ImageIcon(RegistrarReserva.class.getResource("/imagenes/RegistrarReserva/FondoRegBed2.1.png")));
 		Fondo.setBounds(0, 0, 602, 401);
 		ContentPanRegReserva.add(Fondo);
+			 	 
+         RegResPeriodica  regResPeriodica = new RegResPeriodica();
+         ContentPanRegReserva.add(regResPeriodica, "regResPeriodica");
+			 
+			 	 RegResEsporadica regResEsporadica = new RegResEsporadica();
+			 	 ContentPanRegReserva.add(regResEsporadica, "regResEsporadica");
 		
-		regResPeriodica = new RegResPeriodica();
-		ContentPanRegReserva.add(regResPeriodica, "regResPer");
-		regResPeriodica.setBounds(0, 0, 104, 18);
+			 PanelResEsporadica panelResEsporadica = new PanelResEsporadica();
+			 ContentPanRegReserva.add(panelResEsporadica, "panelResEsporadica");
 		
-		regResEsporadica = new RegResEsporadica();
-		ContentPanRegReserva.add(regResEsporadica, "regResEsp");
-		regResEsporadica.setBounds(0, 0, 1, 1);
 		
-	
-		PanelResEsporadica panelResEsporadica = new PanelResEsporadica();
-		ContentPanRegReserva.add(panelResEsporadica, "panelResEsp");
-		panelResEsporadica.setBounds(0, 0, 1, 1);
-
 		
 		
 		}

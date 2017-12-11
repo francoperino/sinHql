@@ -15,6 +15,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class RegResPeriodica extends JPanel {
 	private JTextField HoraIniLunes;
@@ -37,11 +39,26 @@ public class RegResPeriodica extends JPanel {
 	private JTextField txtNombre;
 	private JTextField txtCorreo;
 	private JPanel ContentPanelsRegRes;
-
+	private int[] seleccionados =new int[6];
+	private static Checkbox ChekBoxLunes = new Checkbox("Lunes");
+	private Checkbox ChekBoxMartes = new Checkbox("Martes");
+	private Checkbox ChekBoxMiercoles = new Checkbox("Miercoles");
+	private Checkbox ChekBoxJueves = new Checkbox("Jueves");
+	private Checkbox ChekBoxViernes = new Checkbox("Viernes");
+	private Checkbox CheckBoxSabado = new Checkbox("Sabado");
+	private int posicion =0;
+	
 	/**
 	 * Create the panel.
 	 */
 	public RegResPeriodica() {
+		seleccionados[0]=0;
+		seleccionados[1]=0;
+		seleccionados[2]=0;
+		seleccionados[3]=0;
+		seleccionados[4]=0;
+		seleccionados[5]=0;
+		
 		setLayout(null);
 		
 		ContentPanelsRegRes = new JPanel();
@@ -75,30 +92,30 @@ public class RegResPeriodica extends JPanel {
 		lblDuracion.setBounds(500, 30, 86, 20);
 		panelSeleccion.add(lblDuracion);
 		
-		Checkbox ChekBoxLunes = new Checkbox("Lunes");
+		
 		ChekBoxLunes.setBackground(SystemColor.inactiveCaptionBorder);
 		ChekBoxLunes.setBounds(205, 55, 95, 22);
 		panelSeleccion.add(ChekBoxLunes);
 		
-		Checkbox ChekBoxMartes = new Checkbox("Martes");
+		
 		ChekBoxMartes.setBounds(205, 80, 95, 22);
 		panelSeleccion.add(ChekBoxMartes);
 		
-		Checkbox ChekBoxMiercoles = new Checkbox("Miercoles");
+		
 		ChekBoxMiercoles.setBounds(205, 105, 95, 22);
 		panelSeleccion.add(ChekBoxMiercoles);
 		
-		Checkbox ChekBoxJueves = new Checkbox("Jueves");
+		
 		ChekBoxJueves.setBounds(205, 130, 95, 22);
 		panelSeleccion.add(ChekBoxJueves);
 		
-		Checkbox ChekBoxViernes = new Checkbox("Viernes");
+		
 		ChekBoxViernes.setBounds(205, 155, 95, 22);
 		panelSeleccion.add(ChekBoxViernes);
 		
-		Checkbox checkboxSabado = new Checkbox("Sabado");
-		checkboxSabado.setBounds(205, 180, 95, 22);
-		panelSeleccion.add(checkboxSabado);
+		
+		CheckBoxSabado.setBounds(205, 180, 95, 22);
+		panelSeleccion.add(CheckBoxSabado);
 		
 		HoraIniLunes = new JTextField();
 		HoraIniLunes.setBorder(null);
@@ -373,6 +390,31 @@ public class RegResPeriodica extends JPanel {
 		panelSeleccion.add(txtCorreo);
 		
 		JButton btnSiguiente = new JButton("");
+		btnSiguiente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(ChekBoxLunes.getState()) {
+					seleccionados[0]=1;
+				}
+				if(ChekBoxMartes.getState()) {
+					seleccionados[1]=1;
+				}
+				if(ChekBoxMiercoles.getState()) {
+					seleccionados[2]=1;
+				}
+				if(ChekBoxJueves.getState()) {
+					seleccionados[3]=1;
+				}
+				if(ChekBoxViernes.getState()) {
+					seleccionados[4]=1;
+				}
+				if(CheckBoxSabado.getState()) {
+					seleccionados[5]=1;
+				}
+				
+				siguienteDia();
+				
+			}
+		});
 		btnSiguiente.setRolloverIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/button_siguiente (1)2.png")));
 		btnSiguiente.setIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/button_siguiente (1).png")));
 		btnSiguiente.setOpaque(false);
@@ -438,6 +480,84 @@ public class RegResPeriodica extends JPanel {
 		ContentPanelsRegRes.add(panelSabado);
 
 	}
+	public void siguienteDia() {
+		Boolean bandera = false;
+		if(posicion ==0) {
+		System.out.println("lunes");
+		}
+		else {
+			int i = posicion+1;
+		while(i<=6 && bandera==false) {
+			if(seleccionados[i]==1) {
+				bandera=true;
+				posicion=i;
+				switch (i) {
+				case 1:
+					System.out.println("martes");
+					break;
+				case 2:
+					System.out.println("miercoles");
+					break;
+				case 3:
+					System.out.println("jueves");
+					break;
+				case 4:
+					System.out.println("viernes");
+					break;
+				case 5:	
+					System.out.println("sabado");
+					break;
+				}
+			}
+			i++;
+			
+		}
+		if(bandera==false) {
+			System.out.println("cambiar boton, por el de aceptar");
+		}
+	  }
+	}
+	public void AnteriorDia() {
+		Boolean bandera = false;
+		if(posicion ==0) {
+		System.out.println("mostrar primer pantalla(donde estan checkbox)");
+		}
+		else {
+			int i = posicion-1;
+		while(i>=0 && bandera==false) {
+			if(seleccionados[i]==1) {
+				bandera=true;
+				posicion=i;
+				switch (i) {
+				case 0:
+					System.out.println("lunes");
+					break;
+				case 1:
+					System.out.println("martes");
+					break;
+				case 2:
+					System.out.println("miercoles");
+					break;
+				case 3:
+					System.out.println("jueves");
+					break;
+				case 4:
+					System.out.println("viernes");
+					break;
+				case 5:	
+					System.out.println("sabado");
+					break;
+				}
+			}
+			i--;
+			
+		}
+		if(bandera==false) {
+			System.out.println("muestro el inicio(donde estan lo check)");
+		}
+	  }
+	}
+	
 	public JPanel getContentPanelsRegRes() {
 		return ContentPanelsRegRes;
 	}

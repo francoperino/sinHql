@@ -28,6 +28,11 @@ public class InicioBedel extends JFrame {
     static JPanel InicoBedel1 = new JPanel();
     private static CardLayout cl;
     static InicioBedel frame = new InicioBedel();
+    private JPanel   curso = new ListaResCurso();
+    private JPanel  listadia = new ListaResDiaEsp();
+    private JPanel regreserva = new RegistrarReserva();
+    private JPanel busaula = new BuscarAula();
+    
     /**
      * Launch the application.
      */
@@ -51,6 +56,8 @@ public class InicioBedel extends JFrame {
      * Create the frame.
      */
     public InicioBedel() {
+    	
+    	
         cl = new CardLayout();
         InicoBedel.repaint();
         InicoBedel.setBackground(Color.DARK_GRAY);
@@ -60,24 +67,20 @@ public class InicioBedel extends JFrame {
         
         
         InicoBedel1.setBackground(Color.DARK_GRAY);
-        InicoBedel1.setBorder(null);
+       InicoBedel1.setBorder(null); 
+       InicoBedel1.setLayout(null);
         InicoBedel.add("InicioBedel1",InicoBedel1);
-        InicoBedel1.setLayout(null);
+        cl.show(InicoBedel, "InicioBedel1");
+       
         
         
-        
-        
-        ListaResDiaEsp listadia = new ListaResDiaEsp();
         InicoBedel.add("listadia",listadia);
-        
-        ListaResCurso curso = new ListaResCurso();
         InicoBedel.add("curso",curso);
-        
-        RegistrarReserva regreserva = new RegistrarReserva();
         InicoBedel.add("regreserva",regreserva);
-        
-        BuscarAula busaula = new BuscarAula();
         InicoBedel.add("busaula",busaula);
+        
+        
+        
         
         JButton btnLRDiaEsp = new JButton("");
         btnLRDiaEsp.setFocusPainted(false);
@@ -190,6 +193,13 @@ public class InicioBedel extends JFrame {
         Fondo.setIcon(new ImageIcon(InicioBedel.class.getResource("/imagenes/InicioBedelImgs/Captura de pantalla (47).png")));
         Fondo.setBounds(0, 0, 599, 400);
         InicoBedel1.add(Fondo);
+        
+        
+        InicoBedel.add("listadia",listadia);
+        InicoBedel.add("curso",curso);
+        InicoBedel.add("regreserva",regreserva);
+        InicoBedel.add("busaula",busaula);
+      
     }
     public static void  llamarBedel() {
         cl.show(InicoBedel,"InicioBedel1");
