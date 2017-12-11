@@ -48,7 +48,7 @@ class IniciarSesion {
 	public IniciarSesion() {
 		initialize();
 	}
-
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
