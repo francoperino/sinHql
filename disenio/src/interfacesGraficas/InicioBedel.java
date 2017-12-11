@@ -24,14 +24,15 @@ public class InicioBedel extends JFrame {
  
     //private JPanel contentPane;
     private JTextField txtBedel;
-    static JPanel InicoBedel = new JPanel();
-    static JPanel InicoBedel1 = new JPanel();
+    private static int tipo;
+    static JPanel InicoBedel;
+    static JPanel InicoBedel1;
     private static CardLayout cl;
     static InicioBedel frame = new InicioBedel();
-    private JPanel   curso = new ListaResCurso();
-    private JPanel  listadia = new ListaResDiaEsp();
-    private JPanel regreserva = new RegistrarReserva();
-    private JPanel busaula = new BuscarAula();
+    private static JPanel   curso;
+    private static JPanel  listadia;
+    private static JPanel regreserva;
+    private static JPanel busaula;
     
     /**
      * Launch the application.
@@ -57,6 +58,13 @@ public class InicioBedel extends JFrame {
      */
     public InicioBedel() {
     	
+    	curso = new ListaResCurso();
+    	listadia = new ListaResDiaEsp();
+    	regreserva = new RegistrarReserva();
+    	busaula = new BuscarAula();
+    	
+    	InicoBedel = new JPanel();
+    	InicoBedel1 = new JPanel();
     	
         cl = new CardLayout();
         InicoBedel.repaint();
@@ -71,15 +79,13 @@ public class InicioBedel extends JFrame {
        InicoBedel1.setLayout(null);
         InicoBedel.add("InicioBedel1",InicoBedel1);
         cl.show(InicoBedel, "InicioBedel1");
-       
         
         
-        InicoBedel.add("listadia",listadia);
+        
         InicoBedel.add("curso",curso);
-        InicoBedel.add("regreserva",regreserva);
         InicoBedel.add("busaula",busaula);
-        
-        
+        InicoBedel.add("listadia",listadia);
+        InicoBedel.add("regreserva",regreserva);
         
         
         JButton btnLRDiaEsp = new JButton("");
@@ -116,8 +122,14 @@ public class InicioBedel extends JFrame {
         InicoBedel1.add(btnBuscarAula);
         btnBuscarAula.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {    //VA A INTERFAZ REGISTRAR BEDEL
-                curso.setSize(600,400);
-                curso.setLocation(0,0);
+            	
+            	if(tipo==4) {
+            		InicoBedel.remove(busaula);
+            		busaula = new BuscarAula();
+            		InicoBedel.add("busaula",busaula);
+            	}
+            	busaula.setSize(600,400);
+            	busaula.setLocation(0,0);
                 cl.show(InicoBedel,"busaula");
                 InicoBedel.revalidate();
                 InicoBedel.repaint();
@@ -152,6 +164,12 @@ public class InicioBedel extends JFrame {
         InicoBedel1.add(btnRegReserva);
         btnRegReserva.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {    //VA A INTERFAZ REGISTRAR BEDEL
+            	
+            	if(tipo==3) {
+            		InicoBedel.remove(regreserva);
+            		regreserva = new RegistrarReserva();
+            		InicoBedel.add("regreserva",regreserva);
+            	}
                 regreserva.setSize(600,400);
                 regreserva.setLocation(0,0);
                 cl.show(InicoBedel,"regreserva");
@@ -194,15 +212,65 @@ public class InicioBedel extends JFrame {
         Fondo.setBounds(0, 0, 599, 400);
         InicoBedel1.add(Fondo);
         
-        
-        InicoBedel.add("listadia",listadia);
-        InicoBedel.add("curso",curso);
-        InicoBedel.add("regreserva",regreserva);
-        InicoBedel.add("busaula",busaula);
+       
       
     }
-    public static void  llamarBedel() {
+    
+    public static void  llamarBedel(int t) {
+    	tipo=t;
         cl.show(InicoBedel,"InicioBedel1");
     }
+    
+    
+    public static void mostrarcurso() {
+		if(tipo==1) {
+			InicoBedel.remove(curso);
+			curso = new ListaResCurso();
+    		InicoBedel.add("curso",curso);
+    	}
+		curso.setSize(600,400);
+        curso.setLocation(0,0);
+        cl.show(InicoBedel,"curso");
+        InicoBedel.revalidate();
+        InicoBedel.repaint();
+	}
+    
+    public static void mostrarlistadia() {
+		if(tipo==2) {
+			InicoBedel.remove(listadia);
+			listadia = new ListaResCurso();
+    		InicoBedel.add("listadia",listadia);
+    	}
+		listadia.setSize(600,400);
+		listadia.setLocation(0,0);
+        cl.show(InicoBedel,"listadia");
+        InicoBedel.revalidate();
+        InicoBedel.repaint();
+	}
 
+    public static void mostrarregreserva() {
+		if(tipo==3) {
+			InicoBedel.remove(regreserva);
+			regreserva = new ListaResCurso();
+    		InicoBedel.add("regreserva",regreserva);
+    	}
+		regreserva.setSize(600,400);
+		regreserva.setLocation(0,0);
+        cl.show(InicoBedel,"regreserva");
+        InicoBedel.revalidate();
+        InicoBedel.repaint();
+	}
+    
+    public static void mostrarbusaula() {
+		if(tipo==4) {
+			InicoBedel.remove(busaula);
+			busaula = new ListaResCurso();
+    		InicoBedel.add("busaula",busaula);
+    	}
+		busaula.setSize(600,400);
+		busaula.setLocation(0,0);
+        cl.show(InicoBedel,"busaula");
+        InicoBedel.revalidate();
+        InicoBedel.repaint();
+	}
 }

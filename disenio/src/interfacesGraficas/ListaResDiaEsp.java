@@ -120,7 +120,7 @@ public class ListaResDiaEsp extends JPanel {
         ContentPanListaResDiaEsp.add(bntInicio);
         bntInicio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                InicioBedel.llamarBedel();
+                InicioBedel.llamarBedel(0);
             }
         });
         
@@ -135,6 +135,11 @@ public class ListaResDiaEsp extends JPanel {
         btnRegRes.setBorder(null);
         btnRegRes.setBounds(10, 197, 158, 40);
         ContentPanListaResDiaEsp.add(btnRegRes);
+        btnRegRes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { 
+				InicioBedel.mostrarregreserva();
+			}
+		});
         
         JButton btnBuscarAula = new JButton("");
         btnBuscarAula.setRolloverIcon(new ImageIcon(ListaResDiaEsp.class.getResource("/imagenes/ListaResCurso/button_buscar-aula2.png")));
@@ -147,6 +152,11 @@ public class ListaResDiaEsp extends JPanel {
         btnBuscarAula.setBorder(null);
         btnBuscarAula.setBounds(10, 247, 158, 40);
         ContentPanListaResDiaEsp.add(btnBuscarAula);
+        btnBuscarAula.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { 
+				InicioBedel.mostrarbusaula();
+			}
+		});
         
         JLabel lblListRes = new JLabel("Listar Reserva");
         lblListRes.setForeground(Color.WHITE);
@@ -162,6 +172,11 @@ public class ListaResDiaEsp extends JPanel {
         btnRegCurso.setBorderPainted(false);
         btnRegCurso.setBounds(5, 330, 130, 48);
         ContentPanListaResDiaEsp.add(btnRegCurso);
+        btnRegCurso.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { 
+				InicioBedel.mostrarcurso();
+			}
+		});
         
         JLabel Fondo = new JLabel("");
         Fondo.setIcon(new ImageIcon(ListaResDiaEsp.class.getResource("/imagenes/ListaResDiaEsp/FondoRegBed2.1.png")));

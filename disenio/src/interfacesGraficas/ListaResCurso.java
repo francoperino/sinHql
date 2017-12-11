@@ -53,7 +53,7 @@ public class ListaResCurso extends JPanel {
 		
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				InicioBedel.llamarBedel();
+				InicioBedel.llamarBedel(0);
 			}
 		});
 		
@@ -91,6 +91,11 @@ public class ListaResCurso extends JPanel {
 		btnDiaEsp.setBorderPainted(false);
 		btnDiaEsp.setBounds(5, 330, 177, 49);
 		ContentPanListaResCurso.add(btnDiaEsp);
+		btnDiaEsp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { 
+				InicioBedel.mostrarlistadia();
+			}
+		});
 		
 		JButton btnRegRes = new JButton("");
 		btnRegRes.setRolloverIcon(new ImageIcon(ListaResCurso.class.getResource("/imagenes/ListaResCurso/button_registrar-reserva (1)2.png")));
@@ -103,6 +108,11 @@ public class ListaResCurso extends JPanel {
 		btnRegRes.setBorder(null);
 		btnRegRes.setBounds(10, 197, 158, 40);
 		ContentPanListaResCurso.add(btnRegRes);
+		btnRegRes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { 
+				InicioBedel.mostrarregreserva();
+			}
+		});
 		
 		JButton btnBuscarAula = new JButton("");
 		btnBuscarAula.setRolloverIcon(new ImageIcon(ListaResCurso.class.getResource("/imagenes/ListaResCurso/button_buscar-aula2.png")));
@@ -115,6 +125,11 @@ public class ListaResCurso extends JPanel {
 		btnBuscarAula.setBorder(null);
 		btnBuscarAula.setBounds(10, 247, 158, 40);
 		ContentPanListaResCurso.add(btnBuscarAula);
+		btnBuscarAula.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { 
+				InicioBedel.mostrarbusaula();
+			}
+		});
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(ListaResCurso.class.getResource("/imagenes/ListaResCurso/FondoRegBed2.1.png")));

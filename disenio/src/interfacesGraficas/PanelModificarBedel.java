@@ -230,7 +230,7 @@ public class PanelModificarBedel extends JPanel {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				BuscarBedel.cancelar(1);
+				BuscarBedel.cancelar(2);
 			}
 		});
 		btnCancelar.setRolloverIcon(new ImageIcon(PanelModificarBedel.class.getResource("/imagenes/PanelModificarBedel/button_cancelar2.png")));

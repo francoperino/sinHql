@@ -58,15 +58,11 @@ public class BuscarAula extends JPanel {
 		
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				InicioBedel.llamarBedel();
+				InicioBedel.llamarBedel(0);
 			}
 		});
 		
 		JButton btnRegBed = new JButton("");
-		btnRegBed.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnRegBed.setFocusPainted(false);
 		btnRegBed.setRolloverIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/button_registrar-reserva (1)2.png")));
 		btnRegBed.setBorderPainted(false);
@@ -74,6 +70,11 @@ public class BuscarAula extends JPanel {
 		btnRegBed.setIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/button_registrar-reserva (1).png")));
 		btnRegBed.setBounds(10, 195, 161, 49);
 		panel.add(btnRegBed);
+		btnRegBed.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				InicioBedel.mostrarregreserva();
+			}
+		});
 		
 		JLabel lblListarReserva = new JLabel("Listar Reserva");
 		lblListarReserva.setForeground(Color.WHITE);
@@ -89,6 +90,11 @@ public class BuscarAula extends JPanel {
 		btnListarReservaCurso.setBorderPainted(false);
 		btnListarReservaCurso.setBounds(38, 279, 103, 40);
 		panel.add(btnListarReservaCurso);
+		btnListarReservaCurso.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { 
+				InicioBedel.mostrarcurso();
+			}
+		});
 		
 		JButton btnListarReservaDiaEsp = new JButton("");
 		btnListarReservaDiaEsp.setFocusPainted(false);
@@ -98,6 +104,11 @@ public class BuscarAula extends JPanel {
 		btnListarReservaDiaEsp.setBorderPainted(false);
 		btnListarReservaDiaEsp.setBounds(5, 327, 181, 49);
 		panel.add(btnListarReservaDiaEsp);
+		btnListarReservaDiaEsp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { 
+				InicioBedel.mostrarlistadia();
+			}
+		});
 		
 		JLabel lblNroAula = new JLabel("Numero aula");
 		lblNroAula.setIconTextGap(10);
@@ -209,6 +220,11 @@ public class BuscarAula extends JPanel {
 		btnCancelar.setBorderPainted(false);
 		btnCancelar.setBounds(372, 344, 123, 40);
 		panel.add(btnCancelar);
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				InicioBedel.llamarBedel(4);
+			}
+		});
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setBounds(0, 0, 602, 401);

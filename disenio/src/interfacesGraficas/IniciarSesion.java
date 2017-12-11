@@ -113,7 +113,7 @@ class IniciarSesion {
                     try {
                         if(res.get(0).getValor("claveactual").equals(cadenaPass)) {
                             InicioBedel.main(null);
-                            InicioBedel.llamarBedel();
+                            InicioBedel.llamarBedel(0);
                             frmInicioSesion.dispose();
                            
                         }
