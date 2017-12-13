@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
+import Entidades.ConsultaGenerica;
 import Logica.GestorReserva;
 
 public class RegResEsporadica extends JPanel {
@@ -128,7 +129,8 @@ public class RegResEsporadica extends JPanel {
                   }
                
                 try {
-                    gr.consultarDiaReserva(tipoAula, fecha, cantAlumnos, hora, duracion);
+                	ArrayList<ArrayList<ConsultaGenerica>> ar = gr.consultarDiaReserva(tipoAula, fecha, cantAlumnos, hora, duracion);
+                	//ar.
                 } catch (Exception e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();

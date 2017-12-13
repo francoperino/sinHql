@@ -110,9 +110,6 @@ public class PanelResEsporadica extends JPanel {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
 			},
 			new String[] {
 				"Num. Aula", "                    Caracteristicas", "Capacidad"
