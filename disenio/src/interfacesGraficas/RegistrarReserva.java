@@ -228,14 +228,4 @@ public class RegistrarReserva extends JPanel {
 		
 	}
 
-	/*public static void reset() {
-		ContentPan.remove(regResPeriodica);
-		regResPeriodica = new RegResPeriodica();
-		ContentPan.add("regResPeriodica", regResPeriodica);
-		regResPeriodica.setSize(600,400);
-		regResPeriodica.setLocation(0,0);
-		sl.show(ContentPan,"regResPeriodica");
-		ContentPan.revalidate();
-		ContentPan.repaint();
-	}*/
 }

@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class ConsultaGenerica {
+public class ConsultaGenerica implements Comparable<ConsultaGenerica>{
     public Map<String, String> resultados;
     
     public ConsultaGenerica(String rta){
@@ -44,4 +44,12 @@ public class ConsultaGenerica {
         }
         return resultado;
     }
+    
+    @Override
+        public int compareTo(ConsultaGenerica c) {
+           
+            Integer cap = Integer.parseInt(this.getValor("capacidad"));
+            Integer val =Integer.parseInt(c.getValor("capacidad"));
+            return  cap.compareTo(val);
+        }
 }

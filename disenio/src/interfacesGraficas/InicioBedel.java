@@ -238,7 +238,7 @@ public class InicioBedel extends JFrame {
     public static void mostrarlistadia() {
 		if(tipo==2) {
 			InicoBedel.remove(listadia);
-			listadia = new ListaResCurso();
+			listadia = new ListaResDiaEsp();
     		InicoBedel.add("listadia",listadia);
     	}
 		listadia.setSize(600,400);
@@ -251,7 +251,7 @@ public class InicioBedel extends JFrame {
     public static void mostrarregreserva() {
 		if(tipo==3) {
 			InicoBedel.remove(regreserva);
-			regreserva = new ListaResCurso();
+			regreserva = new RegistrarReserva();
     		InicoBedel.add("regreserva",regreserva);
     	}
 		regreserva.setSize(600,400);
@@ -264,7 +264,7 @@ public class InicioBedel extends JFrame {
     public static void mostrarbusaula() {
 		if(tipo==4) {
 			InicoBedel.remove(busaula);
-			busaula = new ListaResCurso();
+			busaula = new BuscarAula();
     		InicoBedel.add("busaula",busaula);
     	}
 		busaula.setSize(600,400);

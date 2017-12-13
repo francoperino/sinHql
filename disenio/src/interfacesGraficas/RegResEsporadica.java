@@ -7,6 +7,9 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -15,6 +18,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+
+import Logica.GestorReserva;
 
 public class RegResEsporadica extends JPanel {
 	private JTextField txtNombreBedel;
@@ -25,8 +30,16 @@ public class RegResEsporadica extends JPanel {
 	private JTextField txtCorreoSolicitante;
 	private JTextField txtApellidoSolicitante;
 	private JTextField txtNombreSolicitante;
-	private JTable table;
+	private static JTable table;
 	private JPanel panelResEsporad;
+	private static DefaultTableModel model ;
+	private RegistrarBedel rgb;
+	private static Integer n=0;
+	private static JPanel control;
+	private static CardLayout cl;
+	private static PanelResEsporadica panelresEspo;
+	private static Integer cont;
+    private JComboBox ComBoxTipoDeAula;
 
 	/**
 	 * Create the panel.
@@ -34,11 +47,19 @@ public class RegResEsporadica extends JPanel {
 	public RegResEsporadica() {
 		setBackground(Color.DARK_GRAY);
 		setLayout(null);
-		
+		cl=new CardLayout();
+		control = new JPanel();
+		control.setBounds(0, 0, 600, 400);
 		panelResEsporad = new JPanel();
 		panelResEsporad.setBounds(0, 0, 600, 400);
-		add(panelResEsporad);
+		add(control);
+		control.setLayout(cl);
 		panelResEsporad.setLayout(null);
+		
+		control.add("panelResEsporad",panelResEsporad);
+		panelresEspo= new PanelResEsporadica();
+		control.add("panelresEspo",panelresEspo);
+		
 		
 		txtNombreBedel = new JTextField();
 		txtNombreBedel.setText("Bedel");
@@ -70,6 +91,63 @@ public class RegResEsporadica extends JPanel {
 		});
 		
 		JButton btnSiguiente = new JButton("");
+		btnSiguiente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(ComBoxTipoDeAula.getSelectedIndex()==0) {
+		               
+                }else {
+                    if(Integer.parseInt(txtCantAlumnos.getText())<=0) {
+                       
+                    }
+                    else {
+                String tipoAula =(String) ComBoxTipoDeAula.getSelectedItem();  
+                int cantAlumnos = Integer.parseInt(txtCantAlumnos.getText());
+                GestorReserva gr = new GestorReserva();
+                ArrayList<String> fecha = null;
+                ArrayList<String> hora = null;
+                ArrayList<String> duracion = null;
+                int filas = table.getRowCount();
+                if(filas==0) {
+                   
+                }
+                else {
+                   
+ 
+                for(int i=0; i<=filas-1;i++) {
+                    Calendar c = Calendar.getInstance();       
+                    String annio = Integer.toString(c.get(Calendar.YEAR));
+                    String dia =(String) table.getModel().getValueAt(i,0);
+                    String mes =(String) table.getModel().getValueAt(i,1);
+                     String  horas =(String) table.getModel().getValueAt(i,2);
+                     String duracions =(String) table.getModel().getValueAt(i,3);
+                    String AnioMesDia = ""+annio+"-"+mes+"-"+dia+"";
+                    fecha.add(AnioMesDia);
+                    hora.add(horas);
+                    duracion.add(duracions);
+                   
+                  }
+               
+                try {
+                    gr.consultarDiaReserva(tipoAula, fecha, cantAlumnos, hora, duracion);
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                     }
+                   }
+                }
+            
+			
+				panelresEspo.apagarAtras();
+				if(table.getRowCount()==1) {
+					panelresEspo.apagarSiguiente();
+				}
+				control.revalidate();
+		        control.repaint();
+		        cont=0;
+				siguienteDia();
+		}      
+		});
 		btnSiguiente.setRolloverIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_siguiente (1)2.png")));
 		btnSiguiente.setIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_siguiente (1).png")));
 		btnSiguiente.setOpaque(false);
@@ -135,32 +213,22 @@ public class RegResEsporadica extends JPanel {
 		ComBoxDuracion.setBounds(415, 66, 76, 20);
 		panelResEsporad.add(ComBoxDuracion);
 		
-		JButton btnAgregar = new JButton("");
-		btnAgregar.setRolloverIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_agregar2.png")));
-		btnAgregar.setIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_agregar.png")));
-		btnAgregar.setOpaque(false);
-		btnAgregar.setFocusable(false);
-		btnAgregar.setFocusPainted(false);
-		btnAgregar.setContentAreaFilled(false);
-		btnAgregar.setBorderPainted(false);
-		btnAgregar.setBorder(null);
-		btnAgregar.setBounds(499, 30, 86, 31);
-		panelResEsporad.add(btnAgregar);
-		
-		JButton btnQuitar = new JButton("");
-		btnQuitar.setRolloverIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_quitar2.png")));
-		btnQuitar.setIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_quitar.png")));
-		btnQuitar.setOpaque(false);
-		btnQuitar.setFocusable(false);
-		btnQuitar.setFocusPainted(false);
-		btnQuitar.setContentAreaFilled(false);
-		btnQuitar.setBorderPainted(false);
-		btnQuitar.setBorder(null);
-		btnQuitar.setBounds(499, 73, 86, 31);
-		panelResEsporad.add(btnQuitar);
-		
 		JComboBox ComBoxDia = new JComboBox();
+		Calendar c = Calendar.getInstance();
+		Integer mes = (c.get(Calendar.MONTH)+1);
+		Integer anio = (c.get(Calendar.YEAR));
+		if (((mes % 2) == 0) && (mes != 2)){
 		ComBoxDia.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
+		}
+		else if (((mes % 2) == 0) && (anio % 4 == 0)) {
+			ComBoxDia.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29"}));
+		}
+		else if (((mes % 2) == 0) && (anio % 4 != 0)) {
+			ComBoxDia.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"}));
+		}
+		else {
+			ComBoxDia.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
+		}
 		ComBoxDia.setForeground(Color.BLACK);
 		ComBoxDia.setFont(new Font("Tahoma", Font.BOLD, 18));
 		ComBoxDia.setBackground(Color.WHITE);
@@ -198,7 +266,7 @@ public class RegResEsporadica extends JPanel {
 		lblTipoDeAula.setBounds(217, 216, 95, 20);
 		panelResEsporad.add(lblTipoDeAula);
 		
-		JComboBox ComBoxTipoDeAula = new JComboBox();
+		ComBoxTipoDeAula = new JComboBox();
 		ComBoxTipoDeAula.setModel(new DefaultComboBoxModel(new String[] {"Seleccione", "Multimedios", "Informatica", "Sin recursos adicionales"}));
 		ComBoxTipoDeAula.setMaximumRowCount(4);
 		ComBoxTipoDeAula.setForeground(Color.BLACK);
@@ -216,7 +284,7 @@ public class RegResEsporadica extends JPanel {
 		
 		txtIdSolicitante = new JTextField();
 		txtIdSolicitante.setColumns(10);
-		txtIdSolicitante.setBounds(332, 307, 70, 20);
+		txtIdSolicitante.setBounds(332, 307, 78, 20);
 		panelResEsporad.add(txtIdSolicitante);
 		
 		txtCorreoSolicitante = new JTextField();
@@ -224,11 +292,11 @@ public class RegResEsporadica extends JPanel {
 		txtCorreoSolicitante.setOpaque(false);
 		txtCorreoSolicitante.setHorizontalAlignment(SwingConstants.CENTER);
 		txtCorreoSolicitante.setForeground(Color.WHITE);
-		txtCorreoSolicitante.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txtCorreoSolicitante.setFont(new Font("Tahoma", Font.BOLD, 16));
 		txtCorreoSolicitante.setEditable(false);
 		txtCorreoSolicitante.setColumns(10);
 		txtCorreoSolicitante.setBorder(null);
-		txtCorreoSolicitante.setBounds(412, 306, 173, 20);
+		txtCorreoSolicitante.setBounds(216, 369, 275, 20);
 		panelResEsporad.add(txtCorreoSolicitante);
 		
 		txtApellidoSolicitante = new JTextField();
@@ -236,7 +304,7 @@ public class RegResEsporadica extends JPanel {
 		txtApellidoSolicitante.setOpaque(false);
 		txtApellidoSolicitante.setHorizontalAlignment(SwingConstants.CENTER);
 		txtApellidoSolicitante.setForeground(Color.WHITE);
-		txtApellidoSolicitante.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txtApellidoSolicitante.setFont(new Font("Tahoma", Font.BOLD, 16));
 		txtApellidoSolicitante.setEditable(false);
 		txtApellidoSolicitante.setColumns(10);
 		txtApellidoSolicitante.setBorder(null);
@@ -248,11 +316,11 @@ public class RegResEsporadica extends JPanel {
 		txtNombreSolicitante.setOpaque(false);
 		txtNombreSolicitante.setHorizontalAlignment(SwingConstants.CENTER);
 		txtNombreSolicitante.setForeground(Color.WHITE);
-		txtNombreSolicitante.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txtNombreSolicitante.setFont(new Font("Tahoma", Font.BOLD, 16));
 		txtNombreSolicitante.setEditable(false);
 		txtNombreSolicitante.setColumns(10);
 		txtNombreSolicitante.setBorder(null);
-		txtNombreSolicitante.setBounds(216, 369, 160, 20);
+		txtNombreSolicitante.setBounds(380, 338, 149, 20);
 		panelResEsporad.add(txtNombreSolicitante);
 		
 		JLabel lblNombreCurso = new JLabel("Nombre curso");
@@ -277,10 +345,6 @@ public class RegResEsporadica extends JPanel {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
 			},
 			new String[] {
 				"Dia", "Mes", "Hora", "Duracion"
@@ -298,6 +362,91 @@ public class RegResEsporadica extends JPanel {
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(3).setResizable(false);
 		tablaDatos.setViewportView(table);
+		model = (DefaultTableModel) table.getModel();
+		
+		JButton btnAgregar = new JButton("");
+		btnAgregar.setRolloverIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_agregar2.png")));
+		btnAgregar.setIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_agregar.png")));
+		btnAgregar.setOpaque(false);
+		btnAgregar.setFocusable(false);
+		btnAgregar.setFocusPainted(false);
+		btnAgregar.setContentAreaFilled(false);
+		btnAgregar.setBorderPainted(false);
+		btnAgregar.setBorder(null);
+		btnAgregar.setBounds(499, 30, 86, 31);
+		panelResEsporad.add(btnAgregar);
+		btnAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				RegistrarBedel rg = new RegistrarBedel(); 
+				int hora;
+				int minutos;
+				hora = Integer.parseInt(txtHora.getText()) *100;
+				minutos = Integer.parseInt(txtMinutos.getText());
+				String durac =  (String) ComBoxDuracion.getSelectedItem();
+				durac = durac.replace(":","");
+				Integer duracion = Integer.valueOf(durac);
+				Calendar c = Calendar.getInstance();
+				Integer dia = (c.get(Calendar.DATE));
+				Integer mes = (c.get(Calendar.MONTH)+1);
+				if ((ComBoxMes.getSelectedIndex()+1) >= mes){
+					if((ComBoxDia.getSelectedIndex()+1) > dia) {
+						if((hora >= 700) && (hora <= 2300)) {
+							if((minutos >= 00) && (minutos < 60)) {
+								if((hora + minutos) <=2330) {
+									if((duracion + (hora + minutos)) <=2330){
+										model.addRow(new Object[]{ComBoxDia.getSelectedItem(),ComBoxMes.getSelectedItem(),txtHora.getText()+":"+txtMinutos.getText(),ComBoxDuracion.getSelectedItem()});
+									} else rg.mensaje("La reserva no debe durar mas de las 23:30","ERROR");
+								}else rg.mensaje("no se puede reservar despues de las 23:30","ERROR");
+							}
+						}else rg.mensaje("las reservas deben ser entre las 7:00 y 23:30","ERROR");
+					}else rg.mensaje("la reserva debe ser como minimo el dia siguiente al actual","ERROR");
+				}else rg.mensaje("reservas tiene que ser en el mes actual o siguiente","ERROR");
+				
+			}
+		});
+		
+		JButton btnQuitar = new JButton("");
+		btnQuitar.setRolloverIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_quitar2.png")));
+		btnQuitar.setIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_quitar.png")));
+		btnQuitar.setOpaque(false);
+		btnQuitar.setFocusable(false);
+		btnQuitar.setFocusPainted(false);
+		btnQuitar.setContentAreaFilled(false);
+		btnQuitar.setBorderPainted(false);
+		btnQuitar.setBorder(null);
+		btnQuitar.setBounds(499, 73, 86, 31);
+		panelResEsporad.add(btnQuitar);
+		btnQuitar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(model.getRowCount()!=0 && table.getSelectedRow()==-1) {
+					model.removeRow(table.getRowCount()-1);
+				}
+	           else {
+	        	   while(table.getSelectedRow()!=-1) {
+	        		   model.removeRow(table.getSelectedRow());
+	        	   }
+	            }
+			
+		}
+		       
+		});
+		
+		JButton btnCargar = new JButton("");
+		btnCargar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnCargar.setRolloverIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_cargar(4).png")));
+		btnCargar.setIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/button_cargar.png")));
+		btnCargar.setOpaque(false);
+		btnCargar.setFocusable(false);
+		btnCargar.setFocusPainted(false);
+		btnCargar.setContentAreaFilled(false);
+		btnCargar.setBorderPainted(false);
+		btnCargar.setBorder(null);
+		btnCargar.setBounds(415, 301, 68, 26);
+		panelResEsporad.add(btnCargar);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(RegResEsporadica.class.getResource("/imagenes/RegResEsporadica/FondoRegBed2.1.png")));
@@ -308,5 +457,93 @@ public class RegResEsporadica extends JPanel {
 
 	public JPanel getPanel() {
 		return panelResEsporad;
+	}
+	
+	public static void siguienteDia() {
+		String dia;
+		String mes;
+		int j= table.getSelectedRow();
+        int i= table.getRowCount();
+        
+        	if(j+1==i) {
+        		panelresEspo.apagarSiguiente();
+        	}
+        	if(j+1==i-1 && n==1){
+            	panelresEspo.apagarSiguiente();
+            	panelresEspo.prenderAtras();
+            }	
+        	else {
+        		if(table.getSelectedRow()!=0 || cont>0) {
+        			panelresEspo.prenderAtras();
+        		}
+        		
+        	}
+        	control.revalidate();
+            control.repaint();
+            cont++;
+        if(n==0){
+            dia = String.valueOf(model.getValueAt(table.getSelectedRow(),0));
+            mes = String.valueOf(model.getValueAt(table.getSelectedRow(),1));
+            n=1;
+            panelresEspo.setDia(dia);
+            panelresEspo.setMes(mes);
+            panelresEspo.setSize(600,400);
+            panelresEspo.setLocation(0,0);
+            cl.show(control,"panelresEspo");
+            control.revalidate();
+            control.repaint();
+            
+        }
+        else{
+            dia = String.valueOf(model.getValueAt(table.getSelectedRow()+1,0));
+            mes = String.valueOf(model.getValueAt(table.getSelectedRow()+1,1));
+            table.changeSelection(table.getSelectedRow()+1, 1, false, false);
+            panelresEspo.setDia(dia);
+            panelresEspo.setMes(mes);
+            panelresEspo.setSize(600,400);
+            panelresEspo.setLocation(0,0);
+            cl.show(control,"panelresEspo");
+            control.revalidate();
+            control.repaint();
+        }
+	}
+
+	public static void avanzar() {
+		siguienteDia();
+		
+	}
+	private static void anteriorDia() {
+		//int j= table.getSelectedRow();
+        int i= table.getRowCount();
+        int j= table.getSelectedRow()-1;
+        if(j==0) {
+			panelresEspo.apagarAtras();
+			panelresEspo.prenderSiguiente();
+		}
+		else {
+			panelresEspo.prenderSiguiente();
+		}
+		control.revalidate();
+        control.repaint();
+            
+        String dia = String.valueOf(model.getValueAt(table.getSelectedRow()-1,0));
+        String mes = String.valueOf(model.getValueAt(table.getSelectedRow()-1,1));
+        table.changeSelection(table.getSelectedRow()-1, 1, false, false);
+        panelresEspo.setDia(dia);
+        panelresEspo.setMes(mes);
+        panelresEspo.setSize(600,400);
+        panelresEspo.setLocation(0,0);
+        cl.show(control,"panelresEspo");
+        control.revalidate();
+        control.repaint();
+	}
+	public static void atras() {
+		anteriorDia();
+		
+	}
+
+	public static void volver() {
+		cl.show(control,"panelResEsporad");
+		
 	}
 }

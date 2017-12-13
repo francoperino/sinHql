@@ -490,7 +490,7 @@ public class RegResPeriodica extends JPanel {
 		});
 		
 		JLabel Fondo = new JLabel("");
-		Fondo.setBounds(0, 0, 602, 459);
+		Fondo.setBounds(0, 0, 600, 400);
 		panelSeleccion.add(Fondo);
 		Fondo.setIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/FondoRegBed2.1.png")));
 		
