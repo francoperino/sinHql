@@ -33,7 +33,7 @@ public class Conexion {
                 objeto = "";
                 if(ob == ConsultaGenerica.class){
                     for(int i=1; i<=rs.getMetaData().getColumnCount(); i++){
-                        objeto += rs.getMetaData().getColumnName(i) + " - " + rs.getString(i) + "\t";
+                        objeto += rs.getMetaData().getColumnName(i) + " -- " + rs.getString(i) + "\t";
                     }
                 }
                 else{

@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.CardLayout;
 import java.awt.Checkbox;
 import java.awt.SystemColor;
 import java.awt.ComponentOrientation;
@@ -38,15 +39,19 @@ public class RegResPeriodica extends JPanel {
 	private JTextField txtApellido;
 	private JTextField txtNombre;
 	private JTextField txtCorreo;
-	private JPanel ContentPanelsRegRes;
-	private int[] seleccionados =new int[6];
+	private static JPanel ContentPanelsRegRes;
+	private static int[] seleccionados =new int[6];
 	private static Checkbox ChekBoxLunes = new Checkbox("Lunes");
 	private Checkbox ChekBoxMartes = new Checkbox("Martes");
 	private Checkbox ChekBoxMiercoles = new Checkbox("Miercoles");
 	private Checkbox ChekBoxJueves = new Checkbox("Jueves");
 	private Checkbox ChekBoxViernes = new Checkbox("Viernes");
 	private Checkbox CheckBoxSabado = new Checkbox("Sabado");
-	private int posicion =0;
+	private static int posicion =0;
+	private static CardLayout cl;
+	private static JPanel lunes,martes,miercoles,jueves,viernes,sabado;
+	private static Boolean bandera = false;
+	private static Integer contadordias=0;
 	
 	/**
 	 * Create the panel.
@@ -59,17 +64,33 @@ public class RegResPeriodica extends JPanel {
 		seleccionados[4]=0;
 		seleccionados[5]=0;
 		
+		
 		setLayout(null);
+		cl=new CardLayout();
 		
 		ContentPanelsRegRes = new JPanel();
 		ContentPanelsRegRes.setBounds(0, 0, 600, 400);
 		add(ContentPanelsRegRes);
-		ContentPanelsRegRes.setLayout(null);
+		ContentPanelsRegRes.setLayout(cl);
 		
 		JPanel panelSeleccion = new JPanel();
 		panelSeleccion.setBounds(0, 0, 600, 400);
-		ContentPanelsRegRes.add(panelSeleccion);
+		ContentPanelsRegRes.add("panelSeleccion",panelSeleccion);
 		panelSeleccion.setLayout(null);
+		
+		lunes=new PanelLunes();
+		ContentPanelsRegRes.add("lunes",lunes);
+		martes=new PanelMartes();
+		ContentPanelsRegRes.add("martes",martes);
+		miercoles=new PanelMiercoles();
+		ContentPanelsRegRes.add("miercoles",miercoles);
+		jueves=new PanelJueves();
+		ContentPanelsRegRes.add("jueves",jueves);
+		viernes=new PanelViernes();
+		ContentPanelsRegRes.add("viernes",viernes);
+		sabado=new PanelSabado();
+		ContentPanelsRegRes.add("sabado",sabado);
+		
 		
 		JLabel lblDiasDeLa = new JLabel("Dia/s de la semana");
 		lblDiasDeLa.setIconTextGap(10);
@@ -494,7 +515,7 @@ public class RegResPeriodica extends JPanel {
 		panelSeleccion.add(Fondo);
 		Fondo.setIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/FondoRegBed2.1.png")));
 		
-		PanelLunes panelLunes = new PanelLunes();
+		/*PanelLunes panelLunes = new PanelLunes();
 		panelLunes.setBounds(0, 0, 1, 1);
 		ContentPanelsRegRes.add(panelLunes);
 		
@@ -516,45 +537,102 @@ public class RegResPeriodica extends JPanel {
 		
 		PanelSabado panelSabado = new PanelSabado();
 		panelSabado.setBounds(0, 0, 1, 1);
-		ContentPanelsRegRes.add(panelSabado);
+		ContentPanelsRegRes.add(panelSabado);*/
 
 	}
-	public void siguienteDia() {
-		Boolean bandera = false;
-		if(posicion ==0) {
-		System.out.println("lunes");
-		}
-		else {
-			int i = posicion+1;
-		while(i<=6 && bandera==false) {
-			if(seleccionados[i]==1) {
-				bandera=true;
-				posicion=i;
-				switch (i) {
+	public static void siguienteDia() {
+		Boolean bandera2 = false;
+		int i=0;
+		while(posicion<6 && bandera2==false) {
+			bandera=false;
+			if(seleccionados[posicion]==1) {
+				i=posicion+1;
+				while(i<6) {
+					if(seleccionados[i]==1) {
+						bandera=true;
+					}
+					i++;
+				}
+				bandera2=true;
+				switch (posicion) {
+				case 0:
+					lunes.setSize(600,400);
+		        	lunes.setLocation(0,0);
+		            cl.show(ContentPanelsRegRes,"lunes");
+		            ContentPanelsRegRes.revalidate();
+		            ContentPanelsRegRes.repaint();
+		            contadordias=0;
+					break;
 				case 1:
-					System.out.println("martes");
+					martes.setSize(600,400);
+		        	martes.setLocation(0,0);
+		            cl.show(ContentPanelsRegRes,"martes");
+		            ContentPanelsRegRes.revalidate();
+		            ContentPanelsRegRes.repaint();
+		            contadordias=1;
 					break;
 				case 2:
-					System.out.println("miercoles");
+					miercoles.setSize(600,400);
+		        	miercoles.setLocation(0,0);
+		            cl.show(ContentPanelsRegRes,"miercoles");
+		            ContentPanelsRegRes.revalidate();
+		            ContentPanelsRegRes.repaint();
+		            contadordias=2;
 					break;
 				case 3:
-					System.out.println("jueves");
+					jueves.setSize(600,400);
+		        	jueves.setLocation(0,0);
+		            cl.show(ContentPanelsRegRes,"jueves");
+		            ContentPanelsRegRes.revalidate();
+		            ContentPanelsRegRes.repaint();
+		            contadordias=3;
 					break;
 				case 4:
-					System.out.println("viernes");
+					viernes.setSize(600,400);
+		        	viernes.setLocation(0,0);
+		            cl.show(ContentPanelsRegRes,"viernes");
+		            ContentPanelsRegRes.revalidate();
+		            ContentPanelsRegRes.repaint();
+		            contadordias=4;
 					break;
 				case 5:	
-					System.out.println("sabado");
+					sabado.setSize(600,400);
+		        	sabado.setLocation(0,0);
+		            cl.show(ContentPanelsRegRes,"sabado");
+		            ContentPanelsRegRes.revalidate();
+		            ContentPanelsRegRes.repaint();
+		            contadordias=5;
 					break;
 				}
 			}
-			i++;
+			posicion++;
 			
 		}
 		if(bandera==false) {
-			System.out.println("cambiar boton, por el de aceptar");
+			//System.out.println(posicion);
+			switch(contadordias) {
+			case 0:
+				((PanelLunes) lunes).setboton();
+				break;
+			case 1:
+				((PanelMartes) martes).setboton();
+				break;
+			case 2:
+				((PanelMiercoles) miercoles).setboton();
+				break;
+			case 3:
+				((PanelJueves) jueves).setboton();
+				break;
+			case 4:
+				((PanelViernes) viernes).setboton();
+				break;
+			case 5:
+				((PanelSabado) sabado).setboton();
+				break;
+			}
+			
 		}
-	  }
+//}
 	}
 	public void AnteriorDia() {
 		Boolean bandera = false;
@@ -599,5 +677,9 @@ public class RegResPeriodica extends JPanel {
 	
 	public JPanel getContentPanelsRegRes() {
 		return ContentPanelsRegRes;
+	}
+	public static void avanzar() {
+		siguienteDia();
+		
 	}
 }

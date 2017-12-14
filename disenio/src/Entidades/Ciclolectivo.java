@@ -11,10 +11,10 @@ public class Ciclolectivo   {
 
 
      private int idciclolectivo;
-     private Date fechainicuatri;
-     private Date fechafinciclo;
-     private Date fechainiciclo;
-     private Date fechafincuatri;
+     private String fechainicuatri;
+     private String fechafinciclo;
+     private String fechainiciclo;
+     private String fechafincuatri;
      private String descripcion;
      private Set reservas = new HashSet(0);
 
@@ -25,7 +25,7 @@ public class Ciclolectivo   {
     public Ciclolectivo(int idciclolectivo) {
         this.idciclolectivo = idciclolectivo;
     }
-    public Ciclolectivo(int idciclolectivo, Date fechainicuatri, Date fechafinciclo, Date fechainiciclo, Date fechafincuatri, String descripcion, Set reservas) {
+    public Ciclolectivo(int idciclolectivo, String fechainicuatri, String fechafinciclo, String fechainiciclo, String fechafincuatri, String descripcion, Set reservas) {
        this.idciclolectivo = idciclolectivo;
        this.fechainicuatri = fechainicuatri;
        this.fechafinciclo = fechafinciclo;
@@ -42,32 +42,32 @@ public class Ciclolectivo   {
     public void setIdciclolectivo(int idciclolectivo) {
         this.idciclolectivo = idciclolectivo;
     }
-    public Date getFechainicuatri() {
+    public String getFechainicuatri() {
         return this.fechainicuatri;
     }
     
-    public void setFechainicuatri(Date fechainicuatri) {
-        this.fechainicuatri = fechainicuatri;
+    public String setFechainicuatri(String fechainicuatri) {
+        return this.fechainicuatri = fechainicuatri;
     }
-    public Date getFechafinciclo() {
+    public String getFechafinciclo() {
         return this.fechafinciclo;
     }
     
-    public void setFechafinciclo(Date fechafinciclo) {
+    public void setFechafinciclo(String fechafinciclo) {
         this.fechafinciclo = fechafinciclo;
     }
-    public Date getFechainiciclo() {
+    public String getFechainiciclo() {
         return this.fechainiciclo;
     }
     
-    public void setFechainiciclo(Date fechainiciclo) {
+    public void setFechainiciclo(String fechainiciclo) {
         this.fechainiciclo = fechainiciclo;
     }
-    public Date getFechafincuatri() {
+    public String getFechafincuatri() {
         return this.fechafincuatri;
     }
     
-    public void setFechafincuatri(Date fechafincuatri) {
+    public void setFechafincuatri(String fechafincuatri) {
         this.fechafincuatri = fechafincuatri;
     }
     public String getDescripcion() {
@@ -89,5 +89,4 @@ public class Ciclolectivo   {
 
 
 }
-
 

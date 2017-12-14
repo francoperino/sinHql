@@ -10,10 +10,11 @@ import daos.daoDiaReserva;
  
  
 public class GestorDiaReserva {
-    ArrayList<ConsultaGenerica> aul = new ArrayList<>();
+    ArrayList<ConsultaGenerica> aul;
     daoDiaReserva ddr = new daoDiaReserva();
     ArrayList<ConsultaGenerica> listaAulas;
     public  ArrayList<ConsultaGenerica> buscarAulasDisp(String fechas,ArrayList<ConsultaGenerica> aulas ,String horaInicio,String duracion) throws Exception{
+        aul =  new ArrayList<>();
         listaAulas = aulas;
         duracion = duracion.replace(":","");
         int temp = Integer.parseInt(duracion);

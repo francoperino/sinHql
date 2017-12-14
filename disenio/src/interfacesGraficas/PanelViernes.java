@@ -13,6 +13,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelViernes extends JPanel {
 	private JTextField txtReservaDelDia;
@@ -20,6 +22,7 @@ public class PanelViernes extends JPanel {
 	private JTextField txtHora;
 	private JTextField txtNombreBedel;
 	private JTable table;
+	private static JButton btnSiguiente;
 
 	/**
 	 * Create the panel.
@@ -120,6 +123,7 @@ public class PanelViernes extends JPanel {
 		add(txtNombreBedel);
 		
 		JButton btnLunes = new JButton("");
+		btnLunes.setEnabled(false);
 		btnLunes.setRolloverIcon(new ImageIcon(PanelViernes.class.getResource("/imagenes/PanelesRegReserva/button_lunes2.png")));
 		btnLunes.setIcon(new ImageIcon(PanelViernes.class.getResource("/imagenes/PanelesRegReserva/button_lunes.png")));
 		btnLunes.setOpaque(false);
@@ -132,6 +136,7 @@ public class PanelViernes extends JPanel {
 		add(btnLunes);
 		
 		JButton btnMartes = new JButton("");
+		btnMartes.setEnabled(false);
 		btnMartes.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_martes2.png")));
 		btnMartes.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_martes.png")));
 		btnMartes.setOpaque(false);
@@ -144,6 +149,7 @@ public class PanelViernes extends JPanel {
 		add(btnMartes);
 		
 		JButton btnMiercoles = new JButton("");
+		btnMiercoles.setEnabled(false);
 		btnMiercoles.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_miercoles2.png")));
 		btnMiercoles.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_miercoles.png")));
 		btnMiercoles.setOpaque(false);
@@ -156,6 +162,7 @@ public class PanelViernes extends JPanel {
 		add(btnMiercoles);
 		
 		JButton btnJueves = new JButton("");
+		btnJueves.setEnabled(false);
 		btnJueves.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_jueves2.png")));
 		btnJueves.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_jueves.png")));
 		btnJueves.setOpaque(false);
@@ -180,6 +187,7 @@ public class PanelViernes extends JPanel {
 		add(btnViernes);
 		
 		JButton btnSabado = new JButton("");
+		btnSabado.setEnabled(false);
 		btnSabado.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_sabado2.png")));
 		btnSabado.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_sabado.png")));
 		btnSabado.setOpaque(false);
@@ -222,7 +230,12 @@ public class PanelViernes extends JPanel {
 		table.setRowHeight(50);
 		TablaDatos.setViewportView(table);
 		
-		JButton btnSiguiente = new JButton("");
+		btnSiguiente = new JButton("");
+		btnSiguiente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegResPeriodica.avanzar();
+			}
+		});
 		btnSiguiente.setRolloverIcon(new ImageIcon(PanelViernes.class.getResource("/imagenes/PanelesRegReserva/button_siguiente (1)2.png")));
 		btnSiguiente.setIcon(new ImageIcon(PanelViernes.class.getResource("/imagenes/PanelesRegReserva/button_siguiente (1).png")));
 		btnSiguiente.setOpaque(false);
@@ -251,6 +264,11 @@ public class PanelViernes extends JPanel {
 		Fondo.setBounds(0, 0, 602, 401);
 		add(Fondo);
 
+	}
+	public void setboton() {
+		btnSiguiente.setRolloverIcon(new ImageIcon(PanelViernes.class.getResource("/imagenes/PanelesRegReserva/button_registrar (1)2.png")));
+		btnSiguiente.setIcon(new ImageIcon(PanelViernes.class.getResource("/imagenes/PanelesRegReserva/button_registrar (1).png")));
+		repaint();
 	}
 
 }

@@ -1,14 +1,14 @@
 package Logica;
-
+ 
 import java.text.ParseException;
-
+ 
 import Entidades.Ciclolectivo;
-import daos.DAOCicloLectivo;
-
+import daos.daoCicloLectivo;
+ 
 public class GestorCicloLectivo {
-
-	public Ciclolectivo obtenerCicloLectivo(String periodo) throws ParseException {
-		DAOCicloLectivo dcl=new DAOCicloLectivo();
-		return dcl.obtenerCLActual();
-	}
+ 
+    public Ciclolectivo obtenerCicloLectivo() throws Exception {
+        daoCicloLectivo dcl=new daoCicloLectivo();
+        return dcl.obtenerClactual();
+    }
 }

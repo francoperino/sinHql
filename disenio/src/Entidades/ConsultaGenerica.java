@@ -11,7 +11,7 @@ public class ConsultaGenerica implements Comparable<ConsultaGenerica>{
         String[] rtas = rta.split("\t");
         resultados = new LinkedHashMap<String, String>();
         for(String str: rtas){
-            resultados.put((str.split("-")[0]).trim(), (str.split("-")[1]).trim());
+            resultados.put((str.split("--")[0]).trim(), (str.split("--")[1]).trim());
         }
     }
     
