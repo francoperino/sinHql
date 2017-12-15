@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Collections;
  
 import Entidades.ConsultaGenerica;
+import Entidades.Diareserva;
 import daos.daoDiaReserva;
  
  
@@ -47,6 +48,7 @@ public class GestorDiaReserva {
         return aul;
        
     }
+
     public void filtar(Integer valor) {
         int i = 0;
         Boolean bandera = false;
@@ -58,5 +60,19 @@ public class GestorDiaReserva {
             }
             i++;
         }
+    }
+    public ArrayList<Diareserva> obtenerArr(ArrayList<String> fechas,ArrayList<String> aulas,ArrayList<String> horaIni, ArrayList<String> duracion) throws Exception{
+    	ArrayList<Diareserva> arr = new ArrayList<>();
+    	GestorAulas ga = new GestorAulas();
+	    for(int i=0;i<fechas.size();i++) {
+	    	Diareserva dr = new Diareserva();
+	    	dr.setAula(ga.obtenerAula(aulas.get(i)));
+	    	dr.setDiacalendario(fechas.get(i));
+	    	dr.setHorainicio(horaIni.get(i));
+	    	dr.setDuracion(duracion.get(i));
+	    	arr.add(dr);
+	    	
+	    }
+		return arr;
     }
 }

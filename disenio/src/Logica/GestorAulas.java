@@ -1,8 +1,10 @@
 package Logica;
  
 import java.util.ArrayList;
- 
+
+import Entidades.Aula;
 import Entidades.ConsultaGenerica;
+import daos.Conexion;
 import daos.daoAula;
  
 public class GestorAulas {
@@ -25,4 +27,8 @@ public class GestorAulas {
         return lista;
        
     }
+    public Aula obtenerAula(String aul) throws Exception {
+      daoAula da = new daoAula();
+	 return da.obtenerAula(aul);
+ }
 }

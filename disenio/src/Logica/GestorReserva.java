@@ -360,12 +360,13 @@ public class GestorReserva {
     	
     	return dia.get(claveActual);	
     }
-    public void registrarReserva(int cantAlumnos,String tipoAula,String nomCurso,ArrayList<String> fechas,ArrayList<E>,String idDocente,String idBedel) throws Exception {
+    public void registrarReserva(int cantAlumnos,String tipoAula,String nomCurso,ArrayList<String> fechas,ArrayList<String> aulas,ArrayList<String> horaIni,ArrayList<String> duracion,String idDocente,String idBedel) throws Exception {
 
     	Reserva reserva = new Reserva();
     	daoReserva dr = new daoReserva();
-    	reserva= obtenerobjetosasociados(nomCurso,idDocente,idBedel,reserva);    	
-    	
+    	reserva= obtenerobjetosasociados(nomCurso,fechas,aulas,horaIni,duracion,idDocente,idBedel,reserva);    	
+    	reserva.setCantalumnos(cantAlumnos);
+    	reserva.setTipoaula(tipoAula);
     	dr.registrarReserva(reserva);
     	
     	
@@ -381,15 +382,17 @@ public class GestorReserva {
 		daoReserva dr = new daoReserva();
 		*/
     }
-    Reserva obtenerobjetosasociados(String nomCurso,String idDocente,String idBedel, Reserva reserva) throws Exception{
+    Reserva obtenerobjetosasociados(String nomCurso,ArrayList<String> fechas, ArrayList<String> aulas, ArrayList<String> horaIni, ArrayList<String> duracion, String idDocente,String idBedel, Reserva reserva) throws Exception{
     	GestorCicloLectivo gcl = new GestorCicloLectivo();
 		GestorDocente gd= new GestorDocente();
 	    GestorCursos gcu = new GestorCursos();
 	    GestorBedel gu = new GestorBedel();
-		reserva.setCurso(gcu.obtenerCurso(nomCurso));
+		GestorDiaReserva  gdr = new GestorDiaReserva();
+	    reserva.setCurso(gcu.obtenerCurso(nomCurso));
     	reserva.setDocente(gd.obtenerDocente(idDocente));
     	reserva.setUsuario(gu.obtenerBedel(idBedel));
     	reserva.setCiclolectivo(gcl.obtenerCicloLectivo());
+    	reserva.setDiareservas(gdr.obtenerArr(fechas, aulas, horaIni, duracion));
     	return reserva;
     	
     }
