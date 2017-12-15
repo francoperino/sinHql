@@ -5,6 +5,7 @@ import java.util.List;
 
 import Entidades.Bedel;
 import Entidades.ConsultaGenerica;
+import Entidades.Usuario;
 import daos.daoBedel;
 
 public class GestorBedel {
@@ -90,5 +91,9 @@ public class GestorBedel {
         }
                 
        return valor; 
+	}
+	public Bedel obtenerBedel(String nick) throws Exception {
+		daoBedel db = new daoBedel();
+		return db.buscarPorNick(nick);
 	}
 }

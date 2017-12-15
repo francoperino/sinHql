@@ -10,8 +10,9 @@ public class Diareserva{
 
      private Aula aula;
      private Reserva reserva;
-     private Date horainicio;
-     private Date duracion;
+     private String horainicio;
+     private String duracion;
+     private String diacalendario;
 
     public Diareserva() {
     }
@@ -20,7 +21,7 @@ public class Diareserva{
     public Diareserva(Reserva reserva) {
         this.reserva = reserva;
     }
-    public Diareserva( Aula aula, Reserva reserva, Date horainicio, Date duracion) {
+    public Diareserva( Aula aula, Reserva reserva, String horainicio, String duracion) {
        
        this.aula = aula;
        this.reserva = reserva;
@@ -43,20 +44,30 @@ public class Diareserva{
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
     }
-    public Date getHorainicio() {
+    public String getHorainicio() {
         return this.horainicio;
     }
     
-    public void setHorainicio(Date horainicio) {
+    public void setHorainicio(String horainicio) {
         this.horainicio = horainicio;
     }
-    public Date getDuracion() {
+    public String getDuracion() {
         return this.duracion;
     }
     
-    public void setDuracion(Date duracion) {
+    public void setDuracion(String duracion) {
         this.duracion = duracion;
     }
+
+
+	public String getDiacalendario() {
+		return diacalendario;
+	}
+
+
+	public void setDiacalendario(String diacalendario) {
+		this.diacalendario = diacalendario;
+	}
 
 
 

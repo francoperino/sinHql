@@ -9,6 +9,7 @@ import java.sql.Connection;
 
 import Entidades.Bedel;
 import Entidades.ConsultaGenerica;
+import Entidades.Usuario;
 
 
 public class daoBedel {
@@ -81,5 +82,16 @@ private Connection con;
 	public void actualizarBedel(Bedel b) throws Exception {
 		Conexion.ejecutarSentencia("update usuario u set u.nombre='"+b.getNombre()+"', u.apellido ='"+b.getApellido()+"' where u.nickusuario = '"+b.getNickusuario()+"'; ");
 		Conexion.ejecutarSentencia("update bedel b set b.turno ='"+b.getTurno()+"' where b.nickusuario ='"+b.getNickusuario()+"';");	
+	}
+	public Bedel buscarPorNick(String nick) throws Exception {
+		String consulta = "select * from bedel b, usuario u where b.nickusuario = u.nickusuario and b.nickusuario ='"+nick+"';";
+		ArrayList<ConsultaGenerica> res = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta, ConsultaGenerica.class));
+		Bedel bel = new Bedel();
+		bel.setApellido(res.get(0).getValor("apellido"));
+		bel.setNickusuario(res.get(0).getValor("nickusuario"));
+		bel.setNombre(res.get(0).getValor("nombre"));
+		bel.setTurno(res.get(0).getValor("turno"));
+		
+		return bel;
 	}
 }

@@ -1,7 +1,7 @@
 package Entidades;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+
 
 public class Reserva   {
 
@@ -14,7 +14,7 @@ public class Reserva   {
      private Integer cantalumnos;
      private String tipoaula;
      private Periodica periodica;
-     private Set diareservas = new HashSet(0);
+     private ArrayList<Diareserva> diareservas = new ArrayList<Diareserva>();
      private Esporadica esporadica;
 
     public Reserva() {
@@ -25,7 +25,7 @@ public class Reserva   {
         this.idreserva = idreserva;
         this.docente = docente;
     }
-    public Reserva(int idreserva, Ciclolectivo ciclolectivo, Curso curso, Docente docente, Usuario usuario, Integer cantalumnos, String tipoaula, Periodica periodica, Set diareservas, Esporadica esporadica) {
+    public Reserva(int idreserva, Ciclolectivo ciclolectivo, Curso curso, Docente docente, Usuario usuario, Integer cantalumnos, String tipoaula, Periodica periodica, ArrayList<Diareserva> diareservas, Esporadica esporadica) {
        this.idreserva = idreserva;
        this.ciclolectivo = ciclolectivo;
        this.curso = curso;
@@ -94,11 +94,11 @@ public class Reserva   {
     public void setPeriodica(Periodica periodica) {
         this.periodica = periodica;
     }
-    public Set getDiareservas() {
+    public ArrayList<Diareserva> getDiareservas() {
         return this.diareservas;
     }
     
-    public void setDiareservas(Set diareservas) {
+    public void setDiareservas(ArrayList<Diareserva> diareservas) {
         this.diareservas = diareservas;
     }
     public Esporadica getEsporadica() {

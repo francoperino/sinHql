@@ -2,6 +2,7 @@ package Entidades;
 
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,16 +12,20 @@ public class Curso   {
 
      private String codigocurso;
      private String nombre;
-     private Set reservas = new HashSet(0);
-
+     private ArrayList reservas = new ArrayList<>();
+     public Curso(String datos) {
+ 		String[] params = datos.split("\t");
+ 		this.codigocurso = params[0];
+ 		this.nombre = params[1];
+     }
     public Curso() {
     }
 
 	
-    public Curso(String codigocurso) {
+    public Curso(String codigocurso,Boolean b) {
         this.codigocurso = codigocurso;
     }
-    public Curso(String codigocurso, String nombre, Set reservas) {
+    public Curso(String codigocurso, String nombre, ArrayList reservas) {
        this.codigocurso = codigocurso;
        this.nombre = nombre;
        this.reservas = reservas;
@@ -40,11 +45,11 @@ public class Curso   {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public Set getReservas() {
+    public ArrayList getReservas() {
         return this.reservas;
     }
     
-    public void setReservas(Set reservas) {
+    public void setReservas(ArrayList reservas) {
         this.reservas = reservas;
     }
 
