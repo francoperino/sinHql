@@ -39,6 +39,7 @@ public class PanelResEsporadica extends JPanel {
     private static ArrayList<String> dur;
     private static String idoc;
     private static String ibel;
+    //holis
     
 
     /**
