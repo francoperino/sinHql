@@ -24,18 +24,31 @@ public class PanelMartes extends JPanel {
 	private JTextField txtNombreBedel;
 	private JTable table;
 	private static JButton btnSiguiente;
+	private static JButton btnAtras;
+	private static JPanel panel;
+	private static JButton btnLunes;
+	private static JButton btnMartes;
+	private static JButton btnMiercoles;
+	private static JButton btnJueves;
+	private static JButton btnViernes;
+	private static JButton btnSabado;
 	/**
 	 * Create the panel.
 	 */
 	public PanelMartes() {
 		setLayout(null);
 		
+		panel = new JPanel();
+		panel.setBounds(0, 0, 602, 401);
+		add(panel);
+		panel.setLayout(null);
+		
 		JLabel lblReservaDelDia = new JLabel("Reserva del dia:");
 		lblReservaDelDia.setIconTextGap(10);
 		lblReservaDelDia.setForeground(Color.WHITE);
 		lblReservaDelDia.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblReservaDelDia.setBounds(205, 25, 121, 20);
-		add(lblReservaDelDia);
+		panel.add(lblReservaDelDia);
 		
 		txtReservaDelDia = new JTextField();
 		txtReservaDelDia.setText("Miercoles");
@@ -47,14 +60,14 @@ public class PanelMartes extends JPanel {
 		txtReservaDelDia.setColumns(10);
 		txtReservaDelDia.setBorder(null);
 		txtReservaDelDia.setBounds(336, 28, 76, 17);
-		add(txtReservaDelDia);
+		panel.add(txtReservaDelDia);
 		
 		JLabel lblTipoDeAula = new JLabel("Tipo de aula:");
 		lblTipoDeAula.setIconTextGap(10);
 		lblTipoDeAula.setForeground(Color.WHITE);
 		lblTipoDeAula.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblTipoDeAula.setBounds(205, 57, 121, 20);
-		add(lblTipoDeAula);
+		panel.add(lblTipoDeAula);
 		
 		JComboBox ComBoxTipoDeAula = new JComboBox();
 		ComBoxTipoDeAula.setModel(new DefaultComboBoxModel(new String[] {"Seleccione", "Multimedios", "Informatica", "Sin recursos adicionales"}));
@@ -63,14 +76,14 @@ public class PanelMartes extends JPanel {
 		ComBoxTipoDeAula.setFont(new Font("Tahoma", Font.BOLD, 14));
 		ComBoxTipoDeAula.setBackground(Color.WHITE);
 		ComBoxTipoDeAula.setBounds(312, 57, 123, 20);
-		add(ComBoxTipoDeAula);
+		panel.add(ComBoxTipoDeAula);
 		
 		JLabel lblHoraInicioYDuracion = new JLabel("Hora inicio/duracion");
 		lblHoraInicioYDuracion.setIconTextGap(10);
 		lblHoraInicioYDuracion.setForeground(Color.WHITE);
 		lblHoraInicioYDuracion.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblHoraInicioYDuracion.setBounds(445, 25, 145, 20);
-		add(lblHoraInicioYDuracion);
+		panel.add(lblHoraInicioYDuracion);
 		
 		txtMinutos = new JTextField();
 		txtMinutos.setText("00");
@@ -79,7 +92,7 @@ public class PanelMartes extends JPanel {
 		txtMinutos.setColumns(10);
 		txtMinutos.setBorder(null);
 		txtMinutos.setBounds(479, 57, 30, 20);
-		add(txtMinutos);
+		panel.add(txtMinutos);
 		
 		txtHora = new JTextField();
 		txtHora.setText("00");
@@ -88,7 +101,7 @@ public class PanelMartes extends JPanel {
 		txtHora.setColumns(10);
 		txtHora.setBorder(null);
 		txtHora.setBounds(445, 57, 30, 20);
-		add(txtHora);
+		panel.add(txtHora);
 		
 		JComboBox ComBoxDuracion = new JComboBox();
 		ComBoxDuracion.setModel(new DefaultComboBoxModel(new String[] {"00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00"}));
@@ -96,7 +109,7 @@ public class PanelMartes extends JPanel {
 		ComBoxDuracion.setFont(new Font("Tahoma", Font.BOLD, 18));
 		ComBoxDuracion.setBackground(Color.WHITE);
 		ComBoxDuracion.setBounds(514, 56, 76, 20);
-		add(ComBoxDuracion);
+		panel.add(ComBoxDuracion);
 		
 		JButton btnVolverABuscar = new JButton("");
 		btnVolverABuscar.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_volver-a-buscar2.png")));
@@ -108,7 +121,7 @@ public class PanelMartes extends JPanel {
 		btnVolverABuscar.setBorderPainted(false);
 		btnVolverABuscar.setBorder(null);
 		btnVolverABuscar.setBounds(445, 88, 132, 31);
-		add(btnVolverABuscar);
+		panel.add(btnVolverABuscar);
 		
 		txtNombreBedel = new JTextField();
 		txtNombreBedel.setText("Bedel");
@@ -120,12 +133,13 @@ public class PanelMartes extends JPanel {
 		txtNombreBedel.setColumns(10);
 		txtNombreBedel.setBorder(null);
 		txtNombreBedel.setBounds(37, 103, 112, 28);
-		add(txtNombreBedel);
+		panel.add(txtNombreBedel);
 		
-		JButton btnLunes = new JButton("");
+		btnLunes = new JButton("");
 		btnLunes.setEnabled(false);
 		btnLunes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				RegResPeriodica.cambiarDeDia(0);
 			}
 		});
 		btnLunes.setRolloverIcon(new ImageIcon(PanelMartes.class.getResource("/imagenes/PanelesRegReserva/button_lunes2.png")));
@@ -137,9 +151,9 @@ public class PanelMartes extends JPanel {
 		btnLunes.setBorderPainted(false);
 		btnLunes.setBorder(null);
 		btnLunes.setBounds(47, 140, 79, 33);
-		add(btnLunes);
+		panel.add(btnLunes);
 		
-		JButton btnMartes = new JButton("");
+		btnMartes = new JButton("");
 		btnMartes.setRolloverIcon(new ImageIcon(PanelMartes.class.getResource("/imagenes/PanelesRegReserva/button_martes (1)2.png")));
 		btnMartes.setIcon(new ImageIcon(PanelMartes.class.getResource("/imagenes/PanelesRegReserva/button_martes (1).png")));
 		btnMartes.setOpaque(false);
@@ -149,9 +163,14 @@ public class PanelMartes extends JPanel {
 		btnMartes.setBorderPainted(false);
 		btnMartes.setBorder(null);
 		btnMartes.setBounds(47, 180, 89, 33);
-		add(btnMartes);
+		panel.add(btnMartes);
 		
-		JButton btnMiercoles = new JButton("");
+		btnMiercoles = new JButton("");
+		btnMiercoles.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegResPeriodica.cambiarDeDia(2);
+			}
+		});
 		btnMiercoles.setEnabled(false);
 		btnMiercoles.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_miercoles2.png")));
 		btnMiercoles.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_miercoles.png")));
@@ -162,9 +181,14 @@ public class PanelMartes extends JPanel {
 		btnMiercoles.setBorderPainted(false);
 		btnMiercoles.setBorder(null);
 		btnMiercoles.setBounds(47, 220, 108, 33);
-		add(btnMiercoles);
+		panel.add(btnMiercoles);
 		
-		JButton btnJueves = new JButton("");
+		btnJueves = new JButton("");
+		btnJueves.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegResPeriodica.cambiarDeDia(3);
+			}
+		});
 		btnJueves.setEnabled(false);
 		btnJueves.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_jueves2.png")));
 		btnJueves.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_jueves.png")));
@@ -175,9 +199,14 @@ public class PanelMartes extends JPanel {
 		btnJueves.setBorderPainted(false);
 		btnJueves.setBorder(null);
 		btnJueves.setBounds(47, 260, 87, 33);
-		add(btnJueves);
+		panel.add(btnJueves);
 		
-		JButton btnViernes = new JButton("");
+		btnViernes = new JButton("");
+		btnViernes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegResPeriodica.cambiarDeDia(4);
+			}
+		});
 		btnViernes.setEnabled(false);
 		btnViernes.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_viernes2.png")));
 		btnViernes.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_viernes.png")));
@@ -188,9 +217,14 @@ public class PanelMartes extends JPanel {
 		btnViernes.setBorderPainted(false);
 		btnViernes.setBorder(null);
 		btnViernes.setBounds(47, 300, 93, 33);
-		add(btnViernes);
+		panel.add(btnViernes);
 		
-		JButton btnSabado = new JButton("");
+		btnSabado = new JButton("");
+		btnSabado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegResPeriodica.cambiarDeDia(5);
+			}
+		});
 		btnSabado.setEnabled(false);
 		btnSabado.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_sabado2.png")));
 		btnSabado.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_sabado.png")));
@@ -201,11 +235,11 @@ public class PanelMartes extends JPanel {
 		btnSabado.setBorderPainted(false);
 		btnSabado.setBorder(null);
 		btnSabado.setBounds(47, 340, 89, 33);
-		add(btnSabado);
+		panel.add(btnSabado);
 		
 		JScrollPane TablaDatos = new JScrollPane();
 		TablaDatos.setBounds(205, 140, 352, 176);
-		add(TablaDatos);
+		panel.add(TablaDatos);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -249,9 +283,10 @@ public class PanelMartes extends JPanel {
 		btnSiguiente.setBorderPainted(false);
 		btnSiguiente.setBorder(null);
 		btnSiguiente.setBounds(205, 333, 132, 40);
-		add(btnSiguiente);
+		panel.add(btnSiguiente);
 		
-		JButton btnAtras = new JButton("");
+		btnAtras = new JButton("");
+		btnAtras.setEnabled(false);
 		btnAtras.setRolloverIcon(new ImageIcon(PanelMartes.class.getResource("/imagenes/PanelesRegReserva/button_atras (3)2.png")));
 		btnAtras.setIcon(new ImageIcon(PanelMartes.class.getResource("/imagenes/PanelesRegReserva/button_atras (3).png")));
 		btnAtras.setOpaque(false);
@@ -261,19 +296,51 @@ public class PanelMartes extends JPanel {
 		btnAtras.setBorderPainted(false);
 		btnAtras.setBorder(null);
 		btnAtras.setBounds(365, 333, 82, 36);
-		add(btnAtras);
-		
+		panel.add(btnAtras);
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RegResPeriodica.atras();
+			}
+		});
 		
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/FondoRegBed2.1.png")));
 		Fondo.setBounds(0, 0, 602, 401);
-		add(Fondo);
+		panel.add(Fondo);
 
 	}
 	public void setboton() {
 		btnSiguiente.setRolloverIcon(new ImageIcon(PanelViernes.class.getResource("/imagenes/PanelesRegReserva/button_registrar (1)2.png")));
 		btnSiguiente.setIcon(new ImageIcon(PanelViernes.class.getResource("/imagenes/PanelesRegReserva/button_registrar (1).png")));
 		repaint();
+	}
+	public void prenderAtras() {
+		btnAtras.setEnabled(true);
+		panel.repaint();
+	}
+	public void prenderdia(int i) {
+		switch(i) {
+		case 0:
+			btnLunes.setEnabled(true);
+			break;
+		case 1:
+			btnMartes.setEnabled(true);
+			break;
+		case 2:
+			btnMiercoles.setEnabled(true);
+			break;
+		case 3:
+			btnJueves.setEnabled(true);
+			break;
+		case 4:
+			btnViernes.setEnabled(true);
+			break;
+		case 5:
+			btnSabado.setEnabled(true);
+			break;
+		}
+		panel.repaint();
+		
 	}
 }

@@ -150,6 +150,7 @@ public class PanelResEsporadica extends JPanel {
         });
        
         JButton btnAceptar = new JButton("");
+        btnAceptar.setEnabled(false);
         btnAceptar.setRolloverIcon(new ImageIcon(PanelResEsporadica.class.getResource("/imagenes/PanelResEsporadica/button_registrar2.png")));
         btnAceptar.setIcon(new ImageIcon(PanelResEsporadica.class.getResource("/imagenes/PanelResEsporadica/button_registrar.png")));
         btnAceptar.setOpaque(false);
@@ -175,6 +176,7 @@ public class PanelResEsporadica extends JPanel {
         btnCancerlar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 RegResEsporadica.volver();
+                RegResEsporadica.setcancel(-1);
             }      
         });
        
