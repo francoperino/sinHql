@@ -47,7 +47,7 @@ public class RegResEsporadica extends JPanel {
     private JTextField txtApellidoSolicitante;
     private JTextField txtNombreSolicitante;
     private static JTable table;
-    private JPanel panelResEsporad;
+    private static JPanel panelResEsporad;
     private static DefaultTableModel model ;
     private RegistrarBedel rgb;
     private static Integer n=0;
@@ -306,7 +306,7 @@ public class RegResEsporadica extends JPanel {
                  boolean controlTipoAula = (ComBoxTipoDeAula.getSelectedIndex() == 0);
                  boolean controlDocente = (txtCorreoSolicitante.getText().equals("Correo") && txtApellidoSolicitante.getText().equals("Apellido") && txtNombreSolicitante.getText().equals("Nombre"));
                  boolean controlSeleccion = (table.getSelectedRow() == -1);
-                 System.out.println(table.getSelectedRow());
+                // System.out.println(table.getSelectedRow());
                  if(controlSeleccion == false) {
                     if (controlAlumnos == false) {
                         if(controlTipoAula == false) {
@@ -669,7 +669,7 @@ public class RegResEsporadica extends JPanel {
        if(n>0 && cancel==0) {
            table.changeSelection(table.getSelectedRow()+1, 1, false, false);
            day=table.getSelectedRow();
-           System.out.println(day);
+           //System.out.println(day);
        }
             dia = String.valueOf(model.getValueAt(table.getSelectedRow(),0));
             mes = String.valueOf(model.getValueAt(table.getSelectedRow(),1));
@@ -744,7 +744,7 @@ public class RegResEsporadica extends JPanel {
         String mes = String.valueOf(model.getValueAt(table.getSelectedRow()-1,1));
         table.changeSelection(table.getSelectedRow()-1, 1, false, false);
         int day= table.getSelectedRow();
-        System.out.println(day);
+        //System.out.println(day);
         panelresEspo.setDia(dia);
         panelresEspo.setMes(mes);
         panelresEspo.repintartabla();
@@ -761,6 +761,9 @@ public class RegResEsporadica extends JPanel {
     }
  
     public static void volver() {
+    	control.remove(panelresEspo);
+    	panelresEspo= new PanelResEsporadica();
+        control.add("panelresEspo",panelresEspo);
         cl.show(control,"panelResEsporad");
        
     }

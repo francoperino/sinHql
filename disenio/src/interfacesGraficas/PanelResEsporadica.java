@@ -2,6 +2,7 @@ package interfacesGraficas;
  
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -16,8 +17,16 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Logica.GestorReserva;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
  
 public class PanelResEsporadica extends JPanel {
+	public void mensaje(String error,String titulo){
+        if(JOptionPane.showConfirmDialog(null,
+            error, titulo
+            , JOptionPane.DEFAULT_OPTION
+            , JOptionPane.INFORMATION_MESSAGE)==0);
+    }
     private JTextField txtNombreBedel;
     private JTextField txtReservaDelDia;
     private JTextField txtMes;
@@ -28,7 +37,8 @@ public class PanelResEsporadica extends JPanel {
     private static DefaultTableModel model ;
     private JButton btnSiguiente;
     private JButton btnAtras;
-    private static ArrayList<String> listaAulas=new ArrayList<>();
+    private static ArrayList<String> listaAulas;
+    private static Integer[] seleccion;
     private static int pos;
     private static int lar;
     private static int cantAlumnos;
@@ -39,6 +49,8 @@ public class PanelResEsporadica extends JPanel {
     private static ArrayList<String> dur;
     private static String idoc;
     private static String ibel;
+    private static JButton btnAceptar;
+    private static JButton btnCancerlar;
     //holis
     
 
@@ -46,6 +58,8 @@ public class PanelResEsporadica extends JPanel {
      * Create the panel.
      */
     public PanelResEsporadica() {
+    	listaAulas=new ArrayList<>();
+    	//seleccion =new ArrayList<>();
         setLayout(null);
         
         ContentPanResEsporadica = new JPanel();
@@ -78,10 +92,31 @@ public class PanelResEsporadica extends JPanel {
         ContentPanResEsporadica.add(btnAtras);
         btnAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            
-                RegResEsporadica.atras();
-                listaAulas.add(pos,(String) table.getValueAt(table.getSelectedRow(),0));
-                pos--;
+            	/*if(table.getSelectedRow()!=-1) {
+            		listaAulas.add(pos,(String) table.getValueAt(table.getSelectedRow(),0));
+            		seleccion[pos]=table.getSelectedRow();   
+                	//System.out.println(seleccion[pos]);  
+            	}
+            	pos--;*/
+                
+            	if(table.getSelectedRowCount()<2) {
+            		if(table.getSelectedRow()!=-1) {
+                		listaAulas.add(pos,(String) table.getValueAt(table.getSelectedRow(),0));
+                		seleccion[pos]=table.getSelectedRow();   
+                    	//System.out.println(seleccion[pos]);  
+                	}
+            		pos--;
+            		RegResEsporadica.atras();
+                }
+                else {
+                	mensaje("Seleccione una sola fila para continuar","ERROR");
+                }
+                
+                if(seleccion[pos]!=-1) {
+                	table.setRowSelectionInterval(seleccion[pos], seleccion[pos]);
+                	ContentPanResEsporadica.repaint();
+                }
+                
             }      
         });
        
@@ -128,6 +163,25 @@ public class PanelResEsporadica extends JPanel {
         ContentPanResEsporadica.add(tablaDatos);
        
         table = new JTable();
+        table.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		Integer cont=0;
+        		//System.out.println(table.getSelectedRow());
+        		for(int g=0;g<seleccion.length;g++) {
+        			if(seleccion[g]==-1) {
+        				cont++;
+        			}
+        		}
+        		System.out.println(cont);
+        		if(cont==1) {
+        			btnAceptar.setEnabled(true);
+        			ContentPanResEsporadica.repaint();
+        			listaAulas.add(pos,(String) table.getValueAt(table.getSelectedRow(),0));
+            		seleccion[pos]=table.getSelectedRow();
+        		}
+        	}
+        });
         table.setModel(new DefaultTableModel(
             new Object[][] {
             },
@@ -164,14 +218,35 @@ public class PanelResEsporadica extends JPanel {
         ContentPanResEsporadica.add(btnSiguiente);
         btnSiguiente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                RegResEsporadica.avanzar();
-                listaAulas.add(pos,(String) table.getValueAt(table.getSelectedRow(),0));
-                pos++;
+                
+                /*if(table.getSelectedRow()!=-1) {
+                	listaAulas.add(pos,(String) table.getValueAt(table.getSelectedRow(),0));
+                	seleccion[pos]=table.getSelectedRow();   
+                	//System.out.println(seleccion[pos]);
+                }
+                pos++;*/
+                if(table.getSelectedRowCount()<2) {
+                	if(table.getSelectedRow()!=-1) {
+                    	listaAulas.add(pos,(String) table.getValueAt(table.getSelectedRow(),0));
+                    	seleccion[pos]=table.getSelectedRow();   
+                    	//System.out.println(seleccion[pos]);
+                    }
+                    pos++;
+                	RegResEsporadica.avanzar();
+                }
+                else {
+                	mensaje("Seleccione una sola fila para continuar","ERROR");
+                }
+                if(seleccion[pos]!=-1) {
+                	table.setRowSelectionInterval(seleccion[pos], seleccion[pos]);
+                	ContentPanResEsporadica.repaint();
+                }
+                
                 
             }      
         });
        
-        JButton btnAceptar = new JButton("");
+        btnAceptar = new JButton("");
         btnAceptar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		GestorReserva rr =new GestorReserva();
@@ -195,7 +270,7 @@ public class PanelResEsporadica extends JPanel {
         btnAceptar.setBounds(22, 258, 132, 40);
         ContentPanResEsporadica.add(btnAceptar);
        
-        JButton btnCancerlar = new JButton("");
+        btnCancerlar = new JButton("");
         btnCancerlar.setIcon(new ImageIcon(PanelResEsporadica.class.getResource("/imagenes/PanelResEsporadica/button_cancelar.png")));
         btnCancerlar.setRolloverIcon(new ImageIcon(PanelResEsporadica.class.getResource("/imagenes/PanelResEsporadica/button_cancelar2.png")));
         btnCancerlar.setOpaque(false);
@@ -208,6 +283,8 @@ public class PanelResEsporadica extends JPanel {
         ContentPanResEsporadica.add(btnCancerlar);
         btnCancerlar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	btnAceptar.setEnabled(false);
+    			ContentPanResEsporadica.repaint();
                 RegResEsporadica.volver();
                 RegResEsporadica.setcancel(-1);
             }      
@@ -275,10 +352,16 @@ public class PanelResEsporadica extends JPanel {
 	public static void posicion(int i,int largo,int cantAlum,int filas,String idSolo,String nick , ArrayList<String> fecha, ArrayList<String> horas,
 			ArrayList<String> duracion,String tipo,String nom) {
 		lar=largo;
-		for(int j=0;i<lar;j++) {
+		for(int j=0;j<lar;j++) {
 			listaAulas.add("");
 		}
-		pos=i-1;
+		seleccion=new Integer [listaAulas.size()];
+		for(int h=0;h<listaAulas.size();h++) {
+			seleccion[h]=-1;
+		}
+		//System.out.println(listaAulas.size());
+		
+		pos=i;
 		nomCurs = nom;
     	cantAlumnos=cantAlum;
     	tipoAula=tipo;
