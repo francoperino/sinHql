@@ -27,6 +27,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ButtonGroup;
  
 public class RegistrarReserva extends JPanel {
+	
     private JTextField txtBedel;
     private final ButtonGroup buttonGroup = new ButtonGroup();
     private static CardLayout sl;
@@ -50,8 +51,7 @@ public class RegistrarReserva extends JPanel {
          setLayout(null);
          sl = new CardLayout();
          ContentPan = new JPanel();
-         ContentPan.setBounds(0, 0, 600, 400);
-         RegistrarBedel regb = new RegistrarBedel();
+         ContentPan.setBounds(0, 0, 600, 400);         
          ContentPanRegReserva = new JPanel();
          ContentPanRegReserva.setBounds(0, 0, 600, 400);
          ContentPanRegReserva.setLayout(null);
@@ -192,7 +192,7 @@ public class RegistrarReserva extends JPanel {
             public void actionPerformed(ActionEvent arg0) {
                
                 if(!rdbtnEsporadica.isSelected() && !rdbtnPeriodica.isSelected()) {
-                    regb.mensaje("Debe seleccionar el tipo de reserva", "No hay reserva seleccionada");
+                    mensaje("Debe seleccionar el tipo de reserva", "No hay reserva seleccionada");
                 }
                 else {
                     if(rdbtnEsporadica.isSelected()) {
@@ -263,7 +263,7 @@ public class RegistrarReserva extends JPanel {
                         }
        
                     }
-                    else { regb.mensaje("Seleccione el tipo de reserva periodica","No selecciono tipo");
+                    else { mensaje("Seleccione el tipo de reserva periodica","No selecciono tipo");
                     }
                 }}
             }

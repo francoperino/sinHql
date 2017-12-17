@@ -2,6 +2,7 @@ package interfacesGraficas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -26,6 +27,12 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class PanelModificarBedel extends JPanel {
+	public void mensaje(String error,String titulo){
+        if(JOptionPane.showConfirmDialog(null,
+            error, titulo
+            , JOptionPane.DEFAULT_OPTION
+            , JOptionPane.INFORMATION_MESSAGE)==0);
+    }
 	private JTextField txtAdmin;
 	private JPasswordField passwordField;
 	private JPasswordField passwordConfPass;
@@ -247,8 +254,7 @@ public class PanelModificarBedel extends JPanel {
 		JButton btnConfirmar = new JButton("");
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GestorBedel gb = new GestorBedel();
-				RegistrarBedel rg = new RegistrarBedel(); 
+				GestorBedel gb = new GestorBedel();				
 			     String myPass=new String (passwordField.getPassword());
 			     String miPass= new String (passwordConfPass.getPassword());
 			     String tu = (String) ComBox.getSelectedItem();
@@ -259,7 +265,7 @@ public class PanelModificarBedel extends JPanel {
 			     
 			     
 			     if(apelido.length()<2 || nobre.length()<2) {
-			    	 rg.mensaje("Los campos deben contener al menos 2 digitos","Longitud incorrecta");
+			    	 mensaje("Los campos deben contener al menos 2 digitos","Longitud incorrecta");
 			     }else {
 			     if(myPass.equals(miPass)){
 			        Integer valor = 0;
@@ -273,27 +279,27 @@ public class PanelModificarBedel extends JPanel {
 					
 			      switch(valor){
 			            case 1:
-			                rg.mensaje("Debe contener como minimo un caracter especial","contraseña invalida");
+			                mensaje("Debe contener como minimo un caracter especial","contraseña invalida");
 			                break;
 			            case 2:
-			                rg.mensaje("Debe contener como minimo un digito","contraseña invalida");
+			                mensaje("Debe contener como minimo un digito","contraseña invalida");
 			                break;
 			                
 			            case 3:
-			            	 rg.mensaje("Debe contener como minimo una mayuscula","contraseña invalida");
+			            	 mensaje("Debe contener como minimo una mayuscula","contraseña invalida");
 			                break;
 			                
 			            case 4:
-			            	 rg.mensaje("La contraseña no cumple con la longitud minima de la politica","contraseña invalida");
+			            	 mensaje("La contraseña no cumple con la longitud minima de la politica","contraseña invalida");
 			                break;
 			            case 7:
-			            	 rg.mensaje("Bedel modificado correctamente","Modificacion exitosa");
+			            	 mensaje("Bedel modificado correctamente","Modificacion exitosa");
 			                break;
 			            
 			        }
 			     }
 			     else{
-			    	 rg.mensaje("Los dos campos de contraseña, deben ser iguales","Contraseñas distintas");
+			    	 mensaje("Los dos campos de contraseña, deben ser iguales","Contraseñas distintas");
 			     }
 			  }		
 			}

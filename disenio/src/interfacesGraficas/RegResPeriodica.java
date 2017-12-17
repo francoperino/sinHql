@@ -2,6 +2,7 @@ package interfacesGraficas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
@@ -30,6 +31,12 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class RegResPeriodica extends JPanel {
+	public void mensaje(String error,String titulo){
+        if(JOptionPane.showConfirmDialog(null,
+            error, titulo
+            , JOptionPane.DEFAULT_OPTION
+            , JOptionPane.INFORMATION_MESSAGE)==0);
+    }
 	private JTextField HoraIniLunes;
 	private JTextField HoraFinLunes;
 	private JTextField HoraIniMartes;
@@ -512,7 +519,7 @@ public class RegResPeriodica extends JPanel {
 				}
 				contadorGlobalDias=0;
 				if(verif==false) {
-					rg.mensaje("No ha seleccionado ningun dia","ERROR");
+					mensaje("No ha seleccionado ningun dia","ERROR");
 				}
 				else {
 					siguienteDia();

@@ -3,6 +3,7 @@ package interfacesGraficas;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Frame;
@@ -24,6 +25,12 @@ import javax.swing.JPasswordField;
 import interfacesGraficas.InicioBedel;
  
 class IniciarSesion {
+	public void mensaje(String error,String titulo){
+        if(JOptionPane.showConfirmDialog(null,
+            error, titulo
+            , JOptionPane.DEFAULT_OPTION
+            , JOptionPane.INFORMATION_MESSAGE)==0);
+    }
  
     private JFrame frmInicioSesion;
     private JTextField textFieldNick;
@@ -146,7 +153,7 @@ class IniciarSesion {
                     e.printStackTrace();
                 }
                
-                RegistrarBedel regb = new RegistrarBedel();
+               
  
                  ArrayList<ConsultaGenerica> res = null;
                 try {
@@ -157,7 +164,7 @@ class IniciarSesion {
                 }
                 switch (i){
                 case 7:{
-                    regb.mensaje("no existe esa combinacion","datos incorrectos");
+                    mensaje("no existe esa combinacion","datos incorrectos");
                     break;
                 }
                 case 0:{
@@ -168,7 +175,7 @@ class IniciarSesion {
                             frmInicioSesion.dispose();
                         }
                         else {
-                            regb.mensaje("Contraseña incorrecta","contraseña no valida");
+                            mensaje("Contraseña incorrecta","contraseña no valida");
                         }
                     } catch (Exception e) {
                         // TODO Auto-generated catch block
@@ -187,7 +194,7 @@ class IniciarSesion {
                         }
                         else {
                            
-                            regb.mensaje("Contraseña incorrecta","contraseña no valida");
+                            mensaje("Contraseña incorrecta","contraseña no valida");
                         }
                     } catch (Exception e) {
                         // TODO Auto-generated catch block

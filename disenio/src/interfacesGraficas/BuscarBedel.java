@@ -2,6 +2,7 @@ package interfacesGraficas;
  
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
@@ -33,6 +34,12 @@ import java.awt.event.MouseEvent;
 import java.awt.CardLayout;
  
 public class BuscarBedel extends JPanel {
+	public void mensaje(String error,String titulo){
+        if(JOptionPane.showConfirmDialog(null,
+            error, titulo
+            , JOptionPane.DEFAULT_OPTION
+            , JOptionPane.INFORMATION_MESSAGE)==0);
+    }
     private JTextField txtAdmin;
     private JTextField textField;
     private JTable table;
@@ -236,9 +243,8 @@ public class BuscarBedel extends JPanel {
                
                 try {
                     ArrayList<ConsultaGenerica> list = gb.BuscarBedel(turno, apelido);
-                    if(list.isEmpty()) {
-                        RegistrarBedel rb = new RegistrarBedel();
-                        rb.mensaje("No existe un bedel, con esos parametros", "Bedel no encontrado");
+                    if(list.isEmpty()) {                       
+                        mensaje("No existe un bedel, con esos parametros", "Bedel no encontrado");
                     }else
                     GestorUtilidades.llenarTabla(table,list );
                 } catch (Exception e) {

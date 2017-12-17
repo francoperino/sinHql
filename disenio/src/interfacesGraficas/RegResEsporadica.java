@@ -2,6 +2,7 @@ package interfacesGraficas;
  
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -31,6 +32,12 @@ import Logica.GestorDocente;
 import Logica.GestorReserva;
  
 public class RegResEsporadica extends JPanel {
+	public void mensaje(String error,String titulo){
+        if(JOptionPane.showConfirmDialog(null,
+            error, titulo
+            , JOptionPane.DEFAULT_OPTION
+            , JOptionPane.INFORMATION_MESSAGE)==0);
+    }
     private JTextField txtNombreBedel;
     private JTextField txtHora;
     private JTextField txtMinutos;
@@ -361,10 +368,10 @@ public class RegResEsporadica extends JPanel {
                          arreg=ar;
                          siguienteDia(ar);
  
-                            }else rg.mensaje("Ingrese los datos del solicitante para continuar","ERROR");
-                        }else rg.mensaje("Seleccion un tipo de aula para continuar","ERROR");
-                    }else rg.mensaje("La cantidad de alumnos debe ser mayor a cero","ERROR");
-                 }else rg.mensaje("seleccione una fila para continuar","ERROR");
+                            }else mensaje("Ingrese los datos del solicitante para continuar","ERROR");
+                        }else mensaje("Seleccion un tipo de aula para continuar","ERROR");
+                    }else mensaje("La cantidad de alumnos debe ser mayor a cero","ERROR");
+                 }else mensaje("seleccione una fila para continuar","ERROR");
  
                
          }      
@@ -542,21 +549,21 @@ public class RegResEsporadica extends JPanel {
                                         case 0:
                                              model.addRow(new Object[]{ComBoxDia.getSelectedItem(),ComBoxMes.getSelectedItem(),txtHora.getText()+":"+txtMinutos.getText(),ComBoxDuracion.getSelectedItem()});
                                              break;
-                                        case 1: rg.mensaje("No pueden existir dos reservas iguales","ERROR");
+                                        case 1: mensaje("No pueden existir dos reservas iguales","ERROR");
                                             break;
                                          
-                                        case 2: rg.mensaje("la reserva se solapara con otra (mismo hora inicio)","ERROR");
+                                        case 2: mensaje("la reserva se solapara con otra (mismo hora inicio)","ERROR");
                                         break;
                                         
-                                        case 3: rg.mensaje("la reserva se solapara con otra (mismo intervalo horario)","ERROR");
+                                        case 3: mensaje("la reserva se solapara con otra (mismo intervalo horario)","ERROR");
                                         break;
                                         }         
-                                    }else rg.mensaje("La reserva no debe durar mas de las 23:30","ERROR");                                 
-                                }else rg.mensaje("No se puede reservar despues de las 23:30","ERROR");
-                            }else rg.mensaje("error al ingresar los minutos de la reserva","ERROR");
-                        }else rg.mensaje("Las reservas deben ser entre las 7:00 y 23:30","ERROR");
-                    }else rg.mensaje("La reserva debe ser como minimo el dia siguiente al actual","ERROR");
-                }else rg.mensaje("la reserva tiene que ser en el mes actual o siguiente","ERROR");
+                                    }else mensaje("La reserva no debe durar mas de las 23:30","ERROR");                                 
+                                }else mensaje("No se puede reservar despues de las 23:30","ERROR");
+                            }else mensaje("error al ingresar los minutos de la reserva","ERROR");
+                        }else mensaje("Las reservas deben ser entre las 7:00 y 23:30","ERROR");
+                    }else mensaje("La reserva debe ser como minimo el dia siguiente al actual","ERROR");
+                }else mensaje("la reserva tiene que ser en el mes actual o siguiente","ERROR");
                
             }
         });      
