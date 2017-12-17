@@ -20,6 +20,7 @@ import com.sun.org.apache.bcel.internal.generic.ArrayInstruction;
 import Entidades.Ciclolectivo;
 import Entidades.ConsultaGenerica;
 import Logica.GestorCicloLectivo;
+import Logica.GestorDocente;
 import Logica.GestorReserva;
 
 import javax.swing.JComboBox;
@@ -29,6 +30,8 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class RegResPeriodica extends JPanel {
 	public void mensaje(String error,String titulo){
@@ -176,6 +179,21 @@ public class RegResPeriodica extends JPanel {
 		panelSeleccion.add(CheckBoxSabado);
 		
 		HoraIniLunes = new JTextField();
+		HoraIniLunes.addKeyListener(new KeyAdapter() {            
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                boolean bandera = false;            
+                if (HoraIniLunes.getSelectedText() != null) {
+                    if (HoraIniLunes.getSelectedText().length() == 2) {
+                        bandera = true;
+                    }
+                }
+                if (((c < '0' || c > '9') || (HoraIniLunes.getText().length()== 2)) && (bandera == false || (c < '0' || c > '9'))){                    
+                        evt.consume();                  
+                }
+                }
+           });
 		HoraIniLunes.setBorder(null);
 		HoraIniLunes.setFont(new Font("Tahoma", Font.BOLD, 14));
 		HoraIniLunes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -185,6 +203,21 @@ public class RegResPeriodica extends JPanel {
 		HoraIniLunes.setColumns(10);
 		
 		HoraFinLunes = new JTextField();
+		HoraFinLunes.addKeyListener(new KeyAdapter() {            
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                boolean bandera = false;            
+                if (HoraFinLunes.getSelectedText() != null) {
+                    if (HoraFinLunes.getSelectedText().length() == 2) {
+                        bandera = true;
+                    }
+                }
+                if (((c < '0' || c > '9') || (HoraFinLunes.getText().length()== 2)) && (bandera == false || (c < '0' || c > '9'))){                    
+                        evt.consume();                  
+                }
+                }
+           });
 		HoraFinLunes.setBorder(null);
 		HoraFinLunes.setText("00");
 		HoraFinLunes.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -194,6 +227,21 @@ public class RegResPeriodica extends JPanel {
 		panelSeleccion.add(HoraFinLunes);
 		
 		HoraIniMartes = new JTextField();
+		HoraIniMartes.addKeyListener(new KeyAdapter() {            
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                boolean bandera = false;            
+                if (HoraIniMartes.getSelectedText() != null) {
+                    if (HoraIniMartes.getSelectedText().length() == 2) {
+                        bandera = true;
+                    }
+                }
+                if (((c < '0' || c > '9') || (HoraIniMartes.getText().length()== 2)) && (bandera == false || (c < '0' || c > '9'))){                    
+                        evt.consume();                  
+                }
+                }
+           });
 		HoraIniMartes.setBorder(null);
 		HoraIniMartes.setText("00");
 		HoraIniMartes.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -203,6 +251,21 @@ public class RegResPeriodica extends JPanel {
 		panelSeleccion.add(HoraIniMartes);
 		
 		HoraFinMartes = new JTextField();
+		HoraFinMartes.addKeyListener(new KeyAdapter() {            
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                boolean bandera = false;            
+                if (HoraFinMartes.getSelectedText() != null) {
+                    if (HoraFinMartes.getSelectedText().length() == 2) {
+                        bandera = true;
+                    }
+                }
+                if (((c < '0' || c > '9') || (HoraFinMartes.getText().length()== 2)) && (bandera == false || (c < '0' || c > '9'))){                    
+                        evt.consume();                  
+                }
+                }
+           });
 		HoraFinMartes.setBorder(null);
 		HoraFinMartes.setText("00");
 		HoraFinMartes.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -212,6 +275,21 @@ public class RegResPeriodica extends JPanel {
 		panelSeleccion.add(HoraFinMartes);
 		
 		HoraIniMiercoles = new JTextField();
+		HoraIniMiercoles.addKeyListener(new KeyAdapter() {            
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                boolean bandera = false;            
+                if (HoraIniMiercoles.getSelectedText() != null) {
+                    if (HoraIniMiercoles.getSelectedText().length() == 2) {
+                        bandera = true;
+                    }
+                }
+                if (((c < '0' || c > '9') || (HoraIniMiercoles.getText().length()== 2)) && (bandera == false || (c < '0' || c > '9'))){                    
+                        evt.consume();                  
+                }
+                }
+           });
 		HoraIniMiercoles.setBorder(null);
 		HoraIniMiercoles.setText("00");
 		HoraIniMiercoles.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -221,6 +299,21 @@ public class RegResPeriodica extends JPanel {
 		panelSeleccion.add(HoraIniMiercoles);
 		
 		HoraFinMiercoles = new JTextField();
+		HoraFinMiercoles.addKeyListener(new KeyAdapter() {            
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                boolean bandera = false;            
+                if (HoraFinMiercoles.getSelectedText() != null) {
+                    if (HoraFinMiercoles.getSelectedText().length() == 2) {
+                        bandera = true;
+                    }
+                }
+                if (((c < '0' || c > '9') || (HoraFinMiercoles.getText().length()== 2)) && (bandera == false || (c < '0' || c > '9'))){                    
+                        evt.consume();                  
+                }
+                }
+           });
 		HoraFinMiercoles.setBorder(null);
 		HoraFinMiercoles.setText("00");
 		HoraFinMiercoles.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -230,6 +323,21 @@ public class RegResPeriodica extends JPanel {
 		panelSeleccion.add(HoraFinMiercoles);
 		
 		HoraIniJueves = new JTextField();
+		HoraIniJueves.addKeyListener(new KeyAdapter() {            
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                boolean bandera = false;            
+                if (HoraIniJueves.getSelectedText() != null) {
+                    if (HoraIniJueves.getSelectedText().length() == 2) {
+                        bandera = true;
+                    }
+                }
+                if (((c < '0' || c > '9') || (HoraIniJueves.getText().length()== 2)) && (bandera == false || (c < '0' || c > '9'))){                    
+                        evt.consume();                  
+                }
+                }
+           });
 		HoraIniJueves.setBorder(null);
 		HoraIniJueves.setText("00");
 		HoraIniJueves.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -239,6 +347,21 @@ public class RegResPeriodica extends JPanel {
 		panelSeleccion.add(HoraIniJueves);
 		
 		HoraFinJueves = new JTextField();
+		HoraFinJueves.addKeyListener(new KeyAdapter() {            
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                boolean bandera = false;            
+                if (HoraFinJueves.getSelectedText() != null) {
+                    if (HoraFinJueves.getSelectedText().length() == 2) {
+                        bandera = true;
+                    }
+                }
+                if (((c < '0' || c > '9') || (HoraFinJueves.getText().length()== 2)) && (bandera == false || (c < '0' || c > '9'))){                    
+                        evt.consume();                  
+                }
+                }
+           });
 		HoraFinJueves.setBorder(null);
 		HoraFinJueves.setText("00");
 		HoraFinJueves.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -248,6 +371,21 @@ public class RegResPeriodica extends JPanel {
 		panelSeleccion.add(HoraFinJueves);
 		
 		HoraIniViernes = new JTextField();
+		HoraIniViernes.addKeyListener(new KeyAdapter() {            
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                boolean bandera = false;            
+                if (HoraIniViernes.getSelectedText() != null) {
+                    if (HoraIniViernes.getSelectedText().length() == 2) {
+                        bandera = true;
+                    }
+                }
+                if (((c < '0' || c > '9') || (HoraIniViernes.getText().length()== 2)) && (bandera == false || (c < '0' || c > '9'))){                    
+                        evt.consume();                  
+                }
+                }
+           });
 		HoraIniViernes.setBorder(null);
 		HoraIniViernes.setText("00");
 		HoraIniViernes.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -257,6 +395,21 @@ public class RegResPeriodica extends JPanel {
 		panelSeleccion.add(HoraIniViernes);
 		
 		HoraFinViernes = new JTextField();
+		HoraFinViernes.addKeyListener(new KeyAdapter() {            
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                boolean bandera = false;            
+                if (HoraFinViernes.getSelectedText() != null) {
+                    if (HoraFinViernes.getSelectedText().length() == 2) {
+                        bandera = true;
+                    }
+                }
+                if (((c < '0' || c > '9') || (HoraFinViernes.getText().length()== 2)) && (bandera == false || (c < '0' || c > '9'))){                    
+                        evt.consume();                  
+                }
+                }
+           });
 		HoraFinViernes.setText("00");
 		HoraFinViernes.setFont(new Font("Tahoma", Font.BOLD, 14));
 		HoraFinViernes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -265,6 +418,21 @@ public class RegResPeriodica extends JPanel {
 		panelSeleccion.add(HoraFinViernes);
 		
 		HoraIniSabado = new JTextField();
+		HoraIniSabado.addKeyListener(new KeyAdapter() {            
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                boolean bandera = false;            
+                if (HoraIniSabado.getSelectedText() != null) {
+                    if (HoraIniSabado.getSelectedText().length() == 2) {
+                        bandera = true;
+                    }
+                }
+                if (((c < '0' || c > '9') || (HoraIniSabado.getText().length()== 2)) && (bandera == false || (c < '0' || c > '9'))){                    
+                        evt.consume();                  
+                }
+                }
+           });
 		HoraIniSabado.setText("00");
 		HoraIniSabado.setHorizontalAlignment(SwingConstants.CENTER);
 		HoraIniSabado.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -274,6 +442,21 @@ public class RegResPeriodica extends JPanel {
 		panelSeleccion.add(HoraIniSabado);
 		
 		HoraFinSabado = new JTextField();
+		HoraFinSabado.addKeyListener(new KeyAdapter() {            
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                boolean bandera = false;            
+                if (HoraFinSabado.getSelectedText() != null) {
+                    if (HoraFinSabado.getSelectedText().length() == 2) {
+                        bandera = true;
+                    }
+                }
+                if (((c < '0' || c > '9') || (HoraFinSabado.getText().length()== 2)) && (bandera == false || (c < '0' || c > '9'))){                    
+                        evt.consume();                  
+                }
+                }
+           });
 		HoraFinSabado.setText("00");
 		HoraFinSabado.setHorizontalAlignment(SwingConstants.CENTER);
 		HoraFinSabado.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -334,7 +517,7 @@ public class RegResPeriodica extends JPanel {
 		lblTipoDeAula.setIconTextGap(10);
 		lblTipoDeAula.setForeground(Color.WHITE);
 		lblTipoDeAula.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblTipoDeAula.setBounds(205, 209, 95, 20);
+		lblTipoDeAula.setBounds(205, 210, 95, 20);
 		panelSeleccion.add(lblTipoDeAula);
 		
 	    ComBoxTipoAula = new JComboBox();
@@ -350,15 +533,30 @@ public class RegResPeriodica extends JPanel {
 		lblCantidadDeAlumnos.setIconTextGap(10);
 		lblCantidadDeAlumnos.setForeground(Color.WHITE);
 		lblCantidadDeAlumnos.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblCantidadDeAlumnos.setBounds(205, 307, 160, 20);
+		lblCantidadDeAlumnos.setBounds(205, 270, 160, 20);
 		panelSeleccion.add(lblCantidadDeAlumnos);
 		
 		txtCantAlumnos = new JTextField();
+		 txtCantAlumnos.addKeyListener(new KeyAdapter() {
+             @Override
+             public void keyTyped(java.awt.event.KeyEvent evt) {
+                 char c = evt.getKeyChar();
+                 boolean bandera = false;            
+                 if (txtCantAlumnos.getSelectedText() != null) {
+                     if (txtCantAlumnos.getSelectedText().length() == 10) {
+                         bandera = true;
+                     }
+                 }
+                 if (((c < '0' || c > '9') || (txtCantAlumnos.getText().length()== 10)) && (bandera == false || (c < '0' || c > '9'))){                  
+                         evt.consume();                  
+                 }     
+             }
+            });
 		txtCantAlumnos.setText("00");
 		txtCantAlumnos.setHorizontalAlignment(SwingConstants.CENTER);
 		txtCantAlumnos.setFont(new Font("Tahoma", Font.BOLD, 14));
 		txtCantAlumnos.setColumns(10);
-		txtCantAlumnos.setBounds(375, 307, 30, 20);
+		txtCantAlumnos.setBounds(375, 270, 30, 20);
 		panelSeleccion.add(txtCantAlumnos);
 		
 		txtAnual = new JTextField();
@@ -370,19 +568,35 @@ public class RegResPeriodica extends JPanel {
 		txtAnual.setEditable(false);
 		txtAnual.setColumns(10);
 		txtAnual.setBorder(null);
-		txtAnual.setBounds(10, 251, 155, 20);
+		txtAnual.setBounds(10, 312, 155, 20);
 		panelSeleccion.add(txtAnual);
 		
 		JLabel lblSolicitante = new JLabel("ID solicitante:");
 		lblSolicitante.setIconTextGap(10);
 		lblSolicitante.setForeground(Color.WHITE);
 		lblSolicitante.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblSolicitante.setBounds(205, 276, 112, 20);
+		lblSolicitante.setBounds(205, 300, 112, 20);
 		panelSeleccion.add(lblSolicitante);
 		
 		txtIdSolicitante = new JTextField();
+		txtIdSolicitante.addKeyListener(new KeyAdapter() {
+            int limite = 2;
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                boolean bandera = false;            
+                if (txtIdSolicitante.getSelectedText() != null) {
+                    if (txtIdSolicitante.getSelectedText().length() == 20) {
+                        bandera = true;
+                    }
+                }
+                if (((c < '0' || c > '9') || (txtIdSolicitante.getText().length()== 20)) && (bandera == false || (c < '0' || c > '9'))){                    
+                        evt.consume();                  
+                }
+                }
+           });
 		txtIdSolicitante.setColumns(10);
-		txtIdSolicitante.setBounds(317, 278, 53, 20);
+		txtIdSolicitante.setBounds(327, 302, 78, 20);
 		panelSeleccion.add(txtIdSolicitante);
 		
 		txtNombreBedel = new JTextField();
@@ -406,7 +620,7 @@ public class RegResPeriodica extends JPanel {
 		txtApellido.setEditable(false);
 		txtApellido.setColumns(10);
 		txtApellido.setBorder(null);
-		txtApellido.setBounds(205, 338, 160, 20);
+		txtApellido.setBounds(216, 338, 160, 20);
 		panelSeleccion.add(txtApellido);
 		
 		JLabel lblCurso = new JLabel("Nombre curso");
@@ -433,7 +647,7 @@ public class RegResPeriodica extends JPanel {
 		txtNombre.setEditable(false);
 		txtNombre.setColumns(10);
 		txtNombre.setBorder(null);
-		txtNombre.setBounds(205, 369, 160, 20);
+		txtNombre.setBounds(380, 338, 149, 20);
 		panelSeleccion.add(txtNombre);
 		
 		txtCorreo = new JTextField();
@@ -441,11 +655,11 @@ public class RegResPeriodica extends JPanel {
 		txtCorreo.setOpaque(false);
 		txtCorreo.setHorizontalAlignment(SwingConstants.CENTER);
 		txtCorreo.setForeground(Color.WHITE);
-		txtCorreo.setFont(new Font("Tahoma", Font.BOLD, 14));
+		txtCorreo.setFont(new Font("Tahoma", Font.BOLD, 16));
 		txtCorreo.setEditable(false);
 		txtCorreo.setColumns(10);
 		txtCorreo.setBorder(null);
-		txtCorreo.setBounds(413, 306, 173, 20);
+		txtCorreo.setBounds(216, 365, 275, 20);
 		panelSeleccion.add(txtCorreo);
 		
 		JButton btnSiguiente = new JButton("");
@@ -536,7 +750,7 @@ public class RegResPeriodica extends JPanel {
 		btnSiguiente.setContentAreaFilled(false);
 		btnSiguiente.setBorderPainted(false);
 		btnSiguiente.setBorder(null);
-		btnSiguiente.setBounds(387, 338, 132, 40);
+		btnSiguiente.setBounds(22, 200, 132, 40);
 		panelSeleccion.add(btnSiguiente);
 		
 		JButton btnAtras = new JButton("");
@@ -548,7 +762,7 @@ public class RegResPeriodica extends JPanel {
 		btnAtras.setContentAreaFilled(false);
 		btnAtras.setBorderPainted(false);
 		btnAtras.setBorder(null);
-		btnAtras.setBounds(48, 144, 90, 40);
+		btnAtras.setBounds(48, 144, 82, 36);
 		panelSeleccion.add(btnAtras);
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -565,7 +779,7 @@ public class RegResPeriodica extends JPanel {
 		btnResetear.setContentAreaFilled(false);
 		btnResetear.setBorderPainted(false);
 		btnResetear.setBorder(null);
-		btnResetear.setBounds(22, 200, 128, 40);
+		btnResetear.setBounds(22, 256, 128, 40);
 		panelSeleccion.add(btnResetear);
 		btnResetear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -603,6 +817,30 @@ public class RegResPeriodica extends JPanel {
 		});
 		
 		JButton btnCargar = new JButton("");
+		btnCargar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtIdSolicitante.getText().isEmpty()) {
+	                   
+                    mensaje("Ingrese id del solicitante","Id no ingresado");
+                }
+                else {
+                    GestorDocente gd = new GestorDocente();
+                    try {
+                        ArrayList<ConsultaGenerica> var = gd.buscarDocente(txtIdSolicitante.getText());
+                        if(var.isEmpty()) {
+                            mensaje("No existe el id docente", "Id erroneo");
+                        }else {
+                        txtApellido.setText(var.get(0).getValor("apellidodoc"));
+                        txtNombre.setText(var.get(0).getValor("nombredoc"));
+                        txtCorreo.setText(var.get(0).getValor("mail"));
+                        }
+                    } catch (Exception e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                }
+			}
+		});
 		btnCargar.setRolloverIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/button_cargar(4).png")));
 		btnCargar.setIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/button_cargar.png")));
 		btnCargar.setOpaque(false);
@@ -611,7 +849,7 @@ public class RegResPeriodica extends JPanel {
 		btnCargar.setContentAreaFilled(false);
 		btnCargar.setBorderPainted(false);
 		btnCargar.setBorder(null);
-		btnCargar.setBounds(375, 276, 68, 26);
+		btnCargar.setBounds(419, 300, 68, 26);
 		panelSeleccion.add(btnCargar);
 		
 		JLabel Fondo = new JLabel("");
@@ -1051,4 +1289,6 @@ public class RegResPeriodica extends JPanel {
 	            
 	        }
 	  }
+
+	 
 }

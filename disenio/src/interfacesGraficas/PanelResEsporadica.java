@@ -68,7 +68,7 @@ public class PanelResEsporadica extends JPanel {
         ContentPanResEsporadica.setLayout(null);
        
         txtNombreBedel = new JTextField();
-        txtNombreBedel.setText("Bedel");
+        txtNombreBedel.setText("bailando2020");
         txtNombreBedel.setOpaque(false);
         txtNombreBedel.setHorizontalAlignment(SwingConstants.CENTER);
         txtNombreBedel.setForeground(Color.WHITE);
@@ -369,6 +369,6 @@ public class PanelResEsporadica extends JPanel {
 		horaini=horas;
 		dur=duracion;
 		idoc=idSolo;
-		ibel=nom;
+		ibel=nick;
 	}
 }

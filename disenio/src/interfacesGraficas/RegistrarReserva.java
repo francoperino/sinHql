@@ -213,9 +213,10 @@ public class RegistrarReserva extends JPanel {
                     if(rdbtnPeriodica.isSelected() && comBoxTipoPeriodica.getSelectedIndex()!=0) {
                         GestorCicloLectivo gcl = new GestorCicloLectivo();
                         Ciclolectivo cl = new Ciclolectivo();
-                       
+                        GestorCursos gcc = new GestorCursos();
                         try {
                             cl = gcl.obtenerCicloLectivo();
+                            regResPeriodica.seteo(gcc.buscarCursos());
                         } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
