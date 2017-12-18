@@ -349,6 +349,11 @@ public class PanelSabado extends JPanel {
 			}
 		});
 		btnCancelar = new JButton("");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegResPeriodica.volver();
+			}
+		});
 		btnCancelar.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_cancelar2.png")));
 		btnCancelar.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_cancelar.png")));
 		btnCancelar.setOpaque(false);
