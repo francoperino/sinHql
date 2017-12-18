@@ -1351,10 +1351,9 @@ public class RegResPeriodica extends JPanel {
 					 }
 			 }
 				 break;
-				 
-			
+			}	
 			}
-		
+			}
 			try {
 				gr.registrarReserva(Integer.parseInt(txtCantAlumnos.getText()),(String) ComBoxTipoAula.getSelectedItem(),(String)ComBoxNombreCurso.getSelectedItem(), fech, aulas, hi, dur,txtIdSolicitante.getText(),txtNombreBedel.getText());
 			} catch (NumberFormatException e) {
@@ -1363,8 +1362,6 @@ public class RegResPeriodica extends JPanel {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			}
 			}
 	        
 		}else {
