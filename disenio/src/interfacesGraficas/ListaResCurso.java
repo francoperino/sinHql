@@ -14,7 +14,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 public class ListaResCurso extends JPanel {
-	private JTextField txtNombreBedel;
+	private static JTextField txtNombreBedel;
+	private static String nombreUsuario;
 
 	/**
 	 * Create the panel.
@@ -27,8 +28,7 @@ public class ListaResCurso extends JPanel {
 		add(ContentPanListaResCurso);
 		ContentPanListaResCurso.setLayout(null);
 		
-		txtNombreBedel = new JTextField();
-		txtNombreBedel.setText("Bedel");
+		txtNombreBedel = new JTextField();		
 		txtNombreBedel.setOpaque(false);
 		txtNombreBedel.setHorizontalAlignment(SwingConstants.CENTER);
 		txtNombreBedel.setForeground(Color.WHITE);
@@ -93,6 +93,7 @@ public class ListaResCurso extends JPanel {
 		ContentPanListaResCurso.add(btnDiaEsp);
 		btnDiaEsp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
+				ListaResDiaEsp.verNombre(nombreUsuario);
 				InicioBedel.mostrarlistadia();
 			}
 		});
@@ -109,7 +110,8 @@ public class ListaResCurso extends JPanel {
 		btnRegRes.setBounds(10, 197, 158, 40);
 		ContentPanListaResCurso.add(btnRegRes);
 		btnRegRes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) { 
+			public void actionPerformed(ActionEvent e) {
+				RegistrarReserva.verNombre(nombreUsuario);
 				InicioBedel.mostrarregreserva();
 			}
 		});
@@ -126,7 +128,8 @@ public class ListaResCurso extends JPanel {
 		btnBuscarAula.setBounds(10, 247, 158, 40);
 		ContentPanListaResCurso.add(btnBuscarAula);
 		btnBuscarAula.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) { 
+			public void actionPerformed(ActionEvent e) {
+				BuscarAula.verNombre(nombreUsuario);
 				InicioBedel.mostrarbusaula();
 			}
 		});
@@ -136,5 +139,9 @@ public class ListaResCurso extends JPanel {
 		Fondo.setBounds(0, 0, 602, 401);
 		ContentPanListaResCurso.add(Fondo);
 
+	}
+	public static void verNombre(String cadenaNick) {
+		txtNombreBedel.setText(cadenaNick);
+		nombreUsuario = cadenaNick;
 	}
 }

@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class ListadoResCurso extends JPanel {
 	private JTextField txtNombreBedel;
 	private JTable table;
+	private static String nombreUsuario;
 
 	/**
 	 * Create the panel.
@@ -120,6 +121,11 @@ public class ListadoResCurso extends JPanel {
 		Fondo.setBounds(0, 0, 602, 401);
 		ContentPanListadoResCurso.add(Fondo);
 
+	}
+
+	public void verNombre(String cadenaNick) {		
+			txtNombreBedel.setText(cadenaNick);
+			nombreUsuario = cadenaNick;				
 	}
 
 }

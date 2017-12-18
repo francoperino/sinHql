@@ -28,13 +28,14 @@ import javax.swing.ButtonGroup;
  
 public class RegistrarReserva extends JPanel {
 	
-    private JTextField txtBedel;
+    private static JTextField txtBedel;
     private final ButtonGroup buttonGroup = new ButtonGroup();
     private static CardLayout sl;
     private static JPanel  ContentPan ;
     private static JPanel ContentPanRegReserva;
     private static RegResPeriodica  regResPeriodica;
     private static RegResEsporadica regResEsporadica;
+    private static String nombreUsuario;
  
  
     /**
@@ -108,6 +109,7 @@ public class RegistrarReserva extends JPanel {
         ContentPanRegReserva.add(btnBuscarAula);
         btnBuscarAula.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	BuscarAula.verNombre(nombreUsuario);
                 InicioBedel.mostrarbusaula();
             }
         });
@@ -128,6 +130,7 @@ public class RegistrarReserva extends JPanel {
         ContentPanRegReserva.add(btnCurso);
         btnCurso.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	ListaResCurso.verNombre(nombreUsuario);
                 InicioBedel.mostrarcurso();
             }
         });
@@ -142,6 +145,7 @@ public class RegistrarReserva extends JPanel {
         ContentPanRegReserva.add(btnDiaEspecifico);
         btnDiaEspecifico.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	ListaResDiaEsp.verNombre(nombreUsuario);
                 InicioBedel.mostrarlistadia();
             }
         });
@@ -293,5 +297,8 @@ public class RegistrarReserva extends JPanel {
         sl.show(ContentPan, "ContentPanRegReserva");
        
     }
- 
+	public static void verNombre(String cadenaNick) {
+		txtBedel.setText(cadenaNick);
+		nombreUsuario = cadenaNick;
+	}
 }

@@ -15,10 +15,11 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ListadoResDiaEsp extends JPanel {
-	private JTextField txtNombreBedel;
+	private static JTextField txtNombreBedel;
 	private JTextField txtReservaDelDia;
 	private JTextField txtTipoDeAula;
 	private JTable table;
+	private static String nombreUsuario;
 
 	/**
 	 * Create the panel.
@@ -32,7 +33,6 @@ public class ListadoResDiaEsp extends JPanel {
 		ContentPanListadoResDiaEsp.setLayout(null);
 		
 		txtNombreBedel = new JTextField();
-		txtNombreBedel.setText("Bedel");
 		txtNombreBedel.setOpaque(false);
 		txtNombreBedel.setHorizontalAlignment(SwingConstants.CENTER);
 		txtNombreBedel.setForeground(Color.WHITE);
@@ -160,4 +160,8 @@ public class ListadoResDiaEsp extends JPanel {
 		ContentPanListadoResDiaEsp.add(Fondo);
 
 	}
+	public static void verNombre(String cadenaNick) {		
+		txtNombreBedel.setText(cadenaNick);
+		nombreUsuario = cadenaNick;				
+}
 }

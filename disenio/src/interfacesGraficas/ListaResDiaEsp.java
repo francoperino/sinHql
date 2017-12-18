@@ -14,7 +14,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
  
 public class ListaResDiaEsp extends JPanel {
-    private JTextField txtNombreBedel;
+    private static JTextField txtNombreBedel;
+    private static String nombreUsuario;
  
     /**
      * Create the panel.
@@ -137,6 +138,7 @@ public class ListaResDiaEsp extends JPanel {
         ContentPanListaResDiaEsp.add(btnRegRes);
         btnRegRes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
+				RegistrarReserva.verNombre(nombreUsuario);
 				InicioBedel.mostrarregreserva();
 			}
 		});
@@ -154,6 +156,7 @@ public class ListaResDiaEsp extends JPanel {
         ContentPanListaResDiaEsp.add(btnBuscarAula);
         btnBuscarAula.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
+				BuscarAula.verNombre(nombreUsuario);
 				InicioBedel.mostrarbusaula();
 			}
 		});
@@ -174,6 +177,7 @@ public class ListaResDiaEsp extends JPanel {
         ContentPanListaResDiaEsp.add(btnRegCurso);
         btnRegCurso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
+				ListaResCurso.verNombre(nombreUsuario);
 				InicioBedel.mostrarcurso();
 			}
 		});
@@ -184,5 +188,11 @@ public class ListaResDiaEsp extends JPanel {
         ContentPanListaResDiaEsp.add(Fondo);
  
     }
+
+	public static void verNombre(String cadenaNick) {
+		txtNombreBedel.setText(cadenaNick);
+		nombreUsuario = cadenaNick;		
+		
+	}
  
 }

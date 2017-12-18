@@ -141,6 +141,9 @@ class IniciarSesion {
             public void actionPerformed(java.awt.event.ActionEvent a) {
                 String cadenaNick = textFieldNick.getText();
                 String cadenaPass = passwordField.getText();
+                //System.out.println(cadenaNick);
+                if (!(cadenaNick.isEmpty())) {
+                	if(!(cadenaPass.isEmpty())) {
                    /*  for(ConsultaGenerica usu : res) {
                   System.out.print(usu.getValor("nickusuario") + " - " + usu.getValor("claveactual") );
                   */
@@ -172,10 +175,11 @@ class IniciarSesion {
                         if(res.get(0).getValor("claveactual").equals(cadenaPass)) {
                             InicioBedel.main(null);
                             InicioBedel.llamarBedel(0);
+                            InicioBedel.verNombre(cadenaNick);
                             frmInicioSesion.dispose();
                         }
                         else {
-                            mensaje("Contraseña incorrecta","contraseña no valida");
+                            mensaje("no existe esa combinacion","datos incorrectos");
                         }
                     } catch (Exception e) {
                         // TODO Auto-generated catch block
@@ -194,7 +198,7 @@ class IniciarSesion {
                         }
                         else {
                            
-                            mensaje("Contraseña incorrecta","contraseña no valida");
+                            mensaje("no existe esa combinacion","datos incorrectos");
                         }
                     } catch (Exception e) {
                         // TODO Auto-generated catch block
@@ -211,8 +215,8 @@ class IniciarSesion {
                    
                      
                
-               
-                               
+                	}else mensaje("Ingrese la contraseña para continuar","ERROR");
+                }else mensaje("Ingrese el nick de usuario para continuar","ERROR");                   
             }
         });
        
@@ -263,7 +267,7 @@ class IniciarSesion {
     }
  
     public void setVisible(boolean b) {
-        // TODO Auto-generated method stub
+        
        
     }
 }

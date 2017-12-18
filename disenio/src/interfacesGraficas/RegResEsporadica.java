@@ -86,7 +86,7 @@ public class RegResEsporadica extends JPanel {
        
        
         txtNombreBedel = new JTextField();
-        txtNombreBedel.setText("bailando2020");
+        txtNombreBedel.setText("gtaborda");
         txtNombreBedel.setOpaque(false);
         txtNombreBedel.setHorizontalAlignment(SwingConstants.CENTER);
         txtNombreBedel.setForeground(Color.WHITE);

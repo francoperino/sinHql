@@ -23,7 +23,7 @@ import java.awt.Color;
 public class InicioBedel extends JFrame {
  
     //private JPanel contentPane;
-    private JTextField txtBedel;
+    private static JTextField txtBedel;
     private static int tipo;
     static JPanel InicoBedel;
     static JPanel InicoBedel1;
@@ -33,6 +33,7 @@ public class InicioBedel extends JFrame {
     private static JPanel  listadia;
     private static JPanel regreserva;
     private static JPanel busaula;
+    private static String nombreUsuario;
     
     /**
      * Launch the application.
@@ -97,9 +98,10 @@ public class InicioBedel extends JFrame {
         btnLRDiaEsp.setBounds(68, 286, 189, 49);
         InicoBedel1.add(btnLRDiaEsp);
         btnLRDiaEsp.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {    //VA A INTERFAZ REGISTRAR BEDEL
+            public void actionPerformed(ActionEvent e) {    //VA A INTERFAZ LISTA RESERVAS DIA ESPORADICO
                 listadia.setSize(600,400);
                 listadia.setLocation(0,0);
+                ListaResDiaEsp.verNombre(nombreUsuario);
                 cl.show(InicoBedel,"listadia");
                 InicoBedel.revalidate();
                 InicoBedel.repaint();
@@ -121,15 +123,17 @@ public class InicioBedel extends JFrame {
         btnBuscarAula.setBounds(339, 167, 166, 49);
         InicoBedel1.add(btnBuscarAula);
         btnBuscarAula.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {    //VA A INTERFAZ REGISTRAR BEDEL
+            public void actionPerformed(ActionEvent e) {    //VA A INTERFAZ BUSCAR AULA
             	
             	if(tipo==4) {
             		InicoBedel.remove(busaula);
             		busaula = new BuscarAula();
+            		BuscarAula.verNombre(nombreUsuario);	
             		InicoBedel.add("busaula",busaula);
             	}
             	busaula.setSize(600,400);
             	busaula.setLocation(0,0);
+            	BuscarAula.verNombre(nombreUsuario);	
                 cl.show(InicoBedel,"busaula");
                 InicoBedel.revalidate();
                 InicoBedel.repaint();
@@ -148,6 +152,7 @@ public class InicioBedel extends JFrame {
             public void actionPerformed(ActionEvent e) {    //VA A INTERFAZ REGISTRAR BEDEL
                 curso.setSize(600,400);
                 curso.setLocation(0,0);
+                ((ListaResCurso) curso).verNombre(nombreUsuario);
                 cl.show(InicoBedel,"curso");
                 InicoBedel.revalidate();
                 InicoBedel.repaint();
@@ -163,7 +168,7 @@ public class InicioBedel extends JFrame {
         btnRegReserva.setBounds(38, 167, 219, 49);
         InicoBedel1.add(btnRegReserva);
         btnRegReserva.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {    //VA A INTERFAZ REGISTRAR BEDEL
+            public void actionPerformed(ActionEvent e) {    //VA A INTERFAZ REGISTRAR RESERVA
             	
             	if(tipo==3) {
             		InicoBedel.remove(regreserva);
@@ -172,6 +177,7 @@ public class InicioBedel extends JFrame {
             	}
                 regreserva.setSize(600,400);
                 regreserva.setLocation(0,0);
+                ((RegistrarReserva) regreserva).verNombre(nombreUsuario);
                 cl.show(InicoBedel,"regreserva");
                 InicoBedel.revalidate();
                 InicoBedel.repaint();
@@ -199,8 +205,7 @@ public class InicioBedel extends JFrame {
         txtBedel.setEditable(false);
         txtBedel.setBorder(null);
         txtBedel.setDisabledTextColor(Color.WHITE);
-        txtBedel.setHorizontalAlignment(SwingConstants.CENTER);
-        txtBedel.setText("Bedel");
+        txtBedel.setHorizontalAlignment(SwingConstants.CENTER);        
         txtBedel.setFont(new Font("Tahoma", Font.BOLD, 18));
         txtBedel.setForeground(Color.WHITE);
         txtBedel.setBounds(228, 134, 116, 22);
@@ -263,8 +268,7 @@ public class InicioBedel extends JFrame {
     
     public static void mostrarbusaula() {
 		if(tipo==4) {
-			InicoBedel.remove(busaula);
-			busaula = new BuscarAula();
+			InicoBedel.remove(busaula);			
     		InicoBedel.add("busaula",busaula);
     	}
 		busaula.setSize(600,400);
@@ -273,4 +277,11 @@ public class InicioBedel extends JFrame {
         InicoBedel.revalidate();
         InicoBedel.repaint();
 	}
+
+	public static void verNombre(String cadenaNick) {
+		txtBedel.setText(cadenaNick);
+		nombreUsuario = cadenaNick;
+	}
+
+	
 }

@@ -68,7 +68,7 @@ public class PanelResEsporadica extends JPanel {
         ContentPanResEsporadica.setLayout(null);
        
         txtNombreBedel = new JTextField();
-        txtNombreBedel.setText("bailando2020");
+        txtNombreBedel.setText("gtaborda");
         txtNombreBedel.setOpaque(false);
         txtNombreBedel.setHorizontalAlignment(SwingConstants.CENTER);
         txtNombreBedel.setForeground(Color.WHITE);
@@ -173,7 +173,7 @@ public class PanelResEsporadica extends JPanel {
         				cont++;
         			}
         		}
-        		System.out.println(cont);
+        		//System.out.println(cont);
         		if(cont==1) {
         			btnAceptar.setEnabled(true);
         			ContentPanResEsporadica.repaint();
@@ -251,7 +251,13 @@ public class PanelResEsporadica extends JPanel {
         	public void actionPerformed(ActionEvent arg0) {
         		GestorReserva rr =new GestorReserva();
         		try {
-					rr.registrarReserva(cantAlumnos,tipoAula,nomCurs,fechas,listaAulas,horaini,dur,idoc,ibel);
+        			if(table.getSelectedRowCount()<2) {
+        				rr.registrarReserva(cantAlumnos,tipoAula,nomCurs,fechas,listaAulas,horaini,dur,idoc,ibel);
+                    }
+                    else {
+                    	mensaje("Seleccione una sola fila para continuar","ERROR");
+                    }
+					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

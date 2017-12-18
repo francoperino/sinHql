@@ -19,10 +19,11 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 public class BuscarAula extends JPanel {
-	private JTextField txtBedel;
+	private static JTextField txtBedel;
 	private JTextField txtNroAula;
 	private JTextField txtCapacidad;
 	private JTable table;
+	private static String nombreUsuario;
 
 	/**
 	 * Create the panel.
@@ -41,8 +42,7 @@ public class BuscarAula extends JPanel {
 		txtBedel.setHorizontalAlignment(SwingConstants.CENTER);
 		txtBedel.setBorder(null);
 		txtBedel.setOpaque(false);
-		txtBedel.setFont(new Font("Tahoma", Font.BOLD, 18));
-		txtBedel.setText("Bedel");
+		txtBedel.setFont(new Font("Tahoma", Font.BOLD, 18));		
 		txtBedel.setBounds(38, 105, 112, 28);
 		panel.add(txtBedel);
 		txtBedel.setColumns(10);
@@ -72,6 +72,7 @@ public class BuscarAula extends JPanel {
 		panel.add(btnRegBed);
 		btnRegBed.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				RegistrarReserva.verNombre(nombreUsuario);
 				InicioBedel.mostrarregreserva();
 			}
 		});
@@ -92,6 +93,7 @@ public class BuscarAula extends JPanel {
 		panel.add(btnListarReservaCurso);
 		btnListarReservaCurso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
+				ListaResCurso.verNombre(nombreUsuario);
 				InicioBedel.mostrarcurso();
 			}
 		});
@@ -106,6 +108,7 @@ public class BuscarAula extends JPanel {
 		panel.add(btnListarReservaDiaEsp);
 		btnListarReservaDiaEsp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
+				ListaResDiaEsp.verNombre(nombreUsuario);
 				InicioBedel.mostrarlistadia();
 			}
 		});
@@ -231,5 +234,10 @@ public class BuscarAula extends JPanel {
 		Fondo.setIcon(new ImageIcon(BuscarAula.class.getResource("/imagenes/BuscarAula/FondoRegBed2.1.png")));
 		panel.add(Fondo);
 
+	}
+
+	public static void verNombre(String cadenaNick) {
+		txtBedel.setText(cadenaNick);
+		nombreUsuario= cadenaNick;
 	}
 }
