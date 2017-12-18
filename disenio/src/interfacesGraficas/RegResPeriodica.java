@@ -94,6 +94,7 @@ public class RegResPeriodica extends JPanel {
 	private static boolean lunesselec=false,martesselec=false,miercolesselec=false,juevesselec=false,viernesselec=false,sabadoselec=false;
 	private static Integer contadorseleccion=0,contadorcheckbox=0;
 	private static boolean cls=false,cm=false,cmi=false,cj=false,cv=false,cs=false;
+	private static JPanel panelSeleccion;
 	/**
 	 * Create the panel.
 	 */
@@ -135,7 +136,7 @@ public class RegResPeriodica extends JPanel {
 		add(ContentPanelsRegRes);
 		ContentPanelsRegRes.setLayout(cl);
 		
-		JPanel panelSeleccion = new JPanel();
+		panelSeleccion = new JPanel();
 		panelSeleccion.setBounds(0, 0, 600, 400);
 		ContentPanelsRegRes.add("panelSeleccion",panelSeleccion);
 		panelSeleccion.setLayout(null);
@@ -696,14 +697,6 @@ public class RegResPeriodica extends JPanel {
 				ds.add(3, 0);
 				ds.add(4, 0);
 				ds.add(5, 0);
-				lunesselec=false;
-				martesselec=false;
-				miercolesselec=false;
-				juevesselec=false;
-				viernesselec=false;
-				sabadoselec=false;
-				contadorseleccion=0;
-				contadorcheckbox=0;
 				boolean verif=false;
 				if(ChekBoxLunes.getState()) {
 					String hor0 = ""+HoraIniLunes.getText()+":"+HoraFinLunes.getText()+":00";
@@ -1373,6 +1366,7 @@ public class RegResPeriodica extends JPanel {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			//
 		}
 		else {
 			mensaje("Seleccione un aula en todos los dias para confirmar","ERROR");
@@ -1539,6 +1533,87 @@ public class RegResPeriodica extends JPanel {
 	        }
 	       z++;        
 	       }  
+	    }
+	  public static void volver() {
+		  ContentPanelsRegRes.remove(lunes);
+		  ContentPanelsRegRes.remove(martes);
+		  ContentPanelsRegRes.remove(miercoles);
+		  ContentPanelsRegRes.remove(jueves);
+		  ContentPanelsRegRes.remove(viernes);
+		  ContentPanelsRegRes.remove(sabado);
+		  lunes=new PanelLunes();
+		  martes=new PanelMartes();
+		  miercoles=new PanelMiercoles();
+		  jueves=new PanelJueves();
+		  viernes=new PanelViernes();
+		  sabado=new PanelSabado();
+		  ContentPanelsRegRes.add("lunes",lunes);
+		  ContentPanelsRegRes.add("martes",martes);
+		  ContentPanelsRegRes.add("miercoles",miercoles);
+		  ContentPanelsRegRes.add("jueves",jueves);
+		  ContentPanelsRegRes.add("viernes",viernes);
+		  ContentPanelsRegRes.add("sabado",sabado);
+		  cl.show(ContentPanelsRegRes,"panelSeleccion");
+		    horainit.add(0, "");
+			horainit.add(1, "");
+			horainit.add(2, "");
+			horainit.add(3, "");
+			horainit.add(4, "");
+			horainit.add(5, "");
+			
+			duracioninit.add(0, "");
+			duracioninit.add(1, "");
+			duracioninit.add(2, "");
+			duracioninit.add(3, "");
+			duracioninit.add(4, "");
+			duracioninit.add(5, "");
+			seleccionados[0]=0;
+			seleccionados[1]=0;
+			seleccionados[2]=0;
+			seleccionados[3]=0;
+			seleccionados[4]=0;
+			seleccionados[5]=0;
+			l = new ArrayList<>();
+			m = new ArrayList<>();
+			mi= new ArrayList<>();
+			j = new ArrayList<>();
+			v = new ArrayList<>();
+			s = new ArrayList<>();
+			posicion =0;
+			bandera = false;
+			band=false;
+			contdiasatras=1000;
+			contadordias=0;
+			btnsig=false;
+			btnat=false;
+			cambiardia=false;
+			bandera7=false;
+			contadorGlobalDias=0;
+			selected= new ArrayList<>();
+			aulas = new ArrayList<>();
+			fech = new ArrayList<>();
+			hi = new ArrayList<>();
+			dur = new ArrayList<>();
+			lunesselec=false;
+			martesselec=false;
+			miercolesselec=false;
+			juevesselec=false;
+			viernesselec=false;
+			sabadoselec=false;
+			contadorseleccion=0;
+			contadorcheckbox=0;
+			cls=false;
+			cm=false;
+			cmi=false;
+			cj=false;
+			cv=false;
+			cs=false;
+			selected.add(0,l);
+			selected.add(1,m);
+			selected.add(2,mi);
+			selected.add(3,j);
+			selected.add(4,v);
+			selected.add(5,s);
 	    }
 	 
 }
