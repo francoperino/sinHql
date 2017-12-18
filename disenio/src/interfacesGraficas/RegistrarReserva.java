@@ -302,4 +302,8 @@ public class RegistrarReserva extends JPanel {
 		txtBedel.setText(cadenaNick);
 		nombreUsuario = cadenaNick;
 	}
+	public static void volverAinicio() {
+		InicioBedel.llamarBedel(3);
+		
+	}
 }

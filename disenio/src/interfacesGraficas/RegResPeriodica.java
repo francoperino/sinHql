@@ -1366,7 +1366,7 @@ public class RegResPeriodica extends JPanel {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//
+			RegistrarReserva.volverAinicio();
 		}
 		else {
 			mensaje("Seleccione un aula en todos los dias para confirmar","ERROR");
