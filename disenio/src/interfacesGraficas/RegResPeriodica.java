@@ -1366,6 +1366,7 @@ public class RegResPeriodica extends JPanel {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			mensaje("La reserva se ha realizado con exito","EXITO");
 			RegistrarReserva.volverAinicio();
 		}
 		else {
