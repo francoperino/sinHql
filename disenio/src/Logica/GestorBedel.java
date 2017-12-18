@@ -14,7 +14,7 @@ public class GestorBedel {
 	       daoBedel db = new daoBedel();
 	       GestorPoliticaClave gpc = new GestorPoliticaClave();
 	       
-	        Integer valor = gpc.validarPoliticas(contrasea);
+	        Integer valor = gpc.validarPoliticas(contrasea,nickUsuario);
 	        switch(valor){
 	            case 0:
 	                 if(db.consultarNickBedel(nickUsuario).isEmpty()){
@@ -63,7 +63,7 @@ public class GestorBedel {
 		daoBedel db = new daoBedel();
 		GestorPoliticaClave gpc = new GestorPoliticaClave();
 	       
-        Integer valor = gpc.validarPoliticas(myPass);
+        Integer valor = gpc.validarPoliticas(myPass,nick);
         switch(valor){
             case 0:  
             	     
@@ -95,5 +95,10 @@ public class GestorBedel {
 	public Bedel obtenerBedel(String nick) throws Exception {
 		daoBedel db = new daoBedel();
 		return db.buscarPorNick(nick);
+	}
+	public ArrayList<String> historialBedel(String nickBedel) throws Exception {
+		daoBedel db =new daoBedel();
+		ArrayList<String> historial= db.obtenerHistorial(nickBedel);
+		return historial;
 	}
 }

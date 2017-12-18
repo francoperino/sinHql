@@ -292,6 +292,9 @@ public class PanelModificarBedel extends JPanel {
 			            case 4:
 			            	 mensaje("La contraseña no cumple con la longitud minima de la politica","contraseña invalida");
 			                break;
+			            case 5:
+			            	mensaje("La contraseña debe ser diferente a las 10 ultimas contraseñas registradas por el Bedel","contraseña invalida");
+			            	break;
 			            case 7:
 			            	 mensaje("Bedel modificado correctamente","Modificacion exitosa");
 			                break;

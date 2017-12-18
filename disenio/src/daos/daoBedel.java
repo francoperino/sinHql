@@ -94,4 +94,13 @@ private Connection con;
 		
 		return bel;
 	}
+	public ArrayList<String> obtenerHistorial(String nickBedel) throws Exception {
+		String consulta = "select * from clave c where c.nickusuario ='"+nickBedel+"' ORDER BY idclave DESC LIMIT 10;";
+		ArrayList<ConsultaGenerica> res = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta, ConsultaGenerica.class));
+		ArrayList<String> historial= new ArrayList<>();
+		for(int i=0; i<res.size();i++) {
+			historial.add(res.get(i).getValor("claveactual"));
+		}
+		return historial;
+	}
 }
