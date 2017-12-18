@@ -23,7 +23,7 @@ private Connection con;
 		     
 		      //String consulta = "select u.apellido,u.nombre,u.nickusuario,b.turno from usuario u,bedel b where (u.nickusuario = b.nickusuario) and b.turno ='"+turno+"' and u.apellido = '"+ape+"'";
 		     
-		      String consulta = "select * from bedel b where b.nickusuario = '"+nickusuario+"' ;";
+		      String consulta = "select * from bedel b where b.nickusuario = '"+nickusuario+"' COLLATE utf8_bin;";
 		      ArrayList<Bedel> res = (ArrayList<Bedel>)((Object)Conexion.consultar(consulta, Bedel.class));
 		     return (res);
 	
@@ -43,33 +43,33 @@ private Connection con;
 		
 	}
     public ArrayList <ConsultaGenerica> BuscarPorTurno(String turno) throws Exception{
-    	String consulta1 = "select * from bedel b, Usuario u where b.turno = '"+turno+"' and u.nickusuario = b.nickusuario;";
+    	String consulta1 = "select * from bedel b, Usuario u where b.turno = '"+turno+"' and u.nickusuario = b.nickusuario COLLATE utf8_bin;";
     	ArrayList<ConsultaGenerica> res1 = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta1, ConsultaGenerica.class));  
     	
     	return res1;
     	
     }
     public ArrayList <ConsultaGenerica> BuscarPorTurno() throws Exception{
-    	String consulta1 = "select * from bedel b, Usuario u where  u.nickusuario = b.nickusuario;";
+    	String consulta1 = "select * from bedel b, Usuario u where  u.nickusuario = b.nickusuario COLLATE utf8_bin;";
     	ArrayList<ConsultaGenerica> res1 = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta1, ConsultaGenerica.class));  
     	
     	return res1;
     }
     public ArrayList <ConsultaGenerica> BuscarPorApellido(String ape) throws Exception{
-    	String consulta1 = "select * from bedel b, Usuario u where  u.nickusuario = b.nickusuario and upper(u.apellido) like '"+ape.toUpperCase()+"%';";
+    	String consulta1 = "select * from bedel b, Usuario u where  u.nickusuario = b.nickusuario and upper(u.apellido) like '"+ape.toUpperCase()+"%'COLLATE utf8_bin;";
     	ArrayList<ConsultaGenerica> res1 = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta1, ConsultaGenerica.class));
 		return res1;  
     	
     }
     public ArrayList<ConsultaGenerica> BuscarPorApellidoYTurno(String apel,String turnoooo) throws Exception{
-    	String consulta3 = "SELECT * FROM bedel b, Usuario u WHERE  u.nickusuario = b.nickusuario AND b.turno = '"+turnoooo+"' AND upper(u.apellido) like '"+apel.toUpperCase()+"%';";
+    	String consulta3 = "SELECT * FROM bedel b, Usuario u WHERE  u.nickusuario = b.nickusuario AND b.turno = '"+turnoooo+"' AND upper(u.apellido) like '"+apel.toUpperCase()+"%'COLLATE utf8_bin;";
     	ArrayList<ConsultaGenerica> res2 = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta3,ConsultaGenerica.class));
 		return res2; 
 	
 }
 	public void actualizarBedel(Bedel b, String myPass) throws Exception {
-		Conexion.ejecutarSentencia("update usuario u set u.nombre='"+b.getNombre()+"', u.apellido ='"+b.getApellido()+"' where u.nickusuario = '"+b.getNickusuario()+"'; ");
-		Conexion.ejecutarSentencia("update bedel b set b.turno ='"+b.getTurno()+"' where b.nickusuario ='"+b.getNickusuario()+"';");
+		Conexion.ejecutarSentencia("update usuario u set u.nombre='"+b.getNombre()+"', u.apellido ='"+b.getApellido()+"' where u.nickusuario = '"+b.getNickusuario()+"'COLLATE utf8_bin; ");
+		Conexion.ejecutarSentencia("update bedel b set b.turno ='"+b.getTurno()+"' where b.nickusuario ='"+b.getNickusuario()+"' COLLATE utf8_bin;");
 		Calendar c = Calendar.getInstance();
 		String dia = Integer.toString(c.get(Calendar.DATE));
 		String mes = Integer.toString(c.get(Calendar.MONTH)+1);
@@ -80,11 +80,11 @@ private Connection con;
 		Conexion.ejecutarSentencia("insert into clave(nickusuario,claveactual,fechamodificacion,idpolitica)"+"values('"+b.getNickusuario()+"','"+myPass+"','"+fechaActual+"','"+res.get(0).getValor("maxid")+"');");
 	}
 	public void actualizarBedel(Bedel b) throws Exception {
-		Conexion.ejecutarSentencia("update usuario u set u.nombre='"+b.getNombre()+"', u.apellido ='"+b.getApellido()+"' where u.nickusuario = '"+b.getNickusuario()+"'; ");
+		Conexion.ejecutarSentencia("update usuario u set u.nombre='"+b.getNombre()+"', u.apellido ='"+b.getApellido()+"' where u.nickusuario = '"+b.getNickusuario()+"' COLLATE utf8_bin; ");
 		Conexion.ejecutarSentencia("update bedel b set b.turno ='"+b.getTurno()+"' where b.nickusuario ='"+b.getNickusuario()+"';");	
 	}
 	public Bedel buscarPorNick(String nick) throws Exception {
-		String consulta = "select * from bedel b, usuario u where b.nickusuario = u.nickusuario and b.nickusuario ='"+nick+"';";
+		String consulta = "select * from bedel b, usuario u where b.nickusuario = u.nickusuario and b.nickusuario ='"+nick+"' COLLATE utf8_bin;";
 		ArrayList<ConsultaGenerica> res = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta, ConsultaGenerica.class));
 		Bedel bel = new Bedel();
 		bel.setApellido(res.get(0).getValor("apellido"));
@@ -95,7 +95,7 @@ private Connection con;
 		return bel;
 	}
 	public ArrayList<String> obtenerHistorial(String nickBedel) throws Exception {
-		String consulta = "select * from clave c where c.nickusuario ='"+nickBedel+"' ORDER BY idclave DESC LIMIT 10;";
+		String consulta = "select * from clave c where c.nickusuario ='"+nickBedel+"' ORDER BY idclave DESC LIMIT 10 COLLATE utf8_bin;";
 		ArrayList<ConsultaGenerica> res = (ArrayList<ConsultaGenerica>)((Object)Conexion.consultar(consulta, ConsultaGenerica.class));
 		ArrayList<String> historial= new ArrayList<>();
 		for(int i=0; i<res.size();i++) {
