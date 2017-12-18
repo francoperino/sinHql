@@ -1358,7 +1358,7 @@ public class RegResPeriodica extends JPanel {
 			}
 			}
 			try {
-				gr.registrarReserva(Integer.parseInt(txtCantAlumnos.getText()),(String) ComBoxTipoAula.getSelectedItem(),(String)ComBoxNombreCurso.getSelectedItem(), fech, aulas, hi, dur,txtIdSolicitante.getText(),txtNombreBedel.getText());
+				gr.registrarReserva(Integer.parseInt(txtCantAlumnos.getText()),(String) ComBoxTipoAula.getSelectedItem(),(String)ComBoxNombreCurso.getSelectedItem(), fech, aulas, hi, dur,txtIdSolicitante.getText(),txtNombreBedel.getText(),txtAnual.getText());
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
