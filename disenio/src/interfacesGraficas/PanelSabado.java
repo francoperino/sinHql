@@ -22,6 +22,7 @@ public class PanelSabado extends JPanel {
 	private JTextField txtHora;
 	private JTextField txtNombreBedel;
 	private JTable table;
+	private static DefaultTableModel model ;
 	private static JButton btnSiguiente;
 	private static JButton btnAtras;
 	private static JButton btnLunes;
@@ -30,7 +31,7 @@ public class PanelSabado extends JPanel {
 	private static JButton btnJueves;
 	private static JButton btnViernes;
 	private static JButton btnSabado;
-	private JPanel panel;
+	private static JPanel panel;
 	private JButton btnCancelar;
 
 	/**
@@ -285,9 +286,6 @@ public class PanelSabado extends JPanel {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
 			},
 			new String[] {
 				"Num. Aula", "                    Caracteristicas", "Capacidad"
@@ -307,6 +305,7 @@ public class PanelSabado extends JPanel {
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(2).setPreferredWidth(60);
 		table.setRowHeight(50);
+		model = (DefaultTableModel) table.getModel();
 		TablaDatos.setViewportView(table);
 		
 		btnAtras = new JButton("");
@@ -404,4 +403,20 @@ public class PanelSabado extends JPanel {
 		repaint();
 		
 	}
+
+	public void setModel(Object[] ob,String tipo) {
+        model.addRow(ob);
+        if(tipo=="Multimedios") {
+            table.setRowHeight(120);
+        }
+        else {
+            if(tipo=="Informatica") {
+                table.setRowHeight(90);
+            }
+            else {
+                table.setRowHeight(100);
+               
+            }
+        }
+    }
 }

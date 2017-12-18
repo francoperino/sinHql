@@ -36,7 +36,7 @@ public class RegistrarReserva extends JPanel {
     private static RegResPeriodica  regResPeriodica;
     private static RegResEsporadica regResEsporadica;
     private static String nombreUsuario;
- 
+    private static JComboBox comBoxTipoPeriodica;
  
     /**
      * Create the panel.
@@ -168,7 +168,7 @@ public class RegistrarReserva extends JPanel {
         rdbtnPeriodica.setBounds(205, 86, 119, 23);
         ContentPanRegReserva.add(rdbtnPeriodica);
        
-        JComboBox comBoxTipoPeriodica = new JComboBox();
+        comBoxTipoPeriodica = new JComboBox();
         comBoxTipoPeriodica.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar", "Anual", "1er Cuatrimestre", "2do Cuatrimestre"}));
         comBoxTipoPeriodica.setMaximumRowCount(4);
         comBoxTipoPeriodica.setForeground(Color.BLACK);
@@ -264,6 +264,7 @@ public class RegistrarReserva extends JPanel {
                                 sl.show(ContentPan,"regResPeriodica");
                                 ContentPan.revalidate();
                                 ContentPan.repaint();  
+                                regResPeriodica.setperiodo((String) comBoxTipoPeriodica.getSelectedItem());
                             }  
                         }
        

@@ -88,11 +88,30 @@ public class RegResPeriodica extends JPanel {
 	private static JComboBox ComBoxTipoAula, ComBoxNombreCurso;
 	private static ArrayList<ArrayList<ConsultaGenerica>> arreg=null;
 	private static String tipoAula;
+	private static ArrayList<String> horainit;
+	private static ArrayList<String> duracioninit;
+	private String periodoelec;
+	private static boolean lunesselec=false,martesselec=false,miercolesselec=false,juevesselec=false,viernesselec=false,sabadoselec=false;
 	
 	/**
 	 * Create the panel.
 	 */
 	public RegResPeriodica() {
+		horainit= new ArrayList<>();
+		duracioninit =new ArrayList<>();
+		horainit.add(0, "");
+		horainit.add(1, "");
+		horainit.add(2, "");
+		horainit.add(3, "");
+		horainit.add(4, "");
+		horainit.add(5, "");
+		
+		duracioninit.add(0, "");
+		duracioninit.add(1, "");
+		duracioninit.add(2, "");
+		duracioninit.add(3, "");
+		duracioninit.add(4, "");
+		duracioninit.add(5, "");
 		
 		seleccionados[0]=0;
 		seleccionados[1]=0;
@@ -670,6 +689,18 @@ public class RegResPeriodica extends JPanel {
 				RegistrarBedel rg = new RegistrarBedel();
 				GestorReserva gr = new GestorReserva();
 				ArrayList<Integer> ds= new ArrayList<>();
+				ds.add(0, 0);
+				ds.add(1, 0);
+				ds.add(2, 0);
+				ds.add(3, 0);
+				ds.add(4, 0);
+				ds.add(5, 0);
+				lunesselec=false;
+				martesselec=false;
+				miercolesselec=false;
+				juevesselec=false;
+				viernesselec=false;
+				sabadoselec=false;
 				boolean verif=false;
 				if(ChekBoxLunes.getState()) {
 					String hor0 = ""+HoraIniLunes.getText()+":"+HoraFinLunes.getText()+":00";
@@ -678,6 +709,8 @@ public class RegResPeriodica extends JPanel {
 					l.add(hor0);
 					//selected.add(0,l);
 					l.add(dur0);
+					horainit.add(0, hor0);
+					duracioninit.add(0, dur0);
 					
 					seleccionados[0]=1;
 					verif=true;
@@ -690,6 +723,8 @@ public class RegResPeriodica extends JPanel {
 					m.add(hor1);
 					m.add(dur1);
 					//selected.add(1,m);
+					horainit.add(1, hor1);
+					duracioninit.add(1, dur1);
 					seleccionados[1]=1;
 					verif=true;
 					ds.add(1, 1);
@@ -701,7 +736,8 @@ public class RegResPeriodica extends JPanel {
 					mi.add(hor2);
 					mi.add(dur2);
 					//selected.add(2,mi);
-					
+					horainit.add(2, hor2);
+					duracioninit.add(2, dur2);
 					seleccionados[2]=1;
 					verif=true;
 					ds.add(2, 1);
@@ -713,7 +749,8 @@ public class RegResPeriodica extends JPanel {
 					j.add(hor3);
 					j.add(dur3);
 					//selected.add(3,j);
-					
+					horainit.add(3, hor3);
+					duracioninit.add(3, dur3);
 					seleccionados[3]=1;
 					verif=true;
 					ds.add(3, 1);
@@ -725,7 +762,8 @@ public class RegResPeriodica extends JPanel {
 					v.add(hor4);
 					v.add(dur4);
 					//selected.add(4,v);
-					
+					horainit.add(4, hor4);
+					duracioninit.add(4, dur4);
 					seleccionados[4]=1;
 					verif=true;
 					ds.add(4, 1);
@@ -737,6 +775,8 @@ public class RegResPeriodica extends JPanel {
 					s.add(hor5);
 					s.add(dur5);
 					//selected.add(5,s);
+					horainit.add(5, hor5);
+					duracioninit.add(5, dur5);
 					seleccionados[5]=1;
 					verif=true;
 					ds.add(5, 1);
@@ -767,7 +807,13 @@ public class RegResPeriodica extends JPanel {
 						}
 					}
 				}
-				//arreg=gr.validar(ds, tipoAula, periodo, cantAlumnos, horaInicio, duracion);
+				Integer ca=Integer.parseInt(txtCantAlumnos.getText());
+				try {
+					arreg=gr.validar(ds, tipoAula, periodoelec, ca, horainit, duracioninit);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				contadorGlobalDias=0;
 				if(verif==false) {
 					mensaje("No ha seleccionado ningun dia","ERROR");
@@ -947,6 +993,10 @@ public class RegResPeriodica extends JPanel {
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
 		            contadordias=0;
+		            if(lunesselec==false) {
+		            	avanzarSeleccion(0);
+		            }
+		            lunesselec=true;
 		            /*if(contadorGlobalDias>0) {
 		            	((PanelLunes) lunes).prenderAtras();
 		            }
@@ -965,6 +1015,10 @@ public class RegResPeriodica extends JPanel {
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
 		            contadordias=1;
+		            if(martesselec==false) {
+		            	avanzarSeleccion(1);
+		            }
+		            martesselec=true;
 		           /* if(contadorGlobalDias>0) {
 		            	((PanelMartes) martes).prenderAtras();
 		            }
@@ -983,6 +1037,10 @@ public class RegResPeriodica extends JPanel {
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
 		            contadordias=2;
+		            if(miercolesselec==false) {
+		            	avanzarSeleccion(2);
+		            }
+		            miercolesselec=true;
 		           /* if(contadorGlobalDias>0) {
 		            	((PanelMiercoles) miercoles).prenderAtras();
 		            	//miercoles.repaint();
@@ -1002,6 +1060,10 @@ public class RegResPeriodica extends JPanel {
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
 		            contadordias=3;
+		            if(juevesselec==false) {
+		            	avanzarSeleccion(3);
+		            }
+		            juevesselec=true;
 		           /* if(contadorGlobalDias>0) {
 		            	((PanelJueves) jueves).prenderAtras();
 		            	//jueves.repaint();
@@ -1021,6 +1083,10 @@ public class RegResPeriodica extends JPanel {
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
 		            contadordias=4;
+		            if(viernesselec==false) {
+		            	avanzarSeleccion(4);
+		            }
+		            viernesselec=true;
 		           /* if(contadorGlobalDias>0) {
 		            	((PanelViernes) viernes).prenderAtras();
 		            	//viernes.repaint();
@@ -1040,6 +1106,10 @@ public class RegResPeriodica extends JPanel {
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
 		            contadordias=5;
+		            if(sabadoselec==false) {
+		            	avanzarSeleccion(5);
+		            }
+		            sabadoselec=true;
 		            /*if(contadorGlobalDias>0) {
 		            	((PanelSabado) sabado).prenderAtras();
 		            	//sabado.repaint();
@@ -1119,6 +1189,10 @@ public class RegResPeriodica extends JPanel {
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
 		            contdiasatras=0;
+		            if(lunesselec==false) {
+		            	avanzarSeleccion(0);
+		            }
+		            lunesselec=true;
 					break;
 				case 1:
 					martes.setSize(600,400);
@@ -1127,6 +1201,10 @@ public class RegResPeriodica extends JPanel {
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
 		            contdiasatras=1;
+		            if(martesselec==false) {
+		            	avanzarSeleccion(1);
+		            }
+		            martesselec=true;
 					break;
 				case 2:
 					miercoles.setSize(600,400);
@@ -1135,6 +1213,10 @@ public class RegResPeriodica extends JPanel {
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
 		            contdiasatras=2;
+		            if(miercolesselec==false) {
+		            	avanzarSeleccion(2);
+		            }
+		            miercolesselec=true;
 					break;
 				case 3:
 					jueves.setSize(600,400);
@@ -1143,6 +1225,10 @@ public class RegResPeriodica extends JPanel {
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
 		            contdiasatras=3;
+		            if(juevesselec==false) {
+		            	avanzarSeleccion(3);
+		            }
+		            juevesselec=true;
 					break;
 				case 4:
 					viernes.setSize(600,400);
@@ -1151,6 +1237,10 @@ public class RegResPeriodica extends JPanel {
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
 		            contdiasatras=4;
+		            if(viernesselec==false) {
+		            	avanzarSeleccion(4);
+		            }
+		            viernesselec=true;
 					break;
 				case 5:	
 					sabado.setSize(600,400);
@@ -1159,6 +1249,10 @@ public class RegResPeriodica extends JPanel {
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
 		            contdiasatras=5;
+		            if(sabadoselec==false) {
+		            	avanzarSeleccion(5);
+		            }
+		            sabadoselec=true;
 					break;
 				}
 			}
@@ -1329,6 +1423,89 @@ public class RegResPeriodica extends JPanel {
 	            
 	        }
 	  }
-
+	  public void setperiodo(String t) {
+		  periodoelec=t;
+	  }
+	  public static void avanzarSeleccion(int day) {
+	        String tipoAula =(String) ComBoxTipoAula.getSelectedItem();
+	        String hayaire="";
+	        String haydvd="";
+	        String haytv="";
+	        String hayproyector= "";
+	        String hayventilador="";
+	        String haypc= "";
+	        String cadena="";
+	        int z=0;
+	        
+	         while((z<3 && arreg.get(day).size()>=3)||(arreg.get(day).size()<3 && z<arreg.get(day).size())) {
+	            String aire=arreg.get(day).get(z).getValor("aireacondicionado");              
+	            if(Integer.parseInt(aire)==1) {
+	                hayaire="&emsp;aireacondicionado<br>";
+	            }
+	        if(tipoAula=="Multimedios") {
+	                String dvd=arreg.get(day).get(z).getValor("dvd");
+	                    if(Integer.parseInt(dvd)==1) {
+	                        haydvd="&emsp;dvd<br>";
+	                    }
+	                String tv=arreg.get(day).get(z).getValor("tv");
+	                    if(Integer.parseInt(tv)==1) {
+	                        haytv= "&emsp;tv<br>";
+	                    }
+	           
+	                String proyector=arreg.get(day).get(z).getValor("proyector");
+	                    if(Integer.parseInt(proyector)==1) {
+	                        hayproyector= "&emsp;proyector<br>";
+	                    }
+	           
+	                String pc=arreg.get(day).get(z).getValor("pc");
+	                    if(Integer.parseInt(pc)==1) {
+	                            haypc="&emsp;pc<br>";
+	                    }
+	            cadena = "<html>Piso: "+arreg.get(day).get(z).getValor("piso")+"<br>"+"Tipo pizarron: "+arreg.get(day).get(z).getValor("tipopizarron")+"<br>"+"Posee:<br>"+hayaire+""+haydvd+""+haytv+""+hayproyector+""+haypc+"</html>";                
+	        }
+	        else if (tipoAula=="Informatica") {
+	                String proyector=arreg.get(day).get(z).getValor("proyector");
+	                    if(Integer.parseInt(proyector)==1) {
+	                        hayproyector= "&emsp;proyector<br>";
+	                    }
+	                cadena = "<html>Piso: "+arreg.get(day).get(z).getValor("piso")+"<br>"+"Tipo pizarron: "+arreg.get(day).get(z).getValor("tipopizarron")+"<br>"+"Cantidad de PCs: "+arreg.get(day).get(z).getValor("cantpc")+"<br>"+"Posee:<br>"+hayproyector+"</html>";
+	               
+	       }
+	        else {
+	                String ventilador=arreg.get(day).get(z).getValor("ventiladores");
+	                    if(ventilador.equals("1")) {
+	                        hayventilador= "&emsp;ventilador<br>";
+	                    }
+	                cadena = "<html>Piso: "+arreg.get(day).get(z).getValor("piso")+"<br>"+"Tipo pizarron: "+arreg.get(day).get(z).getValor("tipopizarron")+"<br>"+"Posee:<br>"+hayventilador+"</html>";
+	        }              
+	        String numAula ="";
+	        String capacidad="";
+	        numAula= arreg.get(day).get(z).getValor("numeroaula");
+	        capacidad=arreg.get(day).get(z).getValor("capacidad");
+	       
+	        //panelresEspo.setModel(new Object[] {numAula,cadena,capacidad},tipoAula);
+	        switch(day) {
+	        case 0:
+	        	((PanelLunes) lunes).setModel(new Object[] {numAula,cadena,capacidad},tipoAula);
+	        	break;
+	        case 1:
+	        	((PanelMartes) martes).setModel(new Object[] {numAula,cadena,capacidad},tipoAula);
+	        	break;
+	        case 2:
+	        	((PanelMiercoles) miercoles).setModel(new Object[] {numAula,cadena,capacidad},tipoAula);
+	        	break;
+	        case 3:
+	        	((PanelJueves) jueves).setModel(new Object[] {numAula,cadena,capacidad},tipoAula);
+	        	break;
+	        case 4:
+	        	((PanelViernes) viernes).setModel(new Object[] {numAula,cadena,capacidad},tipoAula);
+	        	break;
+	        case 5:
+	        	((PanelSabado) sabado).setModel(new Object[] {numAula,cadena,capacidad},tipoAula);
+	        	break;
+	        }
+	       z++;        
+	       }  
+	    }
 	 
 }

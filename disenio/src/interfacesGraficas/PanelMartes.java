@@ -23,6 +23,7 @@ public class PanelMartes extends JPanel {
 	private JTextField txtHora;
 	private JTextField txtNombreBedel;
 	private JTable table;
+	private static DefaultTableModel model ;
 	private JButton btnCancelar;
 	private static JButton btnSiguiente;
 	private static JButton btnAtras;
@@ -285,9 +286,6 @@ public class PanelMartes extends JPanel {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
 			},
 			new String[] {
 				"Num. Aula", "                    Caracteristicas", "Capacidad"
@@ -306,6 +304,7 @@ public class PanelMartes extends JPanel {
 		table.getColumnModel().getColumn(1).setPreferredWidth(200);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(2).setPreferredWidth(60);
+		model = (DefaultTableModel) table.getModel();
 		TablaDatos.setViewportView(table);
 		table.setRowHeight(50);
 		
@@ -403,4 +402,19 @@ public class PanelMartes extends JPanel {
 		panel.repaint();
 		
 	}
+	public void setModel(Object[] ob,String tipo) {
+        model.addRow(ob);
+        if(tipo=="Multimedios") {
+            table.setRowHeight(120);
+        }
+        else {
+            if(tipo=="Informatica") {
+                table.setRowHeight(90);
+            }
+            else {
+                table.setRowHeight(100);
+               
+            }
+        }
+    }
 }
