@@ -361,11 +361,38 @@ public class GestorReserva {
 
     	Reserva reserva = new Reserva();
     	daoReserva dr = new daoReserva();
+    	
     	reserva= obtenerobjetosasociados(nomCurso,fechas,aulas,horaIni,duracion,idDocente,idBedel,reserva);    	
     	reserva.setCantalumnos(cantAlumnos);
     	reserva.setTipoaula(tipoAula);
-    	dr.registrarReserva(reserva);
+    
+    	dr.registrarReserva(reserva,true);
+    		
     	
+    	/*reserva.setCantalumnos(cantAlumnos);
+    	reserva.setTipoaula(tipoAula);
+		reserva.setCurso(curso);
+		//reserva.setDiareservas(diareservas);
+		reserva.setCiclolectivo(ciclolectivo);
+		reserva.setUsuario(usuario);
+		reserva.setEsporadica(esporadica);
+		reserva.setPeriodica(periodica);
+		reserva.setDocente(docente);
+		daoReserva dr = new daoReserva();
+		*/
+    }
+    public void registrarReserva(int cantAlumnos,String tipoAula,String nomCurso,ArrayList<String> fechas,ArrayList<String> aulas,ArrayList<String> horaIni,ArrayList<String> duracion,String idDocente,String idBedel,String periodo) throws Exception {
+
+    	Reserva reserva = new Reserva();
+    	daoReserva dr = new daoReserva();
+    	Periodica p = new Periodica();
+    	reserva= obtenerobjetosasociados(nomCurso,fechas,aulas,horaIni,duracion,idDocente,idBedel,reserva);    	
+    	reserva.setCantalumnos(cantAlumnos);
+    	reserva.setTipoaula(tipoAula);
+        p.setTipoperiodo(periodo);
+        reserva.setPeriodica(p);
+    	dr.registrarReserva(reserva,false);
+    		
     	
     	/*reserva.setCantalumnos(cantAlumnos);
     	reserva.setTipoaula(tipoAula);

@@ -4,7 +4,7 @@ package Entidades;
 
 
 
-public class Esporadica   {
+public class Esporadica extends Reserva  {
 
 
      private int idreserva;

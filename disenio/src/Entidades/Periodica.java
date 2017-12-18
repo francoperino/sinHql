@@ -1,11 +1,11 @@
 package Entidades;
 
-public class Periodica   {
+public class Periodica extends Reserva  {
 
 
      private int idreserva;
      private Reserva reserva;
-     private Integer tipoperiodo;
+     private String tipoperiodo;
 
     public Periodica() {
     }
@@ -14,7 +14,7 @@ public class Periodica   {
     public Periodica(Reserva reserva) {
         this.reserva = reserva;
     }
-    public Periodica(Reserva reserva, Integer tipoperiodo) {
+    public Periodica(Reserva reserva, String tipoperiodo) {
        this.reserva = reserva;
        this.tipoperiodo = tipoperiodo;
     }
@@ -33,11 +33,11 @@ public class Periodica   {
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
     }
-    public Integer getTipoperiodo() {
+    public String getTipoperiodo() {
         return this.tipoperiodo;
     }
     
-    public void setTipoperiodo(Integer tipoperiodo) {
+    public void setTipoperiodo(String tipoperiodo) {
         this.tipoperiodo = tipoperiodo;
     }
 
