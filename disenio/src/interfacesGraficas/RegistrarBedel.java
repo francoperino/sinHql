@@ -37,13 +37,14 @@ public class RegistrarBedel extends JPanel{
             , JOptionPane.DEFAULT_OPTION
             , JOptionPane.INFORMATION_MESSAGE)==0);
     }
-    private JTextField Admin;
+    private static JTextField Admin;
     private JTextField textFApellido;
     private JTextField textFNombre;
     private JTextField textFNickUs;
     private JPasswordField PassfieldC;
     private JPasswordField PassfieldConfirmarC;
     private JPanel ContentPanRegBed;
+    private static String nombreUsuario;
  
     /**
      * Create the panel.
@@ -93,7 +94,7 @@ public class RegistrarBedel extends JPanel{
         JButton btnBuscarBed = new JButton("");
         btnBuscarBed.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	
+            	BuscarBedel.verNombre(nombreUsuario);
                 InicioAdmin.mostrarBuscarBedel();
                
             }
@@ -389,7 +390,8 @@ public class RegistrarBedel extends JPanel{
         return ContentPanRegBed;
     }
  
-    public void verNombre(String txt) {
+    public static void verNombre(String txt) {
         Admin.setText(txt);
+        nombreUsuario=txt;
     }
 }

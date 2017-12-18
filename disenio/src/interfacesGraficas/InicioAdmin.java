@@ -31,6 +31,7 @@ public class InicioAdmin extends JFrame {
     private static CardLayout cl;
     private static RegistrarBedel registrarBedel;
     private static BuscarBedel buscarBedel;
+    private static String nombreUsuario;
    
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -203,9 +204,8 @@ public class InicioAdmin extends JFrame {
         PanelAdmin.repaint();
        
     }
- 
- 
     public static void verNombre(String cadenaNick) {
-        txtAdmin.setText(cadenaNick);
-    }
+		txtAdmin.setText(cadenaNick);
+		nombreUsuario = cadenaNick;
+	}
 }

@@ -40,13 +40,14 @@ public class BuscarBedel extends JPanel {
             , JOptionPane.DEFAULT_OPTION
             , JOptionPane.INFORMATION_MESSAGE)==0);
     }
-    private JTextField txtAdmin;
+    private static JTextField txtAdmin;
     private JTextField textField;
     private JTable table;
     private static JPanel ContentPanBuscBed;
     private static JPanel ContentPanBusc;
     private static CardLayout cl;
     private static PanelModificarBedel modbedel;
+    private static String nombreUsuario;
     /**
      * Create the panel.
      */
@@ -122,6 +123,7 @@ public class BuscarBedel extends JPanel {
         JButton btnRegBed = new JButton("");
         btnRegBed.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	RegistrarBedel.verNombre(nombreUsuario);
                 InicioAdmin.mostrarrgistrarbedel();
             }
         });
@@ -209,7 +211,7 @@ public class BuscarBedel extends JPanel {
                 bel.setNickusuario((String)table.getValueAt(i,0));
        
                 modbedel.seteo(bel);
-               
+                
                 cl.show(ContentPanBusc, "modbedel");
                 ContentPanBusc.revalidate();
                 ContentPanBusc.repaint();
@@ -305,9 +307,11 @@ public class BuscarBedel extends JPanel {
         InicioAdmin.llamarAdmin(t);
        
     }
-    public void verNombre(String text) {
+    public static void verNombre(String text) {
         txtAdmin.setText(text);
+        nombreUsuario= text;
        
     }
+    
    
 }
