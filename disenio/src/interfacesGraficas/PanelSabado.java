@@ -15,6 +15,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PanelSabado extends JPanel {
 	private JTextField txtReservaDelDia;
@@ -33,6 +35,7 @@ public class PanelSabado extends JPanel {
 	private static JButton btnSabado;
 	private static JPanel panel;
 	private JButton btnCancelar;
+	private static boolean ultimaseleccion=false;
 
 	/**
 	 * Create the panel.
@@ -143,8 +146,10 @@ public class PanelSabado extends JPanel {
 		btnLunes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegResPeriodica.cambiarDeDia(0);
-				int i = table.getSelectedRow();
-				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"s");
+				if(table.getSelectedRow()!=-1) {
+					int i = table.getSelectedRow();
+					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"s");
+				}
 				try {
 					RegResPeriodica.avanzar();
 				} catch (Exception e1) {
@@ -169,8 +174,10 @@ public class PanelSabado extends JPanel {
 		btnMartes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegResPeriodica.cambiarDeDia(1);
-				int i = table.getSelectedRow();
-				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"s");
+				if(table.getSelectedRow()!=-1) {
+					int i = table.getSelectedRow();
+					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"s");
+				}
 				try {
 					RegResPeriodica.avanzar();
 				} catch (Exception e1) {
@@ -195,8 +202,10 @@ public class PanelSabado extends JPanel {
 		btnMiercoles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegResPeriodica.cambiarDeDia(2);
-				int i = table.getSelectedRow();
-				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"s");
+				if(table.getSelectedRow()!=-1) {
+					int i = table.getSelectedRow();
+					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"s");
+				}
 				try {
 					RegResPeriodica.avanzar();
 				} catch (Exception e1) {
@@ -221,8 +230,10 @@ public class PanelSabado extends JPanel {
 		btnJueves.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegResPeriodica.cambiarDeDia(3);
-				int i = table.getSelectedRow();
-				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"s");
+				if(table.getSelectedRow()!=-1) {
+					int i = table.getSelectedRow();
+					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"s");
+				}
 				try {
 					RegResPeriodica.avanzar();
 				} catch (Exception e1) {
@@ -247,8 +258,10 @@ public class PanelSabado extends JPanel {
 		btnViernes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegResPeriodica.cambiarDeDia(4);
-				int i = table.getSelectedRow();
-				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"s");
+				if(table.getSelectedRow()!=-1) {
+					int i = table.getSelectedRow();
+					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"s");
+				}
 				try {
 					RegResPeriodica.avanzar();
 				} catch (Exception e1) {
@@ -284,6 +297,15 @@ public class PanelSabado extends JPanel {
 		panel.add(TablaDatos);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(ultimaseleccion==true) {
+					int i = table.getSelectedRow();
+					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"s");
+				}
+			}
+		});
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
@@ -341,8 +363,10 @@ public class PanelSabado extends JPanel {
 		btnSiguiente = new JButton("");
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int i = table.getSelectedRow();
-				RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"s");
+				if(table.getSelectedRow()!=-1) {
+					int i = table.getSelectedRow();
+					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"s");
+				}
 				try {
 					RegResPeriodica.avanzar();
 				} catch (Exception e1) {
@@ -374,6 +398,7 @@ public class PanelSabado extends JPanel {
 		btnSiguiente.setRolloverIcon(new ImageIcon(PanelViernes.class.getResource("/imagenes/PanelesRegReserva/button_registrar (1)2.png")));
 		btnSiguiente.setIcon(new ImageIcon(PanelViernes.class.getResource("/imagenes/PanelesRegReserva/button_registrar (1).png")));
 		repaint();
+		ultimaseleccion=true;
 	}
 	public void prenderAtras() {
 		btnAtras.setEnabled(true);

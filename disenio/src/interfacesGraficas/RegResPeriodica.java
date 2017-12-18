@@ -34,7 +34,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class RegResPeriodica extends JPanel {
-	public void mensaje(String error,String titulo){
+	public static void mensaje(String error,String titulo){
         if(JOptionPane.showConfirmDialog(null,
             error, titulo
             , JOptionPane.DEFAULT_OPTION
@@ -92,7 +92,8 @@ public class RegResPeriodica extends JPanel {
 	private static ArrayList<String> duracioninit;
 	private String periodoelec;
 	private static boolean lunesselec=false,martesselec=false,miercolesselec=false,juevesselec=false,viernesselec=false,sabadoselec=false;
-	
+	private static Integer contadorseleccion=0,contadorcheckbox=0;
+	private static boolean cls=false,cm=false,cmi=false,cj=false,cv=false,cs=false;
 	/**
 	 * Create the panel.
 	 */
@@ -621,7 +622,7 @@ public class RegResPeriodica extends JPanel {
 		panelSeleccion.add(txtIdSolicitante);
 		
 		txtNombreBedel = new JTextField();
-		txtNombreBedel.setText("Sebastian47");
+		txtNombreBedel.setText("gtaborda");
 		txtNombreBedel.setOpaque(false);
 		txtNombreBedel.setHorizontalAlignment(SwingConstants.CENTER);
 		txtNombreBedel.setForeground(Color.WHITE);
@@ -701,6 +702,8 @@ public class RegResPeriodica extends JPanel {
 				juevesselec=false;
 				viernesselec=false;
 				sabadoselec=false;
+				contadorseleccion=0;
+				contadorcheckbox=0;
 				boolean verif=false;
 				if(ChekBoxLunes.getState()) {
 					String hor0 = ""+HoraIniLunes.getText()+":"+HoraFinLunes.getText()+":00";
@@ -713,6 +716,7 @@ public class RegResPeriodica extends JPanel {
 					duracioninit.add(0, dur0);
 					
 					seleccionados[0]=1;
+					contadorcheckbox++;
 					verif=true;
 					ds.add(0, 1);
 				}
@@ -726,6 +730,7 @@ public class RegResPeriodica extends JPanel {
 					horainit.add(1, hor1);
 					duracioninit.add(1, dur1);
 					seleccionados[1]=1;
+					contadorcheckbox++;
 					verif=true;
 					ds.add(1, 1);
 				}
@@ -739,6 +744,7 @@ public class RegResPeriodica extends JPanel {
 					horainit.add(2, hor2);
 					duracioninit.add(2, dur2);
 					seleccionados[2]=1;
+					contadorcheckbox++;
 					verif=true;
 					ds.add(2, 1);
 				}
@@ -752,6 +758,7 @@ public class RegResPeriodica extends JPanel {
 					horainit.add(3, hor3);
 					duracioninit.add(3, dur3);
 					seleccionados[3]=1;
+					contadorcheckbox++;
 					verif=true;
 					ds.add(3, 1);
 				}
@@ -765,6 +772,7 @@ public class RegResPeriodica extends JPanel {
 					horainit.add(4, hor4);
 					duracioninit.add(4, dur4);
 					seleccionados[4]=1;
+					contadorcheckbox++;
 					verif=true;
 					ds.add(4, 1);
 				}
@@ -778,6 +786,7 @@ public class RegResPeriodica extends JPanel {
 					horainit.add(5, hor5);
 					duracioninit.add(5, dur5);
 					seleccionados[5]=1;
+					contadorcheckbox++;
 					verif=true;
 					ds.add(5, 1);
 				}
@@ -1270,6 +1279,7 @@ public class RegResPeriodica extends JPanel {
 	}
 	public static void avanzar() throws Exception {
 		if(bandera7) {
+			if(contadorcheckbox==contadorseleccion) {
 			GestorReserva gr = new GestorReserva();
 			Ciclolectivo cic = new Ciclolectivo();
 			GestorCicloLectivo gcl = new GestorCicloLectivo();
@@ -1363,12 +1373,14 @@ public class RegResPeriodica extends JPanel {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	        
+		}
+		else {
+			mensaje("Seleccione un aula en todos los dias para confirmar","ERROR");
+		}
 		}else {
 			cambiardia=false;
 			siguienteDia();
 		}
-		
 		
 	}
 	public static void atras() {
@@ -1390,26 +1402,50 @@ public class RegResPeriodica extends JPanel {
 		case "l":
 			l.remove(0);
 			l.add(0,aula);
+			if(cls==false) {
+				contadorseleccion++;
+			}
+			cls=true;
 			break;
 		case "m":
 			m.remove(0);
 			m.add(0,aula);
+			if(cm==false) {
+				contadorseleccion++;
+			}
+			cm=true;
 			break;
 		case "mi":
 			mi.remove(0);
 			mi.add(0,aula);
+			if(cmi==false) {
+				contadorseleccion++;
+			}
+			cmi=true;
 			break;
 		case "j":
 			j.remove(0);
 			j.add(0,aula);
+			if(cj==false) {
+				contadorseleccion++;
+			}
+			cj=true;
 			break;
 		case "v":
 			v.remove(0);
 			v.add(0,aula);
+			if(cv==false) {
+				contadorseleccion++;
+			}
+			cv=true;
 			break;
 		case "s":
 			s.remove(0);
 			s.add(0,aula);
+			if(cs==false) {
+				contadorseleccion++;
+			}
+			cs=true;
 			break;
 			
 		}
