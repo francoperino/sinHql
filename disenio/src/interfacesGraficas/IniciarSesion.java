@@ -174,7 +174,7 @@ class IniciarSesion {
                     try {
                         if(res.get(0).getValor("claveactual").equals(cadenaPass)) {
                             InicioBedel.main(null);
-                            InicioBedel.llamarBedel(0);
+                            InicioBedel.llamarBedelPrimeraVez();
                             InicioBedel.verNombre(cadenaNick);
                             frmInicioSesion.dispose();
                         }
@@ -192,7 +192,7 @@ class IniciarSesion {
                     try {
                         if(res.get(0).getValor("claveactual").equals(cadenaPass)) {
                             InicioAdmin.main(null);
-                            InicioAdmin.llamarAdmin(0);
+                            InicioAdmin.llamarAdminPrimeraVez();
                             InicioAdmin.verNombre(cadenaNick);
                             frmInicioSesion.dispose();
                         }

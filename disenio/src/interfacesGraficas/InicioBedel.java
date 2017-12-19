@@ -189,6 +189,10 @@ public class InicioBedel extends JFrame {
         btnCerrarSesion.setBorderPainted(false);
         btnCerrarSesion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
+            	InicoBedel.remove(curso);
+                InicoBedel.remove(busaula);
+                InicoBedel.remove(listadia);
+                InicoBedel.remove(regreserva);
             	frame.setVisible(false);
                 IniciarSesion.main(null);
                 dispose();
@@ -281,6 +285,20 @@ public class InicioBedel extends JFrame {
 	public static void verNombre(String cadenaNick) {
 		txtBedel.setText(cadenaNick);
 		nombreUsuario = cadenaNick;
+	}
+
+	public static void llamarBedelPrimeraVez() {
+		curso = new ListaResCurso();
+    	listadia = new ListaResDiaEsp();
+    	regreserva = new RegistrarReserva();
+    	busaula = new BuscarAula();
+    	InicoBedel.add("curso",curso);
+        InicoBedel.add("busaula",busaula);
+        InicoBedel.add("listadia",listadia);
+        InicoBedel.add("regreserva",regreserva);
+        
+        cl.show(InicoBedel,"InicioBedel1");
+		
 	}
 
 	

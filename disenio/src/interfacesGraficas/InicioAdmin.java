@@ -208,4 +208,14 @@ public class InicioAdmin extends JFrame {
 		txtAdmin.setText(cadenaNick);
 		nombreUsuario = cadenaNick;
 	}
+
+
+	public static void llamarAdminPrimeraVez() {
+		registrarBedel = new RegistrarBedel();
+        PanelAdmin.add("registrarBedel",registrarBedel);
+        buscarBedel = new BuscarBedel();
+        buscarBedel.setForeground(Color.DARK_GRAY);
+        PanelAdmin.add("buscarBedel",buscarBedel);
+        cl.show(PanelAdmin,"panel1Admin");
+	}
 }
