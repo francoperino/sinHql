@@ -349,6 +349,7 @@ public class RegistrarBedel extends JPanel{
                             break;
                         case 7:
                             mensaje("Bedel registrado correctamente","Registro exitoso");
+                            InicioAdmin.llamarAdmin(1);
                             break;
                         case 100:
                             mensaje("El nick del bedel ya existe","Bedel ya registrado");
