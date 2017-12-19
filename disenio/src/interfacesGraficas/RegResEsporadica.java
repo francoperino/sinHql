@@ -38,7 +38,7 @@ public class RegResEsporadica extends JPanel {
             , JOptionPane.DEFAULT_OPTION
             , JOptionPane.INFORMATION_MESSAGE)==0);
     }
-    private JTextField txtNombreBedel;
+    private static JTextField txtNombreBedel;
     private JTextField txtHora;
     private JTextField txtMinutos;
     private JTextField txtCantAlumnos;
@@ -60,6 +60,7 @@ public class RegResEsporadica extends JPanel {
     private static JComboBox ComBoxNombreCurso;
     private static JComboBox ComBoxMes;
     private static JComboBox ComBoxDia;
+    private static String nombreUsuario;
     ArrayList<ArrayList<ConsultaGenerica>> arreg=null;
    // private static Integer cancel=0;
  
@@ -69,6 +70,7 @@ public class RegResEsporadica extends JPanel {
      */
    
     public RegResEsporadica() {
+    	n=0;
         setBackground(Color.DARK_GRAY);
         setLayout(null);
         cl=new CardLayout();
@@ -85,8 +87,7 @@ public class RegResEsporadica extends JPanel {
         control.add("panelresEspo",panelresEspo);
        
        
-        txtNombreBedel = new JTextField();
-        txtNombreBedel.setText("gtaborda");
+        txtNombreBedel = new JTextField();       
         txtNombreBedel.setOpaque(false);
         txtNombreBedel.setHorizontalAlignment(SwingConstants.CENTER);
         txtNombreBedel.setForeground(Color.WHITE);
@@ -683,7 +684,7 @@ public class RegResEsporadica extends JPanel {
             control.revalidate();
             control.repaint();*/
             avanzarSeleccion(dia,mes,day,arr);
-            
+            panelresEspo.verNombre(nombreUsuario);
             cl.show(control,"panelresEspo");
             control.revalidate();
             control.repaint();
@@ -840,9 +841,13 @@ public class RegResEsporadica extends JPanel {
     }
 
 	public static void volverAinicio() {
+		control.remove(panelresEspo);
 		RegistrarReserva.volverAinicio();
 		
 	}
-   
+	public static void verNombre(String cadenaNick) {
+		txtNombreBedel.setText(cadenaNick);
+		nombreUsuario = cadenaNick;
+	}
    
 }

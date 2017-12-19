@@ -27,7 +27,7 @@ public class PanelResEsporadica extends JPanel {
             , JOptionPane.DEFAULT_OPTION
             , JOptionPane.INFORMATION_MESSAGE)==0);
     }
-    private JTextField txtNombreBedel;
+    private static JTextField txtNombreBedel;
     private JTextField txtReservaDelDia;
     private JTextField txtMes;
     private JLabel lblReservaDelDia;
@@ -51,6 +51,7 @@ public class PanelResEsporadica extends JPanel {
     private static String ibel;
     private static JButton btnAceptar;
     private static JButton btnCancerlar;
+    private static String nombreUsuario;
     //holis
     
 
@@ -67,8 +68,7 @@ public class PanelResEsporadica extends JPanel {
         add(ContentPanResEsporadica);
         ContentPanResEsporadica.setLayout(null);
        
-        txtNombreBedel = new JTextField();
-        txtNombreBedel.setText("gtaborda");
+        txtNombreBedel = new JTextField();        
         txtNombreBedel.setOpaque(false);
         txtNombreBedel.setHorizontalAlignment(SwingConstants.CENTER);
         txtNombreBedel.setForeground(Color.WHITE);
@@ -378,5 +378,10 @@ public class PanelResEsporadica extends JPanel {
 		dur=duracion;
 		idoc=idSolo;
 		ibel=nick;
+	}
+
+	public static void verNombre(String cadenaNick) {
+		txtNombreBedel.setText(cadenaNick);
+		nombreUsuario = cadenaNick;
 	}
 }

@@ -209,6 +209,7 @@ public class RegistrarReserva extends JPanel {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
+                        regResEsporadica.verNombre(nombreUsuario);
                         sl.show(ContentPan,"regResEsporadica");
                         ContentPan.revalidate();
                         ContentPan.repaint();
@@ -261,7 +262,7 @@ public class RegistrarReserva extends JPanel {
                                 regResPeriodica.setSize(600,400);
                                 regResPeriodica.setLocation(0,0);
                                 regResPeriodica.verNombre(nombreUsuario);
-                                regResPeriodica.verTipoPeriodo(comBoxTipoPeriodica.getSelectedItem().toString());
+                                regResPeriodica.verTipoPeriodo(comBoxTipoPeriodica.getSelectedItem().toString());                                
                                 sl.show(ContentPan,"regResPeriodica");
                                 ContentPan.revalidate();
                                 ContentPan.repaint();  
