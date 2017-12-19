@@ -2,6 +2,7 @@ package interfacesGraficas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
@@ -19,6 +20,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class PanelMiercoles extends JPanel {
+	public static void mensaje(String error,String titulo){
+        if(JOptionPane.showConfirmDialog(null,
+            error, titulo
+            , JOptionPane.DEFAULT_OPTION
+            , JOptionPane.INFORMATION_MESSAGE)==0);
+    }
 	private JTextField txtReservaDelDia;
 	private JTextField txtMinutos;
 	private JTextField txtHora;
@@ -146,17 +153,23 @@ public class PanelMiercoles extends JPanel {
 		panel.add(btnLunes);
 		btnLunes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegResPeriodica.cambiarDeDia(0);
-				if(table.getSelectedRow()!=-1) {
-					int i = table.getSelectedRow();
-					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"mi");
-				}
-				try {
-					RegResPeriodica.avanzar();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				if(table.getSelectedRowCount()<2){
+					RegResPeriodica.cambiarDeDia(0);
+					if(table.getSelectedRow()!=-1) {
+						int i = table.getSelectedRow();
+						RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"mi");
+					}
+					
+					try {
+						RegResPeriodica.avanzar();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					}
+					else {
+	                	mensaje("Seleccione una sola fila para continuar","ERROR");
+	                }
 			}
 		});
 		btnLunes.setEnabled(false);
@@ -174,17 +187,23 @@ public class PanelMiercoles extends JPanel {
 		panel.add(btnMartes);
 		btnMartes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegResPeriodica.cambiarDeDia(1);
-				if(table.getSelectedRow()!=-1) {
-					int i = table.getSelectedRow();
-					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"mi");
-				}
-				try {
-					RegResPeriodica.avanzar();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				if(table.getSelectedRowCount()<2){
+					RegResPeriodica.cambiarDeDia(1);
+					if(table.getSelectedRow()!=-1) {
+						int i = table.getSelectedRow();
+						RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"mi");
+					}
+					
+					try {
+						RegResPeriodica.avanzar();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					}
+					else {
+	                	mensaje("Seleccione una sola fila para continuar","ERROR");
+	                }
 			}
 		});
 		btnMartes.setEnabled(false);
@@ -214,17 +233,23 @@ public class PanelMiercoles extends JPanel {
 		panel.add(btnJueves);
 		btnJueves.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegResPeriodica.cambiarDeDia(3);
-				if(table.getSelectedRow()!=-1) {
-					int i = table.getSelectedRow();
-					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"mi");
-				}
-				try {
-					RegResPeriodica.avanzar();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				if(table.getSelectedRowCount()<2){
+					RegResPeriodica.cambiarDeDia(3);
+					if(table.getSelectedRow()!=-1) {
+						int i = table.getSelectedRow();
+						RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"mi");
+					}
+					
+					try {
+						RegResPeriodica.avanzar();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					}
+					else {
+	                	mensaje("Seleccione una sola fila para continuar","ERROR");
+	                }
 			}
 		});
 		btnJueves.setEnabled(false);
@@ -242,17 +267,23 @@ public class PanelMiercoles extends JPanel {
 		panel.add(btnViernes);
 		btnViernes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegResPeriodica.cambiarDeDia(4);
-				if(table.getSelectedRow()!=-1) {
-					int i = table.getSelectedRow();
-					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"mi");
-				}
-				try {
-					RegResPeriodica.avanzar();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				if(table.getSelectedRowCount()<2){
+					RegResPeriodica.cambiarDeDia(4);
+					if(table.getSelectedRow()!=-1) {
+						int i = table.getSelectedRow();
+						RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"mi");
+					}
+					
+					try {
+						RegResPeriodica.avanzar();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					}
+					else {
+	                	mensaje("Seleccione una sola fila para continuar","ERROR");
+	                }
 			}
 		});
 		btnViernes.setEnabled(false);
@@ -270,17 +301,23 @@ public class PanelMiercoles extends JPanel {
 		panel.add(btnSabado);
 		btnSabado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegResPeriodica.cambiarDeDia(5);
-				if(table.getSelectedRow()!=-1) {
-					int i = table.getSelectedRow();
-					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"mi");
-				}
-				try {
-					RegResPeriodica.avanzar();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				if(table.getSelectedRowCount()<2){
+					RegResPeriodica.cambiarDeDia(5);
+					if(table.getSelectedRow()!=-1) {
+						int i = table.getSelectedRow();
+						RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"mi");
+					}
+					
+					try {
+						RegResPeriodica.avanzar();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					}
+					else {
+	                	mensaje("Seleccione una sola fila para continuar","ERROR");
+	                }
 			}
 		});
 		btnSabado.setEnabled(false);
@@ -348,16 +385,22 @@ public class PanelMiercoles extends JPanel {
 		btnSiguiente = new JButton("");
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(table.getSelectedRow()!=-1) {
-					int i = table.getSelectedRow();
-					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"mi");
-				}
-				try {
-					RegResPeriodica.avanzar();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				if(table.getSelectedRowCount()<2){
+					if(table.getSelectedRow()!=-1) {
+						int i = table.getSelectedRow();
+						RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"mi");
+					}
+					
+					try {
+						RegResPeriodica.avanzar();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					}
+					else {
+	                	mensaje("Seleccione una sola fila para continuar","ERROR");
+	                }
 			}
 		});
 		btnSiguiente.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_siguiente (1)2.png")));
@@ -395,7 +438,17 @@ public class PanelMiercoles extends JPanel {
 		Fondo.setIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/FondoRegBed2.1.png")));
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				RegResPeriodica.atras();
+				if(table.getSelectedRowCount()<2){
+					if(table.getSelectedRow()!=-1) {
+						int i = table.getSelectedRow();
+						RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"mi");
+					}
+					
+					RegResPeriodica.atras();
+					}
+					else {
+	                	mensaje("Seleccione una sola fila para continuar","ERROR");
+	                }
 			}
 		});
 

@@ -61,7 +61,7 @@ public class RegResEsporadica extends JPanel {
     private static JComboBox ComBoxMes;
     private static JComboBox ComBoxDia;
     ArrayList<ArrayList<ConsultaGenerica>> arreg=null;
-    private static Integer cancel=0;
+   // private static Integer cancel=0;
  
  
     /**
@@ -666,12 +666,12 @@ public class RegResEsporadica extends JPanel {
             control.revalidate();
             control.repaint();
             cont++;
-       if(n>0 && cancel==0) {
+       if(n>0) {//&& cancel==0
            table.changeSelection(table.getSelectedRow()+1, 1, false, false);
            day=table.getSelectedRow();
            //System.out.println(day);
        }
-            dia = String.valueOf(model.getValueAt(table.getSelectedRow(),0));
+            dia = String.valueOf( model.getValueAt(table.getSelectedRow(),0));
             mes = String.valueOf(model.getValueAt(table.getSelectedRow(),1));
             n=1;
             panelresEspo.setDia(dia);
@@ -687,7 +687,7 @@ public class RegResEsporadica extends JPanel {
             cl.show(control,"panelresEspo");
             control.revalidate();
             control.repaint();
-            cancel=0;
+            //cancel=0;
     }
  
     public static void avanzar() {
@@ -765,7 +765,7 @@ public class RegResEsporadica extends JPanel {
     	panelresEspo= new PanelResEsporadica();
         control.add("panelresEspo",panelresEspo);
         cl.show(control,"panelResEsporad");
-       
+        n=0;
     }
     public void seteo(ArrayList<ConsultaGenerica> cursos) {
         for(int i=0; i<cursos.size();i++) {
@@ -774,9 +774,9 @@ public class RegResEsporadica extends JPanel {
         }
        
     }
-    public static void setcancel(Integer i) {
+   /* public static void setcancel(Integer i) {
         cancel=i;
-    }
+    }*/
     public static void avanzarSeleccion(String dia,String mes,int day,ArrayList<ArrayList<ConsultaGenerica>> arr) {
         String tipoAula =(String) ComBoxTipoDeAula.getSelectedItem();
         String hayaire="";
@@ -838,6 +838,11 @@ public class RegResEsporadica extends JPanel {
        z++;        
        }  
     }
+
+	public static void volverAinicio() {
+		RegistrarReserva.volverAinicio();
+		
+	}
    
    
 }

@@ -253,6 +253,8 @@ public class PanelResEsporadica extends JPanel {
         		try {
         			if(table.getSelectedRowCount()<2) {
         				rr.registrarReserva(cantAlumnos,tipoAula,nomCurs,fechas,listaAulas,horaini,dur,idoc,ibel);
+        				mensaje("La reserva se ha realizado con exito","EXITO");
+        				RegResEsporadica.volverAinicio();
                     }
                     else {
                     	mensaje("Seleccione una sola fila para continuar","ERROR");
@@ -292,7 +294,7 @@ public class PanelResEsporadica extends JPanel {
             	btnAceptar.setEnabled(false);
     			ContentPanResEsporadica.repaint();
                 RegResEsporadica.volver();
-                RegResEsporadica.setcancel(-1);
+                //RegResEsporadica.setcancel(-1);
             }      
         });
        

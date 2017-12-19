@@ -2,6 +2,7 @@ package interfacesGraficas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
@@ -20,6 +21,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class PanelJueves extends JPanel {
+	public static void mensaje(String error,String titulo){
+        if(JOptionPane.showConfirmDialog(null,
+            error, titulo
+            , JOptionPane.DEFAULT_OPTION
+            , JOptionPane.INFORMATION_MESSAGE)==0);
+    }
 	private JTextField txtReservaDelDia;
 	private JTextField txtMinutos;
 	private JTextField txtHora;
@@ -38,6 +45,7 @@ public class PanelJueves extends JPanel {
 	private AbstractButton btnCancelar;
 	private static boolean ultimaseleccion=false;
 	private static String nombreUsuario;
+
 
 	/**
 	 * Create the panel.
@@ -146,17 +154,23 @@ public class PanelJueves extends JPanel {
 		panel.add(btnLunes);
 		btnLunes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegResPeriodica.cambiarDeDia(0);
-				if(table.getSelectedRow()!=-1) {
-					int i = table.getSelectedRow();
-					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"j");
-				}
-				try {
-					RegResPeriodica.avanzar();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				if(table.getSelectedRowCount()<2){
+					RegResPeriodica.cambiarDeDia(0);
+					if(table.getSelectedRow()!=-1) {
+						int i = table.getSelectedRow();
+						RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"j");
+					}
+					
+					try {
+						RegResPeriodica.avanzar();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					}
+					else {
+	                	mensaje("Seleccione una sola fila para continuar","ERROR");
+	                }
 			}
 		});
 		btnLunes.setEnabled(false);
@@ -174,17 +188,23 @@ public class PanelJueves extends JPanel {
 		panel.add(btnMartes);
 		btnMartes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegResPeriodica.cambiarDeDia(1);
-				if(table.getSelectedRow()!=-1) {
-					int i = table.getSelectedRow();
-					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"j");
-				}
-				try {
-					RegResPeriodica.avanzar();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				if(table.getSelectedRowCount()<2){
+					RegResPeriodica.cambiarDeDia(1);
+					if(table.getSelectedRow()!=-1) {
+						int i = table.getSelectedRow();
+						RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"j");
+					}
+					
+					try {
+						RegResPeriodica.avanzar();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					}
+					else {
+	                	mensaje("Seleccione una sola fila para continuar","ERROR");
+	                }
 			}
 		});
 		btnMartes.setEnabled(false);
@@ -202,17 +222,23 @@ public class PanelJueves extends JPanel {
 		panel.add(btnMiercoles);
 		btnMiercoles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegResPeriodica.cambiarDeDia(2);
-				if(table.getSelectedRow()!=-1) {
-					int i = table.getSelectedRow();
-					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"j");
-				}
-				try {
-					RegResPeriodica.avanzar();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				if(table.getSelectedRowCount()<2){
+					RegResPeriodica.cambiarDeDia(2);
+					if(table.getSelectedRow()!=-1) {
+						int i = table.getSelectedRow();
+						RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"j");
+					}
+					
+					try {
+						RegResPeriodica.avanzar();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					}
+					else {
+	                	mensaje("Seleccione una sola fila para continuar","ERROR");
+	                }
 			}
 		});
 		btnMiercoles.setEnabled(false);
@@ -242,17 +268,23 @@ public class PanelJueves extends JPanel {
 		panel.add(btnViernes);
 		btnViernes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegResPeriodica.cambiarDeDia(4);
-				if(table.getSelectedRow()!=-1) {
-					int i = table.getSelectedRow();
-					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"j");
-				}
-				try {
-					RegResPeriodica.avanzar();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				if(table.getSelectedRowCount()<2){
+					RegResPeriodica.cambiarDeDia(4);
+					if(table.getSelectedRow()!=-1) {
+						int i = table.getSelectedRow();
+						RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"j");
+					}
+					
+					try {
+						RegResPeriodica.avanzar();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					}
+					else {
+	                	mensaje("Seleccione una sola fila para continuar","ERROR");
+	                }
 			}
 		});
 		btnViernes.setEnabled(false);
@@ -270,17 +302,23 @@ public class PanelJueves extends JPanel {
 		panel.add(btnSabado);
 		btnSabado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegResPeriodica.cambiarDeDia(5);
-				if(table.getSelectedRow()!=-1) {
-					int i = table.getSelectedRow();
-					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"j");
-				}
-				try {
-					RegResPeriodica.avanzar();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				if(table.getSelectedRowCount()<2){
+					RegResPeriodica.cambiarDeDia(5);
+					if(table.getSelectedRow()!=-1) {
+						int i = table.getSelectedRow();
+						RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"j");
+					}
+					
+					try {
+						RegResPeriodica.avanzar();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					}
+					else {
+	                	mensaje("Seleccione una sola fila para continuar","ERROR");
+	                }
 			}
 		});
 		btnSabado.setEnabled(false);
@@ -336,16 +374,22 @@ public class PanelJueves extends JPanel {
 		panel.add(btnSiguiente);
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(table.getSelectedRow()!=-1) {
-					int i = table.getSelectedRow();
-					RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"j");
-				}
-				try {
-					RegResPeriodica.avanzar();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				if(table.getSelectedRowCount()<2){
+					if(table.getSelectedRow()!=-1) {
+						int i = table.getSelectedRow();
+						RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"j");
+					}
+					
+					try {
+						RegResPeriodica.avanzar();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					}
+					else {
+	                	mensaje("Seleccione una sola fila para continuar","ERROR");
+	                }
 			}
 		});
 		btnSiguiente.setRolloverIcon(new ImageIcon(PanelLunes.class.getResource("/imagenes/PanelesRegReserva/button_siguiente (1)2.png")));
@@ -375,7 +419,17 @@ public class PanelJueves extends JPanel {
 		panel.add(btnAtras);
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				RegResPeriodica.atras();
+				if(table.getSelectedRowCount()<2){
+					if(table.getSelectedRow()!=-1) {
+						int i = table.getSelectedRow();
+						RegResPeriodica.seteoVector((String)table.getValueAt(i,0),"j");
+					}
+					
+					RegResPeriodica.atras();
+					}
+					else {
+	                	mensaje("Seleccione una sola fila para continuar","ERROR");
+	                }
 			}
 		});
 		btnCancelar = new JButton("");
@@ -455,4 +509,5 @@ public class PanelJueves extends JPanel {
 		txtNombreBedel.setText(cadenaNick);
 		nombreUsuario = cadenaNick;
 	}
+
 }
