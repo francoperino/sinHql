@@ -22,6 +22,7 @@ import Entidades.ConsultaGenerica;
 import Logica.GestorCicloLectivo;
 import Logica.GestorDocente;
 import Logica.GestorReserva;
+import javafx.scene.control.ComboBox;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -53,7 +54,7 @@ public class RegResPeriodica extends JPanel {
 	private JTextField HoraIniSabado;
 	private JTextField HoraFinSabado;
 	private static JTextField txtCantAlumnos;
-	private static JTextField txtAnual;
+	private static JTextField txtTipoPeriodo;
 	private static JTextField txtIdSolicitante;
 	private static JTextField txtNombreBedel;
 	private JTextField txtApellido;
@@ -95,6 +96,7 @@ public class RegResPeriodica extends JPanel {
 	private static Integer contadorseleccion=0,contadorcheckbox=0;
 	private static boolean cls=false,cm=false,cmi=false,cj=false,cv=false,cs=false;
 	private static JPanel panelSeleccion;
+	private static String nombreUsuario;
 	/**
 	 * Create the panel.
 	 */
@@ -582,17 +584,16 @@ public class RegResPeriodica extends JPanel {
 		txtCantAlumnos.setBounds(375, 270, 30, 20);
 		panelSeleccion.add(txtCantAlumnos);
 		
-		txtAnual = new JTextField();
-		txtAnual.setText("Anual");
-		txtAnual.setOpaque(false);
-		txtAnual.setHorizontalAlignment(SwingConstants.CENTER);
-		txtAnual.setForeground(Color.WHITE);
-		txtAnual.setFont(new Font("Tahoma", Font.BOLD, 18));
-		txtAnual.setEditable(false);
-		txtAnual.setColumns(10);
-		txtAnual.setBorder(null);
-		txtAnual.setBounds(10, 312, 155, 20);
-		panelSeleccion.add(txtAnual);
+		txtTipoPeriodo = new JTextField();		
+		txtTipoPeriodo.setOpaque(false);
+		txtTipoPeriodo.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTipoPeriodo.setForeground(Color.WHITE);
+		txtTipoPeriodo.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txtTipoPeriodo.setEditable(false);
+		txtTipoPeriodo.setColumns(10);
+		txtTipoPeriodo.setBorder(null);
+		txtTipoPeriodo.setBounds(10, 312, 155, 20);
+		panelSeleccion.add(txtTipoPeriodo);
 		
 		JLabel lblSolicitante = new JLabel("ID solicitante:");
 		lblSolicitante.setIconTextGap(10);
@@ -622,8 +623,7 @@ public class RegResPeriodica extends JPanel {
 		txtIdSolicitante.setBounds(327, 302, 78, 20);
 		panelSeleccion.add(txtIdSolicitante);
 		
-		txtNombreBedel = new JTextField();
-		txtNombreBedel.setText("gtaborda");
+		txtNombreBedel = new JTextField();		
 		txtNombreBedel.setOpaque(false);
 		txtNombreBedel.setHorizontalAlignment(SwingConstants.CENTER);
 		txtNombreBedel.setForeground(Color.WHITE);
@@ -631,7 +631,7 @@ public class RegResPeriodica extends JPanel {
 		txtNombreBedel.setEditable(false);
 		txtNombreBedel.setColumns(10);
 		txtNombreBedel.setBorder(null);
-		txtNombreBedel.setBounds(38, 105, 112, 28);
+		txtNombreBedel.setBounds(10, 107, 156, 27);
 		panelSeleccion.add(txtNombreBedel);
 		
 		txtApellido = new JTextField();
@@ -691,142 +691,184 @@ public class RegResPeriodica extends JPanel {
 				RegistrarBedel rg = new RegistrarBedel();
 				GestorReserva gr = new GestorReserva();
 				ArrayList<Integer> ds= new ArrayList<>();
+				
 				ds.add(0, 0);
 				ds.add(1, 0);
 				ds.add(2, 0);
 				ds.add(3, 0);
 				ds.add(4, 0);
-				ds.add(5, 0);
-				boolean verif=false;
-				if(ChekBoxLunes.getState()) {
-					String hor0 = ""+HoraIniLunes.getText()+":"+HoraFinLunes.getText()+":00";
-					String dur0 = ""+(String)ComBoxDuracionLunes.getSelectedItem()+":00";
-					l.add("-1");
-					l.add(hor0);
-					//selected.add(0,l);
-					l.add(dur0);
-					horainit.add(0, hor0);
-					duracioninit.add(0, dur0);
-					
-					seleccionados[0]=1;
-					contadorcheckbox++;
-					verif=true;
-					ds.add(0, 1);
+				ds.add(5, 0);				
+				int banderaSeleccion = 0;
+				int sumaBanderas= 0;
+				int banderaLun  = 0;
+				int banderaMar  = 0;				
+				int banderaMier = 0;
+				int banderaJue  = 0;
+				int banderaVier = 0;
+				int banderaSab  = 0;
+				if (ChekBoxLunes.getState()) {
+					banderaLun= validar(HoraIniLunes,HoraFinLunes,ComBoxDuracionLunes);
+					banderaSeleccion = 1;
 				}
-				if(ChekBoxMartes.getState()) {
-					String hor1 = ""+HoraIniMartes.getText()+":"+HoraFinMartes.getText()+":00";
-					String dur1 = ""+(String)ComBoxDuracionMartes.getSelectedItem()+":00";
-					m.add("-1");
-					m.add(hor1);
-					m.add(dur1);
-					//selected.add(1,m);
-					horainit.add(1, hor1);
-					duracioninit.add(1, dur1);
-					seleccionados[1]=1;
-					contadorcheckbox++;
-					verif=true;
-					ds.add(1, 1);
+				if (ChekBoxMartes.getState()) {
+					banderaMar=	validar(HoraIniMartes,HoraFinMartes,ComBoxDuracionMartes);
+					banderaSeleccion = 1;
 				}
-				if(ChekBoxMiercoles.getState()) {
-					String hor2 = ""+HoraIniMiercoles.getText()+":"+HoraFinMiercoles.getText()+":00"; 
-					String dur2 = ""+(String)ComBoxDuracionMiercoles.getSelectedItem()+":00";
-					mi.add("-1");
-					mi.add(hor2);
-					mi.add(dur2);
-					//selected.add(2,mi);
-					horainit.add(2, hor2);
-					duracioninit.add(2, dur2);
-					seleccionados[2]=1;
-					contadorcheckbox++;
-					verif=true;
-					ds.add(2, 1);
+				if (ChekBoxMiercoles.getState()) {
+					banderaMier=validar(HoraIniMiercoles,HoraFinMiercoles,ComBoxDuracionMiercoles);
+					banderaSeleccion = 1;
 				}
-				if(ChekBoxJueves.getState()) {
-					String hor3 = ""+HoraIniJueves.getText()+":"+HoraFinJueves.getText()+":00"; 
-					String dur3 = ""+(String)ComBoxDuracionJueves.getSelectedItem()+":00";
-					j.add("-1");
-					j.add(hor3);
-					j.add(dur3);
-					//selected.add(3,j);
-					horainit.add(3, hor3);
-					duracioninit.add(3, dur3);
-					seleccionados[3]=1;
-					contadorcheckbox++;
-					verif=true;
-					ds.add(3, 1);
+				if (ChekBoxJueves.getState()) {
+					banderaJue=validar(HoraIniJueves,HoraFinJueves,ComBoxDuracionJueves);
+					banderaSeleccion = 1;
 				}
-				if(ChekBoxViernes.getState()) {
-					String hor4 = ""+HoraIniViernes.getText()+":"+HoraFinViernes.getText()+":00";
-					String dur4 = ""+(String)ComBoxDuracionViernes.getSelectedItem()+":00";
-					v.add("-1");
-					v.add(hor4);
-					v.add(dur4);
-					//selected.add(4,v);
-					horainit.add(4, hor4);
-					duracioninit.add(4, dur4);
-					seleccionados[4]=1;
-					contadorcheckbox++;
-					verif=true;
-					ds.add(4, 1);
+				if (ChekBoxViernes.getState()) {
+					banderaVier=validar(HoraIniViernes,HoraFinViernes,ComBoxDuracionViernes);
+					banderaSeleccion = 1;
 				}
-				if(CheckBoxSabado.getState()) {
-					String hor5 = ""+HoraIniSabado.getText()+":"+HoraFinSabado.getText()+":00";
-					String dur5 = ""+(String)ComBoxDuracionSabado.getSelectedItem()+":00";
-					s.add("-1");
-					s.add(hor5);
-					s.add(dur5);
-					//selected.add(5,s);
-					horainit.add(5, hor5);
-					duracioninit.add(5, dur5);
-					seleccionados[5]=1;
-					contadorcheckbox++;
-					verif=true;
-					ds.add(5, 1);
+				if (CheckBoxSabado.getState()) {
+					banderaSab=validar(HoraIniSabado,HoraFinSabado,ComBoxDuracionSabado);
+					banderaSeleccion = 1;
 				}
-				tipoAula =(String) ComBoxTipoAula.getSelectedItem(); 
-				int c=0;
-				for(int f=0;f<seleccionados.length;f++) {
-					if(seleccionados[f]==1) {
-						c++;
-						if(c>1) {
-							switch(f) {
-							case 1:
-								((PanelMartes) martes).prenderAtras();
-								break;
-							case 2:
-								((PanelMiercoles) miercoles).prenderAtras();
-								break;
-							case 3:
-								((PanelJueves) jueves).prenderAtras();
-								break;
-							case 4:
-								((PanelViernes) viernes).prenderAtras();
-								break;
-							case 5:
-								((PanelSabado) sabado).prenderAtras();
-								break;
-							}
-						}
-					}
-				}
-				Integer ca=Integer.parseInt(txtCantAlumnos.getText());
-				try {
-					arreg=gr.validar(ds, tipoAula, periodoelec, ca, horainit, duracioninit);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				contadorGlobalDias=0;
-				if(verif==false) {
-					mensaje("No ha seleccionado ningun dia","ERROR");
-				}
-				
-				else {
-					siguienteDia();
-				}
-				
-			}
-			
+				sumaBanderas = banderaLun + banderaMar + banderaMier + banderaJue + banderaVier + banderaSab;
+				boolean controlAlumnos = txtCantAlumnos.getText().equals("00");
+                boolean controlTipoAula = (ComBoxTipoAula.getSelectedIndex() == 0);
+                boolean controlDocente = (txtCorreo.getText().equals("Correo") && txtApellido.getText().equals("Apellido") && txtNombre.getText().equals("Nombre"));                 
+                if(banderaSeleccion == 1) {
+                	if (controlAlumnos == false) {
+                        if(controlTipoAula == false) {
+                            if(controlDocente == false) {
+ 							if(sumaBanderas == 0) {				
+ 								if(ChekBoxLunes.getState()) {					
+ 										String hor0 = ""+HoraIniLunes.getText()+":"+HoraFinLunes.getText()+":00";
+ 										String dur0 = ""+(String)ComBoxDuracionLunes.getSelectedItem()+":00";
+ 										l.add("-1");
+ 										l.add(hor0);
+ 										//selected.add(0,l);
+ 										l.add(dur0);
+ 										horainit.add(0, hor0);
+ 										duracioninit.add(0, dur0);
+ 										
+ 										seleccionados[0]=1;
+ 										contadorcheckbox++; 										
+ 										ds.add(0, 1);
+ 								
+ 								}
+ 								if(ChekBoxMartes.getState()) {
+ 									String hor1 = ""+HoraIniMartes.getText()+":"+HoraFinMartes.getText()+":00";
+ 									String dur1 = ""+(String)ComBoxDuracionMartes.getSelectedItem()+":00";
+ 									m.add("-1");
+ 									m.add(hor1);
+ 									m.add(dur1);
+ 									//selected.add(1,m);
+ 									horainit.add(1, hor1);
+ 									duracioninit.add(1, dur1);
+ 									seleccionados[1]=1;
+ 									contadorcheckbox++; 									
+ 									ds.add(1, 1);
+ 								}
+ 								if(ChekBoxMiercoles.getState()) {
+ 									String hor2 = ""+HoraIniMiercoles.getText()+":"+HoraFinMiercoles.getText()+":00"; 
+ 									String dur2 = ""+(String)ComBoxDuracionMiercoles.getSelectedItem()+":00";
+ 									mi.add("-1");
+ 									mi.add(hor2);
+ 									mi.add(dur2);
+ 									//selected.add(2,mi);
+ 									horainit.add(2, hor2);
+ 									duracioninit.add(2, dur2);
+ 									seleccionados[2]=1;
+ 									contadorcheckbox++; 									
+ 									ds.add(2, 1);
+ 								}
+ 								if(ChekBoxJueves.getState()) {
+ 									String hor3 = ""+HoraIniJueves.getText()+":"+HoraFinJueves.getText()+":00"; 
+ 									String dur3 = ""+(String)ComBoxDuracionJueves.getSelectedItem()+":00";
+ 									j.add("-1");
+ 									j.add(hor3);
+ 									j.add(dur3);
+ 									//selected.add(3,j);
+ 									horainit.add(3, hor3);
+ 									duracioninit.add(3, dur3);
+ 									seleccionados[3]=1;
+ 									contadorcheckbox++; 									
+ 									ds.add(3, 1);
+ 								}
+ 								if(ChekBoxViernes.getState()) {
+ 									String hor4 = ""+HoraIniViernes.getText()+":"+HoraFinViernes.getText()+":00";
+ 									String dur4 = ""+(String)ComBoxDuracionViernes.getSelectedItem()+":00";
+ 									v.add("-1");
+ 									v.add(hor4);
+ 									v.add(dur4);
+ 									//selected.add(4,v);
+ 									horainit.add(4, hor4);
+ 									duracioninit.add(4, dur4);
+ 									seleccionados[4]=1;
+ 									contadorcheckbox++; 									
+ 									ds.add(4, 1);
+ 								}
+ 								if(CheckBoxSabado.getState()) {
+ 									String hor5 = ""+HoraIniSabado.getText()+":"+HoraFinSabado.getText()+":00";
+ 									String dur5 = ""+(String)ComBoxDuracionSabado.getSelectedItem()+":00";
+ 									s.add("-1");
+ 									s.add(hor5);
+ 									s.add(dur5);
+ 									//selected.add(5,s);
+ 									horainit.add(5, hor5);
+ 									duracioninit.add(5, dur5);
+ 									seleccionados[5]=1;
+ 									contadorcheckbox++; 									
+ 									ds.add(5, 1);
+ 								}
+ 								tipoAula =(String) ComBoxTipoAula.getSelectedItem(); 
+ 								int c=0;
+ 								for(int f=0;f<seleccionados.length;f++) {
+ 									if(seleccionados[f]==1) {
+ 										c++;
+ 										if(c>1) {
+ 											switch(f) {
+ 											case 1:
+ 												((PanelMartes) martes).prenderAtras();
+ 												break;
+ 											case 2:
+ 												((PanelMiercoles) miercoles).prenderAtras();
+ 												break;
+ 											case 3:
+ 												((PanelJueves) jueves).prenderAtras();
+ 												break;
+ 											case 4:
+ 												((PanelViernes) viernes).prenderAtras();
+ 												break;
+ 											case 5:
+ 												((PanelSabado) sabado).prenderAtras();
+ 												break;
+ 											}
+ 										}
+ 									}
+ 								}
+ 								Integer ca=Integer.parseInt(txtCantAlumnos.getText());
+ 								try {
+ 									arreg=gr.validar(ds, tipoAula, periodoelec, ca, horainit, duracioninit);
+ 								} catch (Exception e1) {
+ 									// TODO Auto-generated catch block
+ 									e1.printStackTrace();
+ 								}
+ 								contadorGlobalDias=0;
+ 								siguienteDia();
+ 								}
+                            else if (banderaLun == 1 || banderaMar == 1 ||  banderaMier == 1 || banderaJue == 1 || banderaVier == 1 || banderaSab == 1) {
+ 								 mensaje("Las reservas deben ser entre las 7:00 y 23:30","ERROR");
+ 							}
+ 							else if (banderaLun == 2 || banderaMar == 2 ||  banderaMier == 2 || banderaJue == 2 || banderaVier == 2 || banderaSab == 2) {
+ 								 mensaje("No se puede reservar despues de las 23:30","ERROR");
+ 							}
+ 							else if (banderaLun == 3 || banderaMar == 3 ||  banderaMier == 3 || banderaJue == 3 || banderaVier == 3 || banderaSab == 3) {
+ 								 mensaje("La reserva no debe durar mas de las 23:30","ERROR");    
+ 							}else mensaje("error al ingresar los minutos de la reserva","ERROR");							
+ 						}else mensaje("Ingrese los datos del solicitante para continuar","ERROR");
+                     }else mensaje("Seleccione un tipo de aula para continuar","ERROR");
+                 }else mensaje("La cantidad de alumnos debe ser mayor a cero","ERROR");
+                }else mensaje("No ha seleccionado ningun dia","ERROR");                									
+			}		
 		});
 		btnSiguiente.setRolloverIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/button_siguiente (1)2.png")));
 		btnSiguiente.setIcon(new ImageIcon(RegResPeriodica.class.getResource("/imagenes/RegResPeriodica/button_siguiente (1).png")));
@@ -892,6 +934,10 @@ public class RegResPeriodica extends JPanel {
 				HoraFinJueves.setText("00");
 				HoraFinViernes.setText("00");
 				HoraFinSabado.setText("00");
+				txtCantAlumnos.setText("00");
+				txtNombre.setText("Nombre");
+				txtApellido.setText("Apellido");
+				txtCorreo.setText("Correo");				
 				ComBoxDuracionLunes.setSelectedIndex(0);
 				ComBoxDuracionMartes.setSelectedIndex(0);
 				ComBoxDuracionMiercoles.setSelectedIndex(0);
@@ -991,6 +1037,7 @@ public class RegResPeriodica extends JPanel {
 				case 0:
 					lunes.setSize(600,400);
 		        	lunes.setLocation(0,0);
+		        	((PanelLunes) lunes).verNombre(nombreUsuario);
 		            cl.show(ContentPanelsRegRes,"lunes");
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
@@ -1013,6 +1060,7 @@ public class RegResPeriodica extends JPanel {
 				case 1:
 					martes.setSize(600,400);
 		        	martes.setLocation(0,0);
+		        	((PanelMartes) martes).verNombre(nombreUsuario);
 		            cl.show(ContentPanelsRegRes,"martes");
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
@@ -1035,6 +1083,7 @@ public class RegResPeriodica extends JPanel {
 				case 2:
 					miercoles.setSize(600,400);
 		        	miercoles.setLocation(0,0);
+		        	((PanelMiercoles) miercoles).verNombre(nombreUsuario);
 		            cl.show(ContentPanelsRegRes,"miercoles");
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
@@ -1058,6 +1107,7 @@ public class RegResPeriodica extends JPanel {
 				case 3:
 					jueves.setSize(600,400);
 		        	jueves.setLocation(0,0);
+		        	((PanelJueves) jueves).verNombre(nombreUsuario);
 		            cl.show(ContentPanelsRegRes,"jueves");
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
@@ -1081,6 +1131,7 @@ public class RegResPeriodica extends JPanel {
 				case 4:
 					viernes.setSize(600,400);
 		        	viernes.setLocation(0,0);
+		        	((PanelViernes) viernes).verNombre(nombreUsuario);
 		            cl.show(ContentPanelsRegRes,"viernes");
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
@@ -1104,6 +1155,7 @@ public class RegResPeriodica extends JPanel {
 				case 5:	
 					sabado.setSize(600,400);
 		        	sabado.setLocation(0,0);
+		        	((PanelSabado) sabado).verNombre(nombreUsuario);
 		            cl.show(ContentPanelsRegRes,"sabado");
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
@@ -1187,6 +1239,7 @@ public class RegResPeriodica extends JPanel {
 				case 0:
 					lunes.setSize(600,400);
 		        	lunes.setLocation(0,0);
+		        	((PanelLunes) lunes).verNombre(nombreUsuario);
 		            cl.show(ContentPanelsRegRes,"lunes");
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
@@ -1199,6 +1252,7 @@ public class RegResPeriodica extends JPanel {
 				case 1:
 					martes.setSize(600,400);
 		        	martes.setLocation(0,0);
+		        	((PanelMartes) martes).verNombre(nombreUsuario);
 		            cl.show(ContentPanelsRegRes,"martes");
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
@@ -1211,6 +1265,7 @@ public class RegResPeriodica extends JPanel {
 				case 2:
 					miercoles.setSize(600,400);
 		        	miercoles.setLocation(0,0);
+		        	((PanelMiercoles) miercoles).verNombre(nombreUsuario);
 		            cl.show(ContentPanelsRegRes,"miercoles");
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
@@ -1223,6 +1278,7 @@ public class RegResPeriodica extends JPanel {
 				case 3:
 					jueves.setSize(600,400);
 		        	jueves.setLocation(0,0);
+		        	((PanelJueves) jueves).verNombre(nombreUsuario);
 		            cl.show(ContentPanelsRegRes,"jueves");
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
@@ -1235,6 +1291,7 @@ public class RegResPeriodica extends JPanel {
 				case 4:
 					viernes.setSize(600,400);
 		        	viernes.setLocation(0,0);
+		        	((PanelViernes) viernes).verNombre(nombreUsuario);
 		            cl.show(ContentPanelsRegRes,"viernes");
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
@@ -1247,6 +1304,7 @@ public class RegResPeriodica extends JPanel {
 				case 5:	
 					sabado.setSize(600,400);
 		        	sabado.setLocation(0,0);
+		        	((PanelSabado) sabado).verNombre(nombreUsuario);
 		            cl.show(ContentPanelsRegRes,"sabado");
 		            ContentPanelsRegRes.revalidate();
 		            ContentPanelsRegRes.repaint();
@@ -1288,7 +1346,7 @@ public class RegResPeriodica extends JPanel {
 				if(seleccionados[j]==1) {
 			switch (j) {
 			 case  0:
-				 la1 = gr.obtenerArrayFechas("Lunes",txtAnual.getText(),cic);
+				 la1 = gr.obtenerArrayFechas("Lunes",txtTipoPeriodo.getText(),cic);
 				 for(int a = 0;a<la1.size();a++) {
 					 if(selected.get(0).size()!=0) {
 				      	 fech.add(la1.get(a));
@@ -1300,7 +1358,7 @@ public class RegResPeriodica extends JPanel {
 				 
 				 break;
 			 case  1:
-				 la2 = gr.obtenerArrayFechas("Martes",txtAnual.getText(),cic);
+				 la2 = gr.obtenerArrayFechas("Martes",txtTipoPeriodo.getText(),cic);
 				 for(int a = 0;a<la2.size();a++) {
 					 if(selected.get(1).size()!=0) {
 			      	 fech.add(la2.get(a));
@@ -1311,7 +1369,7 @@ public class RegResPeriodica extends JPanel {
 			 }
 				 break;
 			 case  2:
-				 la3 = gr.obtenerArrayFechas("Miercoles",txtAnual.getText(),cic);
+				 la3 = gr.obtenerArrayFechas("Miercoles",txtTipoPeriodo.getText(),cic);
 				 for(int a = 0;a<la3.size();a++) {
 					 if(selected.get(2).size()!=0) {
 			      	 fech.add(la3.get(a));
@@ -1322,7 +1380,7 @@ public class RegResPeriodica extends JPanel {
 			 }
 				 break;
 			 case  3:
-				 la4 = gr.obtenerArrayFechas("Jueves",txtAnual.getText(),cic);
+				 la4 = gr.obtenerArrayFechas("Jueves",txtTipoPeriodo.getText(),cic);
 				 for(int a = 0;a<la4.size();a++) {
 					 if(selected.get(3).size()!=0) {
 			      	 fech.add(la4.get(a));
@@ -1333,7 +1391,7 @@ public class RegResPeriodica extends JPanel {
 			 }
 				 break;
 			 case  4:
-				 la5 =gr.obtenerArrayFechas("Viernes",txtAnual.getText(),cic);
+				 la5 =gr.obtenerArrayFechas("Viernes",txtTipoPeriodo.getText(),cic);
 				 for(int a = 0;a<la5.size();a++) {
 					 if(selected.get(4).size()!=0) {
 			      	 fech.add(la5.get(a));
@@ -1344,7 +1402,7 @@ public class RegResPeriodica extends JPanel {
 			 }
 				 break;
 			 case  5:
-				 la6 = gr.obtenerArrayFechas("Sabado",txtAnual.getText(),cic);
+				 la6 = gr.obtenerArrayFechas("Sabado",txtTipoPeriodo.getText(),cic);
 				 for(int a = 0;a<la6.size();a++) {
 					 if(selected.get(5).size()!=0) {
 			      	 fech.add(la6.get(a));
@@ -1358,7 +1416,7 @@ public class RegResPeriodica extends JPanel {
 			}
 			}
 			try {
-				gr.registrarReserva(Integer.parseInt(txtCantAlumnos.getText()),(String) ComBoxTipoAula.getSelectedItem(),(String)ComBoxNombreCurso.getSelectedItem(), fech, aulas, hi, dur,txtIdSolicitante.getText(),txtNombreBedel.getText(),txtAnual.getText());
+				gr.registrarReserva(Integer.parseInt(txtCantAlumnos.getText()),(String) ComBoxTipoAula.getSelectedItem(),(String)ComBoxNombreCurso.getSelectedItem(), fech, aulas, hi, dur,txtIdSolicitante.getText(),txtNombreBedel.getText(),txtTipoPeriodo.getText());
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1616,5 +1674,36 @@ public class RegResPeriodica extends JPanel {
 			selected.add(4,v);
 			selected.add(5,s);
 	    }
-	 
+	  
+	  public static void verNombre(String cadenaNick) {
+		  txtNombreBedel.setText(cadenaNick);
+			nombreUsuario = cadenaNick;
+		}
+	  public static void verTipoPeriodo(String cadenaTipoPeriodo) {
+		  txtTipoPeriodo.setText(cadenaTipoPeriodo);
+		}
+	  public int validar(JTextField horaInic,JTextField minutosInic,JComboBox comBoxDuracionLunes) {
+		  int resultado = 0;
+		  int hora;
+          int minutos;
+          hora = Integer.parseInt(horaInic.getText()) *100;        
+          minutos = Integer.parseInt(minutosInic.getText());
+          int horaInicio= hora + minutos;
+          String durac =  (String) comBoxDuracionLunes.getSelectedItem();
+          durac = durac.replace(":","");
+          Integer duracion = Integer.valueOf(durac); 
+          if(((hora < 700) || (hora > 2300))) {
+        	  resultado = 1;          
+          }
+          if((horaInicio > 2330)) {
+        	  resultado = 2;
+          }
+          if(((duracion + horaInicio) > 2330 )) {
+        	  resultado= 3;   
+          }
+          if(((minutos < 00) && (minutos >= 60))) {
+        	  resultado = 4;
+          }
+          return resultado;		  
+		}	 
 }

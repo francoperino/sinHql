@@ -22,7 +22,7 @@ public class PanelLunes extends JPanel {
 	private JTextField txtReservaDelDia;
 	private JTextField txtMinutos;
 	private JTextField txtHora;
-	private JTextField txtNombreBedel;
+	private static JTextField txtNombreBedel;
 	private JTable table;
 	private static DefaultTableModel model ;
 	private static JButton btnSiguiente;
@@ -36,6 +36,7 @@ public class PanelLunes extends JPanel {
 	private static JButton btnSabado;
 	private JButton btnCancelar;
 	private static boolean ultimaseleccion=false;
+	private static String nombreUsuario;
 	/**
 	 * Create the panel.
 	 */
@@ -452,4 +453,8 @@ public class PanelLunes extends JPanel {
             }
         }
     }
+	public static void verNombre(String cadenaNick) {
+		txtNombreBedel.setText(cadenaNick);
+		nombreUsuario = cadenaNick;
+	}
 }

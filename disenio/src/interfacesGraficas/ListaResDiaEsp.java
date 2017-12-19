@@ -33,11 +33,11 @@ public class ListaResDiaEsp extends JPanel {
         txtNombreBedel.setOpaque(false);
         txtNombreBedel.setHorizontalAlignment(SwingConstants.CENTER);
         txtNombreBedel.setForeground(Color.WHITE);
-        txtNombreBedel.setFont(new Font("Tahoma", Font.BOLD, 18));
+        txtNombreBedel.setFont(new Font("Tahoma", Font.BOLD, 16));
         txtNombreBedel.setEditable(false);
         txtNombreBedel.setColumns(10);
         txtNombreBedel.setBorder(null);
-        txtNombreBedel.setBounds(38, 107, 112, 28);
+        txtNombreBedel.setBounds(10, 107, 156, 27);
         ContentPanListaResDiaEsp.add(txtNombreBedel);
         
         JLabel lblDia = new JLabel("Dia");

@@ -42,8 +42,8 @@ public class BuscarAula extends JPanel {
 		txtBedel.setHorizontalAlignment(SwingConstants.CENTER);
 		txtBedel.setBorder(null);
 		txtBedel.setOpaque(false);
-		txtBedel.setFont(new Font("Tahoma", Font.BOLD, 18));		
-		txtBedel.setBounds(38, 105, 112, 28);
+		txtBedel.setFont(new Font("Tahoma", Font.BOLD, 16));		
+		txtBedel.setBounds(10, 107, 156, 27);
 		panel.add(txtBedel);
 		txtBedel.setColumns(10);
 		

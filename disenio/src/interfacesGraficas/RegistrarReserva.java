@@ -72,8 +72,7 @@ public class RegistrarReserva extends JPanel {
          /*PanelResEsporadica panelResEsporadica = new PanelResEsporadica();
          this.add("panelResEsporadica", panelResEsporadica);*/
        
-        txtBedel = new JTextField();
-        txtBedel.setText("Bedel");
+        txtBedel = new JTextField();        
         txtBedel.setOpaque(false);
         txtBedel.setHorizontalAlignment(SwingConstants.CENTER);
         txtBedel.setForeground(Color.WHITE);
@@ -81,7 +80,7 @@ public class RegistrarReserva extends JPanel {
         txtBedel.setEditable(false);
         txtBedel.setColumns(10);
         txtBedel.setBorder(null);
-        txtBedel.setBounds(38, 107, 112, 28);
+        txtBedel.setBounds(10, 107, 156, 27);
         ContentPanRegReserva.add(txtBedel);
        
         JButton btnInicio = new JButton("");
@@ -261,6 +260,8 @@ public class RegistrarReserva extends JPanel {
                             }else {
                                 regResPeriodica.setSize(600,400);
                                 regResPeriodica.setLocation(0,0);
+                                regResPeriodica.verNombre(nombreUsuario);
+                                regResPeriodica.verTipoPeriodo(comBoxTipoPeriodica.getSelectedItem().toString());
                                 sl.show(ContentPan,"regResPeriodica");
                                 ContentPan.revalidate();
                                 ContentPan.repaint();  

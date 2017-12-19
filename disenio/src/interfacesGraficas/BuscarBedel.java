@@ -211,7 +211,7 @@ public class BuscarBedel extends JPanel {
                 bel.setNickusuario((String)table.getValueAt(i,0));
        
                 modbedel.seteo(bel);
-                
+                modbedel.verNombre(nombreUsuario);
                 cl.show(ContentPanBusc, "modbedel");
                 ContentPanBusc.revalidate();
                 ContentPanBusc.repaint();

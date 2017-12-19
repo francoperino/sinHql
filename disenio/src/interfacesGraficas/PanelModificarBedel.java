@@ -33,7 +33,7 @@ public class PanelModificarBedel extends JPanel {
             , JOptionPane.DEFAULT_OPTION
             , JOptionPane.INFORMATION_MESSAGE)==0);
     }
-	private JTextField txtAdmin;
+	private static JTextField txtAdmin;
 	private JPasswordField passwordField;
 	private JPasswordField passwordConfPass;
 	private JTextField txtNombre;
@@ -41,6 +41,7 @@ public class PanelModificarBedel extends JPanel {
 	private JTextField txtNickUsuario;
 	private JComboBox ComBox;
     private String contra;
+    private static String nombreUsuario;
 	
 	public PanelModificarBedel() {
 		
@@ -48,15 +49,14 @@ public class PanelModificarBedel extends JPanel {
 		this.setLayout(null);
 		
 		txtAdmin = new JTextField();
-		txtAdmin.setText("Admin");
 		txtAdmin.setOpaque(false);
 		txtAdmin.setHorizontalAlignment(SwingConstants.CENTER);
 		txtAdmin.setForeground(Color.WHITE);
-		txtAdmin.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txtAdmin.setFont(new Font("Tahoma", Font.BOLD, 16));
 		txtAdmin.setEditable(false);
 		txtAdmin.setColumns(10);
 		txtAdmin.setBorder(null);
-		txtAdmin.setBounds(37, 109, 112, 28);
+		txtAdmin.setBounds(10, 107, 156, 27);
 		this.add(txtAdmin);
 		
 		JButton btnAtras = new JButton("");
@@ -320,13 +320,13 @@ public class PanelModificarBedel extends JPanel {
 		
 		txtNickUsuario = new JTextField();
 		txtNickUsuario.setOpaque(false);
-		txtNickUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNickUsuario.setHorizontalAlignment(SwingConstants.LEFT);
 		txtNickUsuario.setForeground(Color.WHITE);
-		txtNickUsuario.setFont(new Font("Tahoma", Font.BOLD, 18));
+		txtNickUsuario.setFont(new Font("Tahoma", Font.BOLD, 16));
 		txtNickUsuario.setEditable(false);
 		txtNickUsuario.setColumns(10);
 		txtNickUsuario.setBorder(null);
-		txtNickUsuario.setBounds(399, 130, 153, 20);
+		txtNickUsuario.setBounds(440, 130, 162, 20);
 		this.add(txtNickUsuario);
 		
 		JLabel Fondo = new JLabel("");
@@ -360,4 +360,9 @@ public class PanelModificarBedel extends JPanel {
 	public JPanel getContentPanModifBedel() {
 		return this.getContentPanModifBedel();
 	}
+	 public static void verNombre(String text) {
+	        txtAdmin.setText(text);
+	        nombreUsuario= text;
+	       
+	    }
 }
