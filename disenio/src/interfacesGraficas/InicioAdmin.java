@@ -169,16 +169,30 @@ public class InicioAdmin extends JFrame {
  
     public static void  llamarAdmin(int t) {
         tipo=t;
+        if(t==1) {
+        	PanelAdmin.remove(registrarBedel);
+            registrarBedel = new RegistrarBedel();
+            PanelAdmin.add("registrarBedel",registrarBedel);
+        }
+        else {
+        	if(t==2) {
+        		PanelAdmin.remove(buscarBedel);
+                buscarBedel = new BuscarBedel();
+                buscarBedel.setForeground(Color.DARK_GRAY);
+                
+                PanelAdmin.add("buscarBedel",buscarBedel);
+        	}
+        }
         cl.show(PanelAdmin,"panel1Admin");
     }
  
  
     public static void mostrarrgistrarbedel() {
-        if(tipo==1) {
+        /*if(tipo==1) {
             PanelAdmin.remove(registrarBedel);
             registrarBedel = new RegistrarBedel();
             PanelAdmin.add("registrarBedel",registrarBedel);
-        }
+        }*/
         registrarBedel.setSize(600,400);
         registrarBedel.setLocation(0,0);
         registrarBedel.verNombre(txtAdmin.getText());
@@ -189,13 +203,13 @@ public class InicioAdmin extends JFrame {
  
  
     public static void mostrarBuscarBedel() {
-        if(tipo==2) {
+        /*if(tipo==2) {
             PanelAdmin.remove(buscarBedel);
             buscarBedel = new BuscarBedel();
             buscarBedel.setForeground(Color.DARK_GRAY);
             
             PanelAdmin.add("buscarBedel",buscarBedel);
-        }
+        }*/
         buscarBedel.setSize(600,400);
         buscarBedel.setLocation(0,0);
         buscarBedel.verNombre(txtAdmin.getText());

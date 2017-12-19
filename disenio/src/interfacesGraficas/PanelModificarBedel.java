@@ -297,6 +297,7 @@ public class PanelModificarBedel extends JPanel {
 			            	break;
 			            case 7:
 			            	 mensaje("Bedel modificado correctamente","Modificacion exitosa");
+			            	 BuscarBedel.cancelar(2);
 			                break;
 			            
 			        }

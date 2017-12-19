@@ -227,6 +227,19 @@ public class InicioBedel extends JFrame {
     
     public static void  llamarBedel(int t) {
     	tipo=t;
+    	if(t==3) {
+    		InicoBedel.remove(regreserva);
+			regreserva = new RegistrarReserva();
+    		InicoBedel.add("regreserva",regreserva);
+    	}
+    	else {
+    		if(t==4) {
+    			InicoBedel.remove(busaula);
+        		busaula = new BuscarAula();
+        		BuscarAula.verNombre(nombreUsuario);	
+        		InicoBedel.add("busaula",busaula);
+    		}
+    	}
         cl.show(InicoBedel,"InicioBedel1");
     }
     
@@ -272,7 +285,9 @@ public class InicioBedel extends JFrame {
     
     public static void mostrarbusaula() {
 		if(tipo==4) {
-			InicoBedel.remove(busaula);			
+			InicoBedel.remove(busaula);
+    		busaula = new BuscarAula();
+    		BuscarAula.verNombre(nombreUsuario);	
     		InicoBedel.add("busaula",busaula);
     	}
 		busaula.setSize(600,400);
