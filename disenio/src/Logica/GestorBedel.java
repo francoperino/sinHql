@@ -34,6 +34,13 @@ public class GestorBedel {
 	                     valor = 100;
 	                 }
 	                break;
+	            case 5:{
+	            	
+	            	valor = 100;
+	            	
+	            	break;
+	            }
+	            
 	            default:
 	                
 	                

@@ -23,7 +23,9 @@ Boolean iguales=false,contiene=false;
                      if(esDigito(clave.getClaveactual())){
                          if(esEspecial(clave.getClaveactual())){
                         	 if(iguales) {
-                        		 if(noEstaEnHistorial(clave.getClaveactual(),nickBedel))	return 0;
+                        		 if(noEstaEnHistorial(clave.getClaveactual(),nickBedel)) {
+                        			 return 0;
+                        		 }
                         		 else return 5;
                         	 }else	return 0;
                         }else return 1;
