@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Entidades.Bedel;
+import Entidades.Clave;
 import Entidades.ConsultaGenerica;
 import Entidades.Usuario;
 import daos.daoBedel;
@@ -12,9 +13,10 @@ public class GestorBedel {
 
 	 public Integer registrarBedel(String apellido,String nombre,String turno,String nickUsuario,String contrasea ) throws Exception{
 	       daoBedel db = new daoBedel();
+	       Clave c = new Clave();
 	       GestorPoliticaClave gpc = new GestorPoliticaClave();
-	       
-	        Integer valor = gpc.validarPoliticas(contrasea,nickUsuario);
+	       c.setClaveactual(contrasea);
+	        Integer valor = gpc.validarPoliticas(c,nickUsuario);
 	        switch(valor){
 	            case 0:
 	                 if(db.consultarNickBedel(nickUsuario).isEmpty()){
@@ -23,7 +25,8 @@ public class GestorBedel {
 	                	 b.setNombre(nombre);
 	                	 b.setNickusuario(nickUsuario);
 	                	 b.setTurno(turno);
-	                     db.insertarBedel(b,contrasea);
+	                     b.setClave(c);
+	                     db.insertarBedel(b);
 	                     valor =7 ;
 	                     
 	                 }
@@ -62,8 +65,9 @@ public class GestorBedel {
 	public Integer modificarBedel(String myPass, String tu, String apelido, String nobre,String nick,String contra) throws Exception {
 		daoBedel db = new daoBedel();
 		GestorPoliticaClave gpc = new GestorPoliticaClave();
-	       
-        Integer valor = gpc.validarPoliticas(myPass,nick);
+	    Clave clavel = new Clave();
+	    clavel.setClaveactual(myPass);
+        Integer valor = gpc.validarPoliticas(clavel,nick);
         switch(valor){
             case 0:  
             	     
@@ -72,13 +76,14 @@ public class GestorBedel {
                 	 b.setApellido(apelido);
                 	 b.setNombre(nobre);
                 	 b.setTurno(tu);
+                	 b.setClave(clavel);
                 	 if(contra.equals(myPass)) {
                 		 db.actualizarBedel(b);
                      
                      valor =7 ;    
             	     }
             	     else {
-            	    	 db.actualizarBedel(b,myPass);
+            	    	 db.actualizarBedel(b,true);
             	    	 valor = 7;
             	     }
                 break;

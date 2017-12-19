@@ -8,9 +8,9 @@ import daos.Conexion;
 import daos.daoAula;
  
 public class GestorAulas {
-    public  ArrayList<ConsultaGenerica> obtenerArrayAulas(String tipoAula,Integer numAlum) throws Exception {
+    public  static ArrayList<ConsultaGenerica> obtenerArrayAulas(String tipoAula,Integer numAlum) throws Exception {
         String consulta=null;
-        daoAula da = new daoAula();
+      
        
         if(tipoAula.equals("Informatica")) {
             consulta = "select * from aula a,informatica i where a.numeroaula = i.numeroaula and a.capacidad >= '"+numAlum+"' and a.estado ='1' ; ";

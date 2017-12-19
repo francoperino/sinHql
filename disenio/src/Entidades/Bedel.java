@@ -2,6 +2,7 @@ package Entidades;
 
 public class Bedel extends Usuario {
 	protected String turno;
+	private Clave clave;
 	public Bedel(String datos) {
 		String[] params = datos.split("\t");
 		nickusuario = params[0];
@@ -20,6 +21,12 @@ public class Bedel extends Usuario {
 	}
 	public Bedel() {
 		
+	}
+	public Clave getClave() {
+		return clave;
+	}
+	public void setClave(Clave clave) {
+		this.clave = clave;
 	}
 
 }

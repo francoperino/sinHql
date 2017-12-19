@@ -2,6 +2,7 @@ package Logica;
 
 import java.util.ArrayList;
 
+import Entidades.Clave;
 import Entidades.Politicadeseguridad;
 import daos.daoPoliticasClave;
 
@@ -9,7 +10,7 @@ public class GestorPoliticaClave {
 Boolean iguales=false,contiene=false;
          Integer lgm;
  String sign;
-			public Integer validarPoliticas(String clave,String nickBedel) throws Exception{
+			public Integer validarPoliticas(Clave clave ,String nickBedel) throws Exception{
 				 daoPoliticasClave dpc = new daoPoliticasClave();       
                  Politicadeseguridad ps =(Politicadeseguridad) dpc.retornarPoliticas();
                  sign = ps.getSignosespeciales();
@@ -17,12 +18,12 @@ Boolean iguales=false,contiene=false;
                  lgm = ps.getLongclavemin();
                  contiene = ps.getContienedigito();
          if(contiene){ 
-             if(clave.length()>=lgm && clave.length()<20){
-                 if(esMayuscula(clave)){
-                     if(esDigito(clave)){
-                         if(esEspecial(clave)){
+             if(clave.getClaveactual().length()>=lgm && clave.getClaveactual().length()<20){
+                 if(esMayuscula(clave.getClaveactual())){
+                     if(esDigito(clave.getClaveactual())){
+                         if(esEspecial(clave.getClaveactual())){
                         	 if(iguales) {
-                        		 if(noEstaEnHistorial(clave,nickBedel))	return 0;
+                        		 if(noEstaEnHistorial(clave.getClaveactual(),nickBedel))	return 0;
                         		 else return 5;
                         	 }else	return 0;
                         }else return 1;
@@ -31,11 +32,11 @@ Boolean iguales=false,contiene=false;
              }else return 4;
                   }
                   else     
-             if(clave.length()>=lgm && clave.length()<20){
-                 if(esMayuscula(clave)){
-                         if(esEspecial(clave)){
+             if(clave.getClaveactual().length()>=lgm && clave.getClaveactual().length()<20){
+                 if(esMayuscula(clave.getClaveactual())){
+                         if(esEspecial(clave.getClaveactual())){
                         	 if(iguales) {
-                        		 if(noEstaEnHistorial(clave,nickBedel))	return 0;
+                        		 if(noEstaEnHistorial(clave.getClaveactual(),nickBedel))	return 0;
                         		 else return 5;
                         	 }else	return 0;
                         }else return 1;
